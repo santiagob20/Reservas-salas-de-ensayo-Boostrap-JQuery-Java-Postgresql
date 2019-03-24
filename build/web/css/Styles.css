@@ -1,0 +1,47 @@
+/*LOGO DEL ENCABEZADO*/
+#logoEncabezado{
+	padding-right: 5px;
+}
+
+/*MENU IZQUIERDO*/
+#perfilMenu{
+	padding-top: 66px !important;
+}
+
+/*COLOR DE LA BARRA SUPERIOR*/
+#mainNav{
+	background-color: #272B30 !important;
+}
+
+/*ICONOS DE NOTIFICACION DE LA BARRA SUPERIOR*/
+#alertsDropdown{
+	padding-right: 9.2rem !important;
+}
+
+/*CAJA INICIO SESION*/
+#cajaInicioSesion{
+	text-align: -webkit-center;
+    padding-bottom: 41px;
+}
+
+/*CAJA REGISTRO*/
+#cajaRegistro{
+	margin: 10px 10px 10px 10px;  
+}
+
+.genero .col-6{
+	text-align: center;
+}
+
+#logoRegistrar{
+	margin: 10px auto;
+    display: block;
+}
+
+
+/*CUADRO INICIO SESION*/
+#btnRegistro{
+	background-color: #27AE60 ;
+    color: white ;
+    margin-right: 137px ;
+}

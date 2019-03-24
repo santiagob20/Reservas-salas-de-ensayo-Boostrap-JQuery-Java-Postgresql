@@ -1,0 +1,40 @@
+body{
+    background-image: url("../imagenes/Fondo_2.jpg");
+    background-repeat: no-repeat, repeat;height: 500px; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    background-size: cover; 
+}
+
+label{
+    margin-top: 3%;
+}
+
+.card-register {
+    max-width: 56rem !important;
+}
+
+#logoRegistrar{
+    margin: 27% 10% 10% 16%;
+    display: block;
+}
+
+h3{
+    text-align: center;
+}
+
+#btnRegistrar{
+    color: white;
+}
+
+
+/*BOTON VOLVER*/
+#btnVolver{
+    color: white; 
+    margin: 0% 0% 0% 3%; 
+    position: absolute;
+}
+#btnVolver:hover{
+    cursor: pointer;
+    opacity: 0.2;
+}
