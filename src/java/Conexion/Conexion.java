@@ -16,13 +16,13 @@ import java.sql.SQLException;
 public class Conexion {
 
     private Connection c;
-    private String usuario = "admin";
-    private String password = "admin";
+    private String usuario = "yslmmaxd";
+    private String password = "pQAkoPmPJzWY_Ja9v0UsZAS1inHeaLVD";
 
     public Connection conectar() {
         try {
             Class.forName("org.postgresql.Driver");
-            c = DriverManager.getConnection("jdbc:postgresql://172.16.0.211:5432/estrategia", usuario, password);
+            c = DriverManager.getConnection("jdbc:postgresql://isilo.db.elephantsql.com:5432/yslmmaxd", usuario, password);
         } catch (ClassNotFoundException | SQLException e) {
             System.out.println("Error BD: " + e);
         }

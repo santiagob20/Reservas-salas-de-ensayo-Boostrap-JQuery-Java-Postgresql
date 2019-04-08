@@ -15,11 +15,14 @@ function inicio() {
 
 }
 
+var server='http://localhost:8080/';
+var server2='';
+
 function clickInicioSesion() {
     let usuario = $("#usuarioSesion").val();
     let password = $("#passwordSesion").val();
     $.ajax({
-        url: "http://localhost:8080/Riff/app/restServices/inicioSesionUsuario",
+        url: server+"Riff/app/restServices/inicioSesionUsuario",
         data: JSON.stringify({
             usuario: usuario,
             clave: password
@@ -50,7 +53,7 @@ function clickRegistroUsuario() {
     let genero = $("#txtGenero").val();
     // VALIDAR DATOS DE CADA CAMPO
     $.ajax({
-        url: "http://localhost:8080/Riff/app/restServices/registrarUsuario",
+        url: server+"Riff/app/restServices/registrarUsuario",
         data: JSON.stringify({
             identificacion: identificacion,
             nombre: nombres,
