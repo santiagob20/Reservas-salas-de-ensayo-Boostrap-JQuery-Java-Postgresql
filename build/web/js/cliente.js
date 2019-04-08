@@ -12,7 +12,15 @@ function inicio() {
     });
     $("#btnRegistrarUsuario").click(clickRegistroUsuario);
 
+    //CONTACTENOS
+    $("#pagContactenosClick").click(function () {
+        $("#pagInicio").hide();
+        $("#pagContactenos").show();
+    });
+    $("#btnEnviarDatosContactenos").click(clickContactoUsuarioApp);
 
+
+    skip();
 }
 
 function clickInicioSesion() {
@@ -74,8 +82,34 @@ function clickRegistroUsuario() {
         }
     });
 }
+function clickContactoUsuarioApp() {
+    let nombreContacto = $("#nombreContactenos").val();
+    let emailContacto = $("#emailContactenos").val();
+    let cajaMensajeContacto = $("#cajaMensajeContactenos").val();
+    $.ajax({
+        url: "http://localhost:8080/Riff/app/restServices/envioFormularioContactenos",
+        data: JSON.stringify({
+            nombre: nombreContacto,
+            correoElectronico: emailContacto,
+            mensajeContactenos: cajaMensajeContacto
+        }),
+        type: 'POST',
+        cache: false,
+        async: false,
+        contentType: 'application/json',
+        success: function (respuesta) {
+            console.log(respuesta);
+        },
+        error: function (error) {
+            console.log(error);
+        }
+    });
+}
 
 // FUNCIONES GENERALES -------------------------------------------------
+function skip() {
+    $("#pagContactenos").hide();
+}
 function innerModalInformativo(header, body, footer) {
     //HEADER
     document.getElementById('headerModalInformativo').innerHTML = null;

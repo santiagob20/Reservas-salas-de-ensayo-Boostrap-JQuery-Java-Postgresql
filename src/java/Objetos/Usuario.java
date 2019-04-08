@@ -25,6 +25,7 @@ public class Usuario {
     private String rol;
     private int idUsuario;
     private Banda banda;
+    private String mensajeContactenos;
 
     public String getIdentificacion() {
         return identificacion;
@@ -120,5 +121,13 @@ public class Usuario {
 
     public void setBanda(Banda banda) {
         this.banda = banda;
+    }
+
+    public String getMensajeContactenos() {
+        return mensajeContactenos;
+    }
+
+    public void setMensajeContactenos(String mensajeContactenos) {
+        this.mensajeContactenos = mensajeContactenos;
     }
 }

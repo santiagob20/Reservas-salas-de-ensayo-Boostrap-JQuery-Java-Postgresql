@@ -30,13 +30,24 @@ public class RestServices {
         System.out.println(u.getClave());
         return new Respuesta();
     }
-    
+
     @POST
     @Path("registrarUsuario")
     @Consumes({MediaType.APPLICATION_JSON})
     @Produces({MediaType.APPLICATION_JSON})
     public Respuesta registrarUsuario(Usuario u) {
         System.out.println(u.getNombre());
+        return new Respuesta();
+    }
+
+    @POST
+    @Path("envioFormularioContactenos")
+    @Consumes({MediaType.APPLICATION_JSON})
+    @Produces({MediaType.APPLICATION_JSON})
+    public Respuesta envioFormularioContactenos(Usuario u) {
+        System.out.println(u.getNombre());
+        System.out.println(u.getCorreoElectronico());
+        System.out.println(u.getMensajeContactenos());
         return new Respuesta();
     }
 }
