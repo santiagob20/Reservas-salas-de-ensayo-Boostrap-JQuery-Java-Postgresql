@@ -5,6 +5,7 @@ package REST;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+import DAO.OperacionesUsuario;
 import Objetos.Respuesta;
 import Objetos.Usuario;
 import javax.ws.rs.Consumes;
@@ -26,9 +27,10 @@ public class RestServices {
     @Consumes({MediaType.APPLICATION_JSON})
     @Produces({MediaType.APPLICATION_JSON})
     public Respuesta inicioSesionUsuario(Usuario u) {
-        System.out.println(u.getUsuario());
-        System.out.println(u.getClave());
-        return new Respuesta();
+        Respuesta rta = new Respuesta();
+        rta.setCodigo(1);
+        rta.setDescripcion("200 OK");
+        return rta;
     }
 
     @POST
@@ -49,5 +51,13 @@ public class RestServices {
         System.out.println(u.getCorreoElectronico());
         System.out.println(u.getMensajeContactenos());
         return new Respuesta();
+    }
+
+    @POST
+    @Path("crearUsuario")
+    @Consumes({MediaType.APPLICATION_JSON})
+    @Produces({MediaType.APPLICATION_JSON})
+    public Respuesta crearUsuario(Usuario u) {
+        return new OperacionesUsuario().create(u);
     }
 }
