@@ -27,10 +27,7 @@ public class RestServices {
     @Consumes({MediaType.APPLICATION_JSON})
     @Produces({MediaType.APPLICATION_JSON})
     public Respuesta inicioSesionUsuario(Usuario u) {
-        Respuesta rta = new Respuesta();
-        rta.setCodigo(1);
-        rta.setDescripcion("200 OK");
-        return rta;
+        return new OperacionesUsuario().read(u);
     }
 
     @POST
@@ -60,4 +57,5 @@ public class RestServices {
     public Respuesta crearUsuario(Usuario u) {
         return new OperacionesUsuario().create(u);
     }
+    
 }

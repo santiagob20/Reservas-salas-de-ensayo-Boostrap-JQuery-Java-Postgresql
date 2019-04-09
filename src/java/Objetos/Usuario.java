@@ -23,9 +23,12 @@ public class Usuario {
     private String usuario;
     private String clave;
     private String rol;
-    private int idUsuario;
+    private int id_usuario;
     private Banda banda;
     private String mensajeContactenos;
+    private String codigo;
+    private String descripcion;
+    
 
     public String getIdentificacion() {
         return identificacion;
@@ -107,12 +110,12 @@ public class Usuario {
         this.rol = rol;
     }
 
-    public int getIdUsuario() {
-        return idUsuario;
+    public int getId_usuario() {
+        return id_usuario;
     }
 
-    public void setIdUsuario(int idUsuario) {
-        this.idUsuario = idUsuario;
+    public void setId_usuario(int id_usuario) {
+        this.id_usuario = id_usuario;
     }
 
     public Banda getBanda() {
@@ -129,5 +132,21 @@ public class Usuario {
 
     public void setMensajeContactenos(String mensajeContactenos) {
         this.mensajeContactenos = mensajeContactenos;
+    }
+
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 }
