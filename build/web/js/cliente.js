@@ -1,6 +1,8 @@
 $(document).ready(inicio);
 
 function inicio() {
+    //INICIO LOCALIDADES
+    skipInicio();
 
     //INICIO DE SESION
     $("#btnIniciarSesion").click(clickInicioSesion);
@@ -19,18 +21,17 @@ function inicio() {
     });
     $("#btnEnviarDatosContactenos").click(clickContactoUsuarioApp);
 
-
     skip();
 }
 
-var server='http://localhost:8080/';
-var server2='';
+var server = 'http://localhost:8080/';
+var server2 = '';
 
 function clickInicioSesion() {
     let usuario = $("#usuarioSesion").val();
     let password = $("#passwordSesion").val();
     $.ajax({
-        url: server+"Riff/app/restServices/inicioSesionUsuario",
+        url: server + "Riff/app/restServices/inicioSesionUsuario",
         data: JSON.stringify({
             usuario: usuario,
             clave: password
@@ -61,7 +62,7 @@ function clickRegistroUsuario() {
     let genero = $("#txtGenero").val();
     // VALIDAR DATOS DE CADA CAMPO
     $.ajax({
-        url: server+"Riff/app/restServices/registrarUsuario",
+        url: server + "Riff/app/restServices/registrarUsuario",
         data: JSON.stringify({
             identificacion: identificacion,
             nombre: nombres,
@@ -110,7 +111,14 @@ function clickContactoUsuarioApp() {
 }
 
 // FUNCIONES GENERALES -------------------------------------------------
+function skipInicio() {
+    $("#footerAplicacion").hide();
+    $("#mainNav").hide();
+    $(".content-wrapper").hide();
+    skip();
+}
 function skip() {
+    $("#pagInicio").hide();
     $("#pagContactenos").hide();
 }
 function innerModalInformativo(header, body, footer) {
@@ -128,4 +136,6 @@ function innerModalInformativo(header, body, footer) {
 
     $("#modalInformativo").modal('show');
 }
-
+function localidadSelect(id) {
+    alert(id);
+}

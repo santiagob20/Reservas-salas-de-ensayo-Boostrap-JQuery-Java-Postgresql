@@ -21,11 +21,70 @@
         <link href="css/styles.css" rel="stylesheet" type="text/css"/>
     </head>
     <body class="fixed-nav sticky-footer bg-dark-user-user" id="page-top">
+        <br>
+        <br>
+        <!-- INICIO PAG LOCALIDADES -->
+        <div id="inicioLocalidades" class="row" style="overflow-y: hidden;">
+            <div class="col-lg-4"></div>
+            <div class="col-lg-4 bordeSombra cajaInicioLocalidades">
+                <!-- FILA LOGO APLICACION -->
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-3"></div>
+                        <div class="col-lg-6">
+                            <img src="imagenes/logo_riff.png" width="100%" alt=""/>
+                        </div>
+                        <div class="col-lg-3"></div>
+                    </div>
+                </div>
+                <!-- TEXTO DE INICIO -->
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12 text-center">
+                            <h5>¿ En que localidad desea buscar ?</h5>
+                        </div>
+                    </div>
+                </div>
+                <!-- LOCALIDADES -->
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <ul>
+                                        <li id="Engativa" onClick="localidadSelect(this.id)">Engativa</li>
+                                        <li id="Fontibon" onClick="localidadSelect(this.id)">Fontibon</li>
+                                        <li id="Puente Aranda" onClick="localidadSelect(this.id)">Puente Aranda</li>
+                                        <li id="Usme" onClick="localidadSelect(this.id)">Usme</li>
+                                        <li id="Candelaria" onClick="localidadSelect(this.id)">Candelaria</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <ul>
+                                        <li id="Chapinero" onClick="localidadSelect(this.id)">Chapinero</li>
+                                        <li id="Usaquen" onClick="localidadSelect(this.id)">Usaquén</li>
+                                        <li id="Suba" onClick="localidadSelect(this.id)">Suba</li>
+                                        <li id="Teusaquillo" onClick="localidadSelect(this.id)">Teusaquillo</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4"></div>
+        </div>
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark-user fixed-top" id="mainNav">
-            
+
             <a class="navbar-brand" href="index.html" style="color: black; margin-left: 7%"><img src="imagenes/logo_riff.png"  style="width: 40px" alt="Riff"/></a>
-            
+
             <!-- BOTON MENU RESPONSIVE -->
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -163,8 +222,10 @@
             </div>
         </nav>
 
-
         <div class="content-wrapper">
+
+            <!-- PAGINA DE INICIO -->
+
 
             <!-- PAGINA DE INICIO -->
             <div id="pagInicio" class="container-fluid">
@@ -400,7 +461,7 @@
 
             <!-- /.container-fluid-->
             <!-- /.content-wrapper-->
-            <footer class="sticky-footer">
+            <footer class="sticky-footer" id="footerAplicacion">
                 <div class="container">
                     <div class="text-center">
                         <small><b>Power by Riff</b> Sebastian Pinto - Santiago Barrera 2019</small>
