@@ -22,6 +22,12 @@ public class Reserva {
     private Usuario usuario;
     private Instrumento instrumento;
     private int pagoRealizado;
+    private String codigo;
+    private String descripcion;
+    private int idUsuario;
+    private int idPrecio;
+    private int idSala;
+    private String detalles;
 
     public int getIdReserva() {
         return idReserva;
@@ -94,4 +100,55 @@ public class Reserva {
     public void setPagoRealizado(int pagoRealizado) {
         this.pagoRealizado = pagoRealizado;
     }
+
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public int getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
+    public int getIdPrecio() {
+        return idPrecio;
+    }
+
+    public void setIdPrecio(int idPrecio) {
+        this.idPrecio = idPrecio;
+    }
+
+    public int getIdSala() {
+        return idSala;
+    }
+
+    public void setIdSala(int idSala) {
+        this.idSala = idSala;
+    }
+
+    public String getDetalles() {
+        return detalles;
+    }
+
+    public void setDetalles(String detalles) {
+        this.detalles = detalles;
+    }
+    
+    
+    
 }

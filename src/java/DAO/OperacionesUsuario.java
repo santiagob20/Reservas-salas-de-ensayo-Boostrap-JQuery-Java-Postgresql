@@ -53,11 +53,11 @@ public class OperacionesUsuario implements InterfaceUsuario {
                 listaUsuarios.add(usuario);
             }
             rta.setListaUsuarios(listaUsuarios);
-            rta.setCodigo(1);
-            rta.setDescripcion("Usuario creado correctamente");
+            rta.setCodigo(Integer.parseInt(usuario.getCodigo()));
+            rta.setDescripcion(usuario.getDescripcion());
 
         } catch (SQLException ex) {
-            rta.setCodigo(0);
+            rta.setCodigo(Integer.parseInt(usuario.getCodigo()));
             rta.setDescripcion("Error al crear usuario: " + ex);
         }
 
