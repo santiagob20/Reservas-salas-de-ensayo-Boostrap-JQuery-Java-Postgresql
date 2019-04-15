@@ -32,7 +32,6 @@ public class RestServices {
         return new OperacionesUsuario().read(u);
     }
 
-
     @POST
     @Path("envioFormularioContactenos")
     @Consumes({MediaType.APPLICATION_JSON})
@@ -51,7 +50,15 @@ public class RestServices {
     public Respuesta crearUsuario(Usuario u) {
         return new OperacionesUsuario().create(u);
     }
-    
+
+    @POST
+    @Path("editarUsuario")
+    @Consumes({MediaType.APPLICATION_JSON})
+    @Produces({MediaType.APPLICATION_JSON})
+    public Respuesta editarUsuario(Usuario u) {
+        return new OperacionesUsuario().update(u);
+    }
+
     @POST
     @Path("crearReserva")
     @Consumes({MediaType.APPLICATION_JSON})
@@ -59,5 +66,5 @@ public class RestServices {
     public Respuesta crearReserva(Reserva r) {
         return new OperacionesReservas().create(r);
     }
-    
+
 }

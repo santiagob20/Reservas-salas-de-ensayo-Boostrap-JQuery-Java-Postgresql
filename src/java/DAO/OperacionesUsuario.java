@@ -94,7 +94,38 @@ public class OperacionesUsuario implements InterfaceUsuario {
 
     @Override
     public Respuesta update(Usuario u) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    Respuesta rta = new Respuesta();
+        Usuario usuario = new Usuario();
+        Conexion cn = new Conexion();
+        ArrayList<Usuario> listaUsuarios = new ArrayList<>();
+        String sql = "select app.sp_usuario_crud('{\"operacion\":\"UPDATE\","
+                + "\"usuario\":\""+u.getUsuario()+"\","
+                + "\"identificacion\":\""+u.getIdentificacion()+"\","
+                + "\"nombre\":\""+u.getNombre()+"\","
+                + "\"apellido\":\""+u.getApellido()+"\","
+                + "\"fecha_nacimiento\":\""+u.getFechaNacimiento()+"\","
+                + "\"direccion\":\""+u.getDireccionResidencia()+"\","
+                + "\"telefono\":\""+u.getTelefono()+"\","
+                + "\"email\":\""+u.getCorreoElectronico() +"\"}');";
+        
+        try {
+            PreparedStatement ps = cn.conectar().prepareStatement(sql);
+
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                usuario = new Gson().fromJson(rs.getString("sp_usuario_crud"), Usuario.class);
+                listaUsuarios.add(usuario);
+            }
+            rta.setCodigo(Integer.parseInt(usuario.getCodigo()));
+            rta.setDescripcion(usuario.getDescripcion());
+            rta.setListaUsuarios(listaUsuarios);
+
+        } catch (SQLException ex) {
+            rta.setCodigo(Integer.parseInt(usuario.getCodigo()));
+            rta.setDescripcion("Error al autenticar " + ex);
+        }
+
+        return rta;
     }
 
     @Override
