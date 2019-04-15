@@ -4,7 +4,7 @@
 }
 
 /*  INICIO LOCALIDADES -----------------------------------------------------------*/
-body{
+#inicioLocalidades{
     background-image: url("../imagenes/Fotos fondo/Festival-de-rock2.jpg");
     overflow: hidden;
     position: relative;
@@ -118,4 +118,20 @@ span.infoIcon {
     margin-bottom: 14px;
 }
 
+/*  CALENDARIO -----------------------------------------------------------*/
+.grilla{
+    border: solid 1px black;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    text-align: center;
+    width: 1022px;
+    height: 30px;
+}
+.grilla:hover{
+    background-color: #DD6B4D;
+}
 
+.grillaEncabezado{
+    background-color: #DAE1E7;
+    font-weight: bold;
+}

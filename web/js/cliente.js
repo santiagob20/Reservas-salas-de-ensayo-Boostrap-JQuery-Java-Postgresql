@@ -2,7 +2,10 @@ $(document).ready(inicio);
 
 function inicio() {
     //INICIO LOCALIDADES
-    skipInicio();
+//    skipInicio();
+
+    //PRUEBA CALENDARIO
+    calendarioReservas();
 
     //INICIO DE SESION
     $("#btnIniciarSesion").click(clickInicioSesion);
@@ -115,9 +118,9 @@ function skipInicio() {
     $("#footerAplicacion").hide();
     $("#mainNav").hide();
     $(".content-wrapper").hide();
-    skip();
 }
 function skip() {
+    $("#inicioLocalidades").hide();
     $("#pagInicio").hide();
     $("#pagContactenos").hide();
 }
@@ -138,4 +141,31 @@ function innerModalInformativo(header, body, footer) {
 }
 function localidadSelect(id) {
     alert(id);
+}
+
+// CALENDARIO ---------------------------------------------------------------------------------------------
+function calendarioReservas() {
+    let diasSemana = ['LUN', 'MAR', 'MIE', 'JUE', 'VIE', 'SAB', 'DOM'];
+    let columnas = '<tr>' +
+            '<th class="grilla grillaEncabezado">Hora</th>';
+    for (let index = 0; index < 7; index++) {
+        columnas += '<th class="grilla grillaEncabezado">' + diasSemana[index] + '</th>';
+    }
+    $("#calendario").append(columnas);
+
+    for (var i = 0; i <= 23; i++) {
+        let filas = '<tr>' +
+                '<th id="' + i + 'Dia" class="grilla ui-widget-content">' + (i) + '</th>' +
+                '<th id="' + i + 'Lun" onclick="reservarFechaHora(this.id)" class="grilla ui-widget-content"></th>' +
+                '<th id="' + i + 'Mar" onclick="reservarFechaHora(this.id)" class="grilla ui-widget-content"></th>' +
+                '<th id="' + i + 'Mie" onclick="reservarFechaHora(this.id)" class="grilla ui-widget-content"></th>' +
+                '<th id="' + i + 'Jue" onclick="reservarFechaHora(this.id)" class="grilla ui-widget-content"></th>' +
+                '<th id="' + i + 'Vie" onclick="reservarFechaHora(this.id)" class="grilla ui-widget-content"></th>' +
+                '<th id="' + i + 'Sab" onclick="reservarFechaHora(this.id)" class="grilla ui-widget-content"></th>' +
+                '<th id="' + i + 'Dom" onclick="reservarFechaHora(this.id)" class="grilla ui-widget-content"></th>';
+        $("#calendario").append(filas);
+    }
+}
+function reservarFechaHora(id) {
+    alert(id)
 }
