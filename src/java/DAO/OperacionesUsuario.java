@@ -70,6 +70,52 @@ public class OperacionesUsuario implements InterfaceUsuario {
         Usuario usuario = new Usuario();
         Conexion cn = new Conexion();
         ArrayList<Usuario> listaUsuarios = new ArrayList<>();
+        
+        String sql = "select id_usuario\n" +
+                    ",id_rol\n" +
+                    ",identificacion\n" +
+                    ",(nombre||' '||apellido) as nombre\n" +
+                    ",fecha_nacimiento\n" +
+                    ",direccion_residencia\n" +
+                    ",correo_electronico\n" +
+                    ",usuario\n" +
+                    "from app.tbl_usuario " +
+                    "where id_usuario = ? ";
+        try {
+            PreparedStatement ps = cn.conectar().prepareStatement(sql);
+            ps.setInt(1, u.getId_usuario());
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                usuario.setId_usuario(rs.getInt("id_usuario"));
+                usuario.setRol(String.valueOf(rs.getInt("id_rol")));
+                usuario.setIdentificacion(rs.getString("identificacion"));
+                usuario.setNombre(rs.getString("nombre"));
+                usuario.setFechaNacimiento(rs.getDate("fecha_nacimiento"));
+                usuario.setDireccionResidencia(rs.getString("direccion_residencia"));
+                usuario.setCorreoElectronico(rs.getString("correo_electronico"));
+                usuario.setUsuario(rs.getString("usuario"));
+                listaUsuarios.add(usuario);
+            }
+            rta.setCodigo(Integer.parseInt(usuario.getCodigo()));
+            rta.setDescripcion(usuario.getDescripcion());
+            rta.setListaUsuarios(listaUsuarios);
+
+        } catch (SQLException ex) {
+            rta.setCodigo(0);
+            rta.setDescripcion("Error al autenticar " + ex);
+        }finally{
+            cn.desconectar();
+        }
+
+        return rta;
+    }
+    
+    @Override
+    public Respuesta autenticate(Usuario u) {
+        Respuesta rta = new Respuesta();
+        Usuario usuario = new Usuario();
+        Conexion cn = new Conexion();
+        ArrayList<Usuario> listaUsuarios = new ArrayList<>();
         String sql = "select app.sp_usuario_crud('{\"operacion\":\"AUTENTICATE\",\"usuario\":\""+u.getUsuario()+"\",\"clave\":\""+u.getClave()+"\"}');";
         
         try {
@@ -80,13 +126,14 @@ public class OperacionesUsuario implements InterfaceUsuario {
                 usuario = new Gson().fromJson(rs.getString("sp_usuario_crud"), Usuario.class);
                 listaUsuarios.add(usuario);
             }
-            rta.setCodigo(1);
-            rta.setDescripcion("Respuesta de autenticacion correcta");
+            rta.setCodigo(Integer.parseInt(usuario.getCodigo()));
+            rta.setDescripcion(usuario.getDescripcion());
             rta.setListaUsuarios(listaUsuarios);
-
         } catch (SQLException ex) {
             rta.setCodigo(0);
             rta.setDescripcion("Error al autenticar " + ex);
+        }finally{
+            cn.desconectar();
         }
 
         return rta;
@@ -123,6 +170,8 @@ public class OperacionesUsuario implements InterfaceUsuario {
         } catch (SQLException ex) {
             rta.setCodigo(Integer.parseInt(usuario.getCodigo()));
             rta.setDescripcion("Error al autenticar " + ex);
+        }finally{
+            cn.desconectar();
         }
 
         return rta;

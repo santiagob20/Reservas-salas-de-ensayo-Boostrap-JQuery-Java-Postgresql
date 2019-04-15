@@ -17,5 +17,6 @@ public interface InterfaceUsuario {
     public Respuesta read(Usuario u);
     public Respuesta update(Usuario u);
     public Respuesta delete(Usuario u);
+    public Respuesta autenticate(Usuario u);
     
 }

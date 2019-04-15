@@ -29,7 +29,7 @@ public class RestServices {
     @Consumes({MediaType.APPLICATION_JSON})
     @Produces({MediaType.APPLICATION_JSON})
     public Respuesta inicioSesionUsuario(Usuario u) {
-        return new OperacionesUsuario().read(u);
+        return new OperacionesUsuario().autenticate(u);
     }
 
     @POST
@@ -57,6 +57,14 @@ public class RestServices {
     @Produces({MediaType.APPLICATION_JSON})
     public Respuesta editarUsuario(Usuario u) {
         return new OperacionesUsuario().update(u);
+    }
+
+    @POST
+    @Path("consultarUsuario")
+    @Consumes({MediaType.APPLICATION_JSON})
+    @Produces({MediaType.APPLICATION_JSON})
+    public Respuesta consultarUsuario(Usuario u) {
+        return new OperacionesUsuario().read(u);
     }
 
     @POST
