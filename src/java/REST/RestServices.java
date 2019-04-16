@@ -74,6 +74,8 @@ public class RestServices {
     public Respuesta crearReserva(Reserva r) {
         return new OperacionesReservas().create(r);
     }
+    
+    
 
     //FUNCIONES RESERVA
     @POST
@@ -82,6 +84,13 @@ public class RestServices {
     @Produces({MediaType.APPLICATION_JSON})
     public Respuesta calendarioReserva(Reserva r){
         return null;
+    }
+    
+    @GET
+    @Path("verHorarios")
+    @Produces({MediaType.APPLICATION_JSON})
+    public Respuesta verHorarios(){
+        return new OperacionesReservas().showAvailable();
     }
     
     

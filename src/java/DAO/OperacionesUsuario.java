@@ -52,6 +52,8 @@ public class OperacionesUsuario implements InterfaceUsuario {
         } catch (SQLException ex) {
             rta.setCodigo(Integer.parseInt(usuario.getCodigo()));
             rta.setDescripcionError("Error al crear usuario: " + ex);
+        }finally{
+            cn.desconectar();
         }
 
         return rta;
@@ -153,7 +155,7 @@ public class OperacionesUsuario implements InterfaceUsuario {
             rta.setListaUsuarios(listaUsuarios);
         } catch (SQLException ex) {
             rta.setCodigo(Integer.parseInt(usuario.getCodigo()));
-            rta.setDescripcion("Error al autenticar " + ex);
+            rta.setDescripcionError("Error al autenticar " + ex);
         } finally {
             cn.desconectar();
         }

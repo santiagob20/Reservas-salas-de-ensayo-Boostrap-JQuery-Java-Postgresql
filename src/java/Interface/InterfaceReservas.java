@@ -21,4 +21,6 @@ public interface InterfaceReservas {
     public Respuesta update(Reserva r);
 
     public Respuesta delete(Reserva r);
+    
+    public Respuesta showAvailable();
 }

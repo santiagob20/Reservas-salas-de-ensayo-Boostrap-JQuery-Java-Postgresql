@@ -45,7 +45,7 @@ function inicio() {
     }
 }
 
-var server = 'http://localhost:8080/';
+var server = 'http://localhost:9591/';
 var server2 = '';
 var dataUsuario = '';
 
