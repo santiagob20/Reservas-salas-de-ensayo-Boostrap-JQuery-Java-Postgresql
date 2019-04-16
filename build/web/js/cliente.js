@@ -4,31 +4,50 @@ function inicio() {
     //INICIO LOCALIDADES
 //    skipInicio();
 
-    //PRUEBA CALENDARIO
+    //PRUEBA CALENDARIO ---------------------------------------------------------------------------------------------
     calendarioReservas();
+    $("#btnBuscarRangoCalendario").click(busquedaRangoFechasCalendario);
 
-    //INICIO DE SESION
+    //OPCIONES DE USUARIO ---------------------------------------------------------------------------------------------
     $("#btnIniciarSesion").click(clickInicioSesion);
+    $("#cerrarSesionUsuario").click(clickCerrarSesion);
+    $("#perfilUsuario").click(function () {
+        //CLASES PARA LANZAR UN MODAL XL
+        $('#modalInformativo').addClass('bd-example-modal-xl');
+        $('#modal-dialog').addClass('modal-xl');
+        innerModalInformativo("perfilUsuario", "perfilUsuario", "perfilUsuario", true);
+    });
+    $("#configuracionUsuario").click(function () {
+        innerModalInformativo("configuracionUsuario", "configuracionUsuario", "configuracionUsuario", false);
+    });
 
-    //REGISTRO DE USUARIO
+
+    //REGISTRO DE USUARIO ---------------------------------------------------------------------------------------------
     $("#registroUsuario").click(function () {
         $("#loginModal").modal('hide');
         $("#registroModal").modal('show');
     });
     $("#btnRegistrarUsuario").click(clickRegistroUsuario);
 
-    //CONTACTENOS
+    //CONTACTENOS ------------------------------------------------------------------------------------------------------
     $("#pagContactenosClick").click(function () {
         $("#pagInicio").hide();
         $("#pagContactenos").show();
     });
     $("#btnEnviarDatosContactenos").click(clickContactoUsuarioApp);
 
-    skip();
+    //EVALUO DE LA SESION ACTIVA 
+    if (localStorage.getItem("idSession") !== null) {
+        skip();
+        usuarioSesionIniciada(dataUsuario.usuario);
+    } else {
+        skip();
+    }
 }
 
 var server = 'http://localhost:8080/';
 var server2 = '';
+var dataUsuario = '';
 
 function clickInicioSesion() {
     let usuario = $("#usuarioSesion").val();
@@ -44,12 +63,28 @@ function clickInicioSesion() {
         cache: false,
         contentType: "application/json",
         success: function (rta) {
-            console.log(rta);
+            if (rta.codigo === 1) {
+                dataUsuario = rta.listaUsuarios[0];
+                //ALMACENAMOS EL ID DE SESION Y EL USUARIO EN EL LOCALSTORAGE
+                localStorage.setItem("idSession", Math.floor(1e9 + (Math.random() * 9e9)));
+                localStorage.setItem("usuarioLogueado", dataUsuario.usuario);
+                localStorage.setItem("dataUsuario", JSON.stringify(dataUsuario));
+                usuarioSesionIniciada();
+            } else {
+                alert(rta.descripcionError);
+                window.location = server + "Riff/index.html";
+            }
         },
         error: function (err) {
             console.log(err);
         }
     });
+}
+function clickCerrarSesion() {
+    localStorage.removeItem('idSession');
+    localStorage.removeItem('usuarioLogueado');
+    localStorage.removeItem('dataUsuario');
+    window.location = server + "Riff/index.html";
 }
 function clickRegistroUsuario() {
     let identificacion = $("#txtIdentificacion").val();
@@ -94,7 +129,7 @@ function clickContactoUsuarioApp() {
     let emailContacto = $("#emailContactenos").val();
     let cajaMensajeContacto = $("#cajaMensajeContactenos").val();
     $.ajax({
-        url: "http://localhost:8080/Riff/app/restServices/envioFormularioContactenos",
+        url: server + "Riff/app/restServices/envioFormularioContactenos",
         data: JSON.stringify({
             nombre: nombreContacto,
             correoElectronico: emailContacto,
@@ -113,6 +148,7 @@ function clickContactoUsuarioApp() {
     });
 }
 
+
 // FUNCIONES GENERALES -------------------------------------------------
 function skipInicio() {
     $("#footerAplicacion").hide();
@@ -124,7 +160,16 @@ function skip() {
     $("#pagInicio").hide();
     $("#pagContactenos").hide();
 }
-function innerModalInformativo(header, body, footer) {
+function usuarioSesionIniciada() {
+    $("#usuarioSesionIniciada").removeAttr("hidden");
+    $("#inicioSesionUsuario").attr("hidden", true);
+    document.getElementById("usuarioSesionIniciada").innerHTML = null;
+    $("#usuarioSesionIniciada").append('<i class="fa fa-user"></i>  ' + localStorage.getItem("usuarioLogueado") +
+            '<span class="d-lg-none">' +
+            '<span class="badge badge-pill badge-primary"></span>' +
+            '</span>');
+}
+function innerModalInformativo(header, body, footer, xlModal) {
     //HEADER
     document.getElementById('headerModalInformativo').innerHTML = null;
     document.getElementById('headerModalInformativo').innerHTML = header;
@@ -137,6 +182,12 @@ function innerModalInformativo(header, body, footer) {
     document.getElementById('footerModalInformativo').innerHTML = null;
     document.getElementById('footerModalInformativo').innerHTML = footer;
 
+    //REMOVEMOS LAS CLASES PARA EL MODAL XL
+    if (!xlModal) {
+        $('#modalInformativo').removeClass('bd-example-modal-xl');
+        $('#modal-dialog').removeClass('modal-xl');
+    }
+
     $("#modalInformativo").modal('show');
 }
 function localidadSelect(id) {
@@ -145,6 +196,28 @@ function localidadSelect(id) {
 
 // CALENDARIO ---------------------------------------------------------------------------------------------
 function calendarioReservas() {
+    let establecimiento = '';
+    let sala = '';
+    let fechaInicial = '';
+    let fechaFinal = '';
+    $.ajax({
+        url: server + "Riff/app/restServices/calendarioReserva",
+        data: JSON.stringify({
+
+        }),
+        type: 'POST',
+        async: false,
+        cache: false,
+        contentType: 'application/json',
+        success: function (respuesta) {
+            console.log(respuesta);
+        },
+        error: function (error) {
+            console.log(error);
+        }
+    });
+
+
     let diasSemana = ['LUN', 'MAR', 'MIE', 'JUE', 'VIE', 'SAB', 'DOM'];
     let columnas = '<tr>' +
             '<th class="grilla grillaEncabezado">Hora</th>';
@@ -167,5 +240,9 @@ function calendarioReservas() {
     }
 }
 function reservarFechaHora(id) {
-    alert(id)
+    alert(id);
+}
+function busquedaRangoFechasCalendario() {
+    alert($("#txtfechaInicialCalendario").val());
+    alert($("#txtfechaFinalCalendario").val());
 }
