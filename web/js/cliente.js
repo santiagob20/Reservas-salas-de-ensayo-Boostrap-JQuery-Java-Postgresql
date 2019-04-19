@@ -2,11 +2,18 @@ $(document).ready(inicio);
 
 function inicio() {
     //INICIO LOCALIDADES
-//    skipInicio();
+    //skipInicio();
 
     //PRUEBA CALENDARIO ---------------------------------------------------------------------------------------------
-    calendarioReservas();
+    //calendarioReservas();
     $("#btnBuscarRangoCalendario").click(busquedaRangoFechasCalendario);
+    $("#anteriorFechaCalendario").click(function () {
+        alert("anteriorFechaCalendario");
+    });
+    $("#siguienteFechaCalendario").click(function () {
+        alert("siguienteFechaCalendario");
+    });
+
 
     //OPCIONES DE USUARIO ---------------------------------------------------------------------------------------------
     $("#btnIniciarSesion").click(clickInicioSesion);
@@ -40,6 +47,7 @@ function inicio() {
     if (localStorage.getItem("idSession") !== null) {
         skip();
         usuarioSesionIniciada(dataUsuario.usuario);
+        $("#cuevaDeLaCebra").show();
     } else {
         skip();
     }
@@ -154,11 +162,13 @@ function skipInicio() {
     $("#footerAplicacion").hide();
     $("#mainNav").hide();
     $(".content-wrapper").hide();
+    //$("#inicioLocalidades").show();
 }
 function skip() {
     $("#inicioLocalidades").hide();
-    $("#pagInicio").hide();
     $("#pagContactenos").hide();
+    $("#pagCalendarioPrueba").hide();
+    $("#cuevaDeLaCebra").hide();
 }
 function usuarioSesionIniciada() {
     $("#usuarioSesionIniciada").removeAttr("hidden");
@@ -226,7 +236,7 @@ function calendarioReservas() {
     }
     $("#calendario").append(columnas);
 
-    for (var i = 0; i <= 23; i++) {
+    for (var i = 8; i <= 23; i++) {
         let filas = '<tr>' +
                 '<th id="' + i + 'Dia" class="grilla ui-widget-content">' + (i) + '</th>' +
                 '<th id="' + i + 'Lun" onclick="reservarFechaHora(this.id)" class="grilla ui-widget-content"></th>' +

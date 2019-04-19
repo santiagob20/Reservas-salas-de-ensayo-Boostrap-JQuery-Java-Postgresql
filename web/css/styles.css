@@ -28,8 +28,7 @@
 
 /*  INICIO -----------------------------------------------------------*/
 .ingCarouselInicio{
-    width: 100%;
-    height: 50%;
+    height: 350px;
 }
 .bordeSombra{
     -webkit-box-shadow: 4px 7px 11px 5px rgba(0,0,0,0.69);
@@ -43,7 +42,7 @@
     -webkit-border-radius: 50%;
     border-radius: 50%;
     background: white;
-    margin-left: 25%;
+    margin-left: 15%;
 }
 .quienesSomos{
     padding: 14px 14px 14px 14px;
@@ -134,4 +133,19 @@ span.infoIcon {
 .grillaEncabezado{
     background-color: #DAE1E7;
     font-weight: bold;
+}
+.busquedaSigCalendario{
+    color: white;
+    font-size: 21px;
+    font-weight: bold;
+    width: 20px;
+}
+
+/*  CARDS SITIOS Y SALAS -----------------------------------------------------------*/
+.card-sitios, .card-salas{
+    justify-content: space-around;
+}
+
+.card-salas .card:hover{
+    cursor: pointer;
 }
