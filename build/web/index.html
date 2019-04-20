@@ -19,67 +19,49 @@
         <link href="css/sb-admin.css" rel="stylesheet">
         <!-- Estilos personalizados -->
         <link href="css/styles.css" rel="stylesheet" type="text/css"/>
+        <link rel="shortcut icon" href="imagenes/Logo/logo_riff.png" />
+        <link href="https://fonts.googleapis.com/css?family=Poiret+One|Roboto" rel="stylesheet">
     </head>
     <body class="fixed-nav sticky-footer bg-dark-user-user toggled sidenav-toggled" id="page-top">
-        <!-- INICIO PAG LOCALIDADES -->
-        <div id="inicioLocalidades" class="row" style="overflow-y: hidden;">
-            <br>
-            <br>
-            <div class="col-lg-4"></div>
-            <div class="col-lg-4 bordeSombra cajaInicioLocalidades">
-                <!-- FILA LOGO APLICACION -->
-                <div class="container">
+
+        <!-- INICIO APLICATIVO -->
+        <div id="inicioRiff">
+            <img src="imagenes/Fotos fondo/nav-bar-inicio.jpg" alt="" style="position: absolute; width: 109%"/>
+            <div class="container">
+                <div class="col-lg-4"></div>
+                <div class="col-lg-4" style="margin-left: 5%">
                     <div class="row">
-                        <div class="col-lg-3"></div>
-                        <div class="col-lg-6">
-                            <img src="imagenes/Logo/logo_riff.png" width="100%" alt=""/>
-                        </div>
-                        <div class="col-lg-3"></div>
-                    </div>
-                </div>
-                <!-- TEXTO DE INICIO -->
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-12 text-center">
-                            <h5>¿ En que localidad desea buscar ?</h5>
-                        </div>
-                    </div>
-                </div>
-                <!-- LOCALIDADES -->
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <ul>
-                                        <li id="Engativa" onClick="localidadSelect(this.id)">Engativa</li>
-                                        <li id="Fontibon" onClick="localidadSelect(this.id)">Fontibon</li>
-                                        <li id="Puente Aranda" onClick="localidadSelect(this.id)">Puente Aranda</li>
-                                        <li id="Usme" onClick="localidadSelect(this.id)">Usme</li>
-                                        <li id="Candelaria" onClick="localidadSelect(this.id)">Candelaria</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <ul>
-                                        <li id="Chapinero" onClick="localidadSelect(this.id)">Chapinero</li>
-                                        <li id="Usaquen" onClick="localidadSelect(this.id)">Usaquén</li>
-                                        <li id="Suba" onClick="localidadSelect(this.id)">Suba</li>
-                                        <li id="Teusaquillo" onClick="localidadSelect(this.id)">Teusaquillo</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
+                        <img src="imagenes/Fotos fondo/bienvenido_reservas.png" id="bienvenido-div-inicio" alt=""/>
+                        <img src="imagenes/Logo/logo_fondo_naranja.png" alt="" id="img-div-inicio"/>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4"></div>
+            <div class="container" style="margin-top: 27%" >
+                <div class="row" id="container-text-inicio">
+                    <div class="col-lg-2"></div>
+                    <div class="col-lg-3">
+                        <h4 style="" class="titulo-inicio"><b>Quienes somos</b></h4>
+                        <h7 class="parrafo-inicio">Somos aliados estratégicos de las salas de ensayo de Bogotá para realizar las reservas de forma mas fácil y cómoda</h7>
+                    </div>     
+                    <div class="col-lg-3">
+                        <h4 style="" class="titulo-inicio"><b>Nuestros servicios</b></h4>
+                        <h7 class="parrafo-inicio">Te ayudamos a reservar las salas de ensayo, estudios de grabacion y alquilar instrumentos para uso dentro de las instalaciones de nuestros aliados</h7>
+
+                    </div>                            
+                    <div class="col-lg-3">
+                        <h4 style="" class="titulo-inicio"><b>Nuestros aliados</b></h4>
+                        <h7 class="parrafo-inicio">Somos aliados estrategicos de las salas de ensayo de Bogota para realizar las reservas de forma mas facil y comoda</h7>
+                    </div>
+                </div>
+                <br>
+                <br>
+                <div class="row" style="justify-content: center">
+                    <button class="btn btn-primary" style="position: absolute;" onClick="accesoInicio();">Entrar al sitio
+                    </button>
+                </div>
+            </div>
         </div>
+
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark-user fixed-top" id="mainNav">
             <img src="imagenes/Logo/Nombre_logo_azul.png"  style="width: 100px;margin-top: -7px;z-index: 10; margin-left: 53px;" alt="Riff"/>
@@ -95,13 +77,25 @@
                 <ul class="backgroundURL navbar-nav navbar-sidenav" id="panelIzquierdo">
 
                     <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Inicio">
-                        <a class="nav-link" href="index.html">
+                        <a class="nav-link" onClick="accesoInicio();">
                             <i class="fa fa-fw fa-home"></i>
                             <span class="nav-link-text"><b>Inicio</b></span>
                         </a>
                     </li>
-                    <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Inicio">
-                        <a class="nav-link" id="pagContactenosClick">
+                    <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Mapa">
+                        <a class="nav-link" id="mapaRiff">
+                            <i class="fa fa-fw fa-map"></i>
+                            <span class="nav-link-text"><b> Mapa</b></span>
+                        </a>
+                    </li>
+                    <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Listado Sala de ensayo">
+                        <a class="nav-link" id="listadoSalasEnsayo">
+                            <i class="fa fa-fw fa-list-ul"></i>
+                            <span class="nav-link-text"><b> Listado Sala de ensayo</b></span>
+                        </a>
+                    </li>
+                    <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Contactenos">
+                        <a class="nav-link" id="pagContactenosAcceso">
                             <i class="fa fa-fw fa-user"></i>
                             <span class="nav-link-text"><b>Contactenos</b></span>
                         </a>
@@ -220,10 +214,11 @@
                     </li>
 
                 </ul>
+                
             </div>
         </nav>
 
-        <div class="content-wrapper">
+        <div class="content-wrapper" id="cuerpoPaginaRiff">
             <!-- CALENDARIO -->
             <div id="pagCalendarioPrueba" class="container-fluid">
                 <div class="container">
@@ -271,57 +266,63 @@
                 <!-- Breadcrumbs-->
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
-                        <a href="index.html">Inicio</a>
+                        <a href="#" onClick="accesoInicio();">Inicio</a>
                     </li>
                     <li class="breadcrumb-item active">Pagina de inicio <b>Riff</b></li>
                 </ol>
                 <!-- Cuerpo de la pagina -->
                 <!-- PAGINA INICIO RIFF -->
                 <div id="inicioRiff" >
-                    
+
                 </div>
 
             </div>
-            
-            <!-- PAGINA SITIOS -->
-            <div id="pagSitios" class="container-fluid">
+
+            <!-- MAPA -->
+            <div id="pagMapa" class="container-fluid">
                 <!-- Breadcrumbs-->
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
-                        <a href="index.html">Inicio</a>
+                        <a href="#" onClick="accesoInicio();">Inicio</a>
+                    </li>
+                    <li class="breadcrumb-item active">Mapa</li>
+                </ol>
+                <!-- Cuerpo de la pagina -->
+                <div id="mapa">
+                    <div class="row" style="    overflow-y: hidden;margin: 1% 1% 1% 1%;min-height: 505px;max-height: 594px;">
+                        <div id='ubicacion'></div>
+                        <!-- Se escribe un mapa con la localizacion anterior-->
+                        <div id="demo"></div>
+                        <div id="mapholder"></div>
+                        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA7vooyQVZwzbCJAnaMOtycJ8gt4B15FxM&callback" type="text/javascript"></script>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- PAGINA SITIOS -->
+            <div id="pagSitios" class="container-fluid">
+                <!-- Breadcrumbs-->
+                <ol class="breadcrumb" id="breadcrumbSitios">
+                    <li class="breadcrumb-item">
+                        <a href="#" onClick="accesoInicio();">Inicio</a>
                     </li>
                     <li class="breadcrumb-item active">Pagina de sitios</li>
                 </ol>
                 <!-- Cuerpo de la pagina -->
-                
+
                 <!-- PAGINA SITIOS -->
                 <!-- LA CUEVA DE LA CEBRA -->
                 <div id="cuevaDeLaCebra" >
-                    <!-- SERVICIOS -->
-                    <div class="row" id="servicios">
-                        <div class="container">
-                            <div class="row" style="margin-left: 42%;"><h2><b>SERVICIOS</b></h2></div>
-                        </div>
-                        <div class="row serviciosSitioBanner">
-                            <div class="col-lg-2 serviciosSitio" onclick="">
-                                <b>SALAS DE ENSAYO</b>
-                            </div>
-                            <div class="col-lg-2 serviciosSitio">
-                                <b>SALAS DE GRABACIÓN</b>
-                            </div>
-                            <div class="col-lg-2 serviciosSitio">
-                                <b>DJ BOOTH</b>
-                            </div>
-                            <div class="col-lg-2 serviciosSitio">
-                                <b>BACKLINE</b>
-                            </div>
-                        </div>
-                    </div>
-                    <br>
-                    <br>
-                    <!-- CAROUSEL -->
+
+                    <!-- LOGO Y CAROUSEL -->
                     <div class="row">
-                        <div class="col-12">
+                        <!-- LOGO -->
+                        <div class="col-lg-6">
+                            <img src="imagenes/Fotos sitio/Cueva de la Cebra/logo_nombre.png" width="100%" alt=""/>
+                        </div>
+                        <!-- COROUSEL -->
+                        <div class="col-lg-6">
                             <div class="bordeSombra">
                                 <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
                                     <ol class="carousel-indicators">
@@ -363,17 +364,36 @@
                                 </div>
                             </div>
                         </div>
-
                     </div>
                     <br>
-                    <!-- QUIENES SOMOS -->
-                    <div class="row">
-                        <div class="col-lg-4">
-                            <div class="circuloLogoInicio bordeSombra">
-                                <img src="imagenes/Fotos sitio/Cueva de la Cebra/logo.png" style="padding: 25px 0px 0px 39px;" alt=""/>
+                    <div class="separadorCuevaCebra"></div>
+
+                    <!-- SERVICIOS -->
+                    <div class="row" id="servicios">
+                        <div class="container">
+                            <div class="row" style="margin-left: 42%;"><h2><b>SERVICIOS</b></h2></div>
+                        </div>
+                        <div class="row serviciosSitioBanner">
+                            <div class="col-lg-2 serviciosSitio" onclick="accesoSalas('salasCuevaCebra', 'pagCuevaCebra');">
+                                <b>SALAS DE ENSAYO</b>
+                            </div>
+                            <div class="col-lg-2 serviciosSitio">
+                                <b>SALAS DE GRABACIÓN</b>
+                            </div>
+                            <div class="col-lg-2 serviciosSitio">
+                                <b>DJ BOOTH</b>
+                            </div>
+                            <div class="col-lg-2 serviciosSitio">
+                                <b>BACKLINE</b>
                             </div>
                         </div>
-                        <div class="col-lg-8">
+                    </div>
+                    <br>
+
+                    <!-- QUIENES SOMOS -->
+                    <div class="row">
+                        <div class="col-lg-3"></div>
+                        <div class="col-lg-6">
                             <div class="quienesSomos bordeSombra">
                                 <p>
                                     CREEMOS QUE LA EXPRESIÓN ARTÍSTICA, COMO FORMA DE COMUNICACIÓN, NOS UNE EN NUESTRA
@@ -392,20 +412,20 @@
                                 </p>
                             </div>
                         </div>
+                        <div class="col-lg-3"></div>
                     </div>
                     <br>
-                    <br>
+                    <div class="separadorCuevaCebra"></div>
 
-                    <!-- UBICACION Y CONTACTO -->
+                    <!-- DARTOS DE CONTACTO Y CONTACTENOS -->
                     <div class="row">
-                        <div class="col-lg-8">
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3976.7982305661726!2d-74.08911828525278!3d4.630055896636541!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f9bd70dd7b09f%3A0x77855eb85ee460aa!2sLa+Cueva+De+La+Cebra!5e0!3m2!1ses-419!2sco!4v1554697013820!5m2!1ses-419!2sco" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
-                        </div>
+                        <!-- DATOS DE CONTACTO -->
                         <div class="col-lg-4">
-                            <div class="detailsContainer bordeSombra" style="left: 127px; margin-top: 50%;">
+                            <div class="detailsContainer bordeSombra" style="left: 127px; margin-top: 25%;">
                                 <div class="infoLine name" itemprop="name" style="font-size: 22.56px; margin-bottom: 1px; visibility: visible;">
                                     LA CUEVA DE LA CEBRA
                                 </div>
+                                <br>
                                 <div class="infoLine phone" style="font-size: 14px; margin-bottom: 1px; visibility: visible;">
                                     <span class="infoIcon"><i class="fa fa-phone fa-fw"></i></span>
                                     <div class="infoData" itemprop="telephone">
@@ -417,40 +437,20 @@
                                     <div class="infoData" itemprop="address" itemscope="" itemtype="http://schema.org/PostalAddress">
                                         <span>CRA 36 # 25A - 24</span>
                                         <span>, Bogotá</span>
-                                        <span>,  111321</span>
                                     </div>
                                 </div>
-                                <div class="infoLine openclose open" style="margin-bottom: 1px; visibility: visible;">
-                                    <span class="infoIcon"><i class="fa fa-clock-o fa-fw"></i></span>
-                                    <div class="infoData">
-                                        <span class="today">
-                                            <span>Hoy </span>
-                                            <span class="hours">9:00 am - 9:00 pm</span>
-                                        </span>
-                                        <span>
-                                            <span class="status open">Abierto ahora</span>
-                                            <span class="status closed">Cerrado ahora</span>
-                                            <span class="status closingSoon">Próximas a concluir</span>
-                                            <span class="status closedToday">Hoy cerrada</span>
-                                        </span>
-                                    </div>
-                                </div>
+                                <br>
                                 <div class="infoLine email" style="margin-bottom: 1px; visibility: visible;">
                                     <span class="infoIcon"><i class="fa fa-envelope-o fa-fw"></i></span>
                                     <div class="infoData"><a href="mailto:lacuevadelacebra@gmail.com" target="_blank" itemprop="email">lacuevadelacebra@gmail.com</a></div>
                                 </div>
                             </div>
+                            <!--<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3976.7982305661726!2d-74.08911828525278!3d4.630055896636541!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f9bd70dd7b09f%3A0x77855eb85ee460aa!2sLa+Cueva+De+La+Cebra!5e0!3m2!1ses-419!2sco!4v1554697013820!5m2!1ses-419!2sco" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>-->
                         </div>
-                    </div>
-                    <br>
-                    <br>
-                    <!-- UBICACION Y CONTACTO -->
-                    <div class="row">
-                        <div class="col-lg-4">
-                            <h3 style="text-align: center; margin-top: 30%;"><b>CONTACTENOS</b> <i class="fa fa-caret-right"></i></h3>
-                        </div>
+                        <!-- CONTACTENOS -->
                         <div class="col-lg-8">
                             <div class="container">
+                                <h3 style="text-align: center; margin-top: 5%;"><b>CONTACTENOS</b> <i class="fa fa-caret-right"></i></h3>
                                 <input type="text" id="nombreContactenosSitio" class="form-control" placeholder="Nombre" required="required" autofocus="autofocus">
                                 <input type="text" id="emailContactenosSitio" class="form-control" placeholder="Email" required="required" autofocus="autofocus">
                                 <textarea name="" id="cajaMensajeContactenosSitio" class="form-control" data-required_mark="required" data-field_type="text" data-original_id="mensaje" placeholder="Escribenos un mensaje..." style="height: 200px; max-height: 200px; min-height: 200px;"></textarea>
@@ -459,6 +459,8 @@
                         </div>
                     </div>
                     <br>
+                    <br>
+
                 </div>
 
             </div>
@@ -468,9 +470,9 @@
                 <!-- Breadcrumbs-->
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
-                        <a href="index.html">Inicio</a>
+                        <a href="#" onClick="accesoInicio();">Inicio</a>
                     </li>
-                    <li class="breadcrumb-item active">Card Sitios</li>
+                    <li class="breadcrumb-item active">Listado Sitios</li>
                 </ol>
                 <!-- Cuerpo de la pagina -->
                 <div class="container">
@@ -500,11 +502,79 @@
                                     <span class="infoIcon"><i class="fa fa-envelope-o fa-fw"></i></span>
                                     <div class="infoData"><a href="mailto:lacuevadelacebra@gmail.com" target="_blank" itemprop="email">lacuevadelacebra@gmail.com</a></div>
                                 </div>
-                                <p class="card-text text-danger">
+                                <p class="card-text text-danger" id="distanciaUsuarioCueva">
                                     Calcular distancia a la ubicacion del usuario.
                                 </p>
                                 <div class="text-right">
-                                    <a href="#" class="btn btn-primary" style="width: 60px;">ir</a>
+                                    <a href="#" class="btn btn-primary" style="width: 60px;" onClick="accesoSitios('cuevaDeLaCebra', 'cardListado')">ir</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- PAKARNY MUSIC HOUSE -->
+                        <div class="card" style="width: 18rem; margin-top: 10px;">
+                            <img class="card-img-top" src="imagenes/Fotos sitio/Pakarny/prox_parkanymusic.png" alt=""/>
+                            <div class="card-body">
+                                <h5 class="card-title"><b>PAKARNY MUSIC HOUSE</b></h5>
+                                <div class="infoLine address" style="margin-bottom: 1px; visibility: visible;">
+                                    <span class="infoIcon"><i class="fa fa-map-marker fa-fw"></i></span>
+                                    <div class="infoData" itemprop="address" itemscope="" itemtype="http://schema.org/PostalAddress">
+                                        <span>Carrera 20 No 34 - 30</span>
+                                        <span>, Bogotá</span>
+                                    </div>
+                                </div>
+                                <div class="infoLine openclose open" style="margin-bottom: 1px; visibility: visible;">
+                                    <span class="infoIcon"><i class="fa fa-clock-o fa-fw"></i></span>
+                                    <div class="infoData">
+                                        <span class="today">
+                                            <span class="hours">8:00 am - 9:00 pm</span>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="infoLine email" style="margin-bottom: 1px; visibility: visible;">
+                                    <span class="infoIcon"><i class="fa fa-envelope-o fa-fw"></i></span>
+                                    <div class="infoData">
+                                        <a href="mailto:reservaspakarny@gmail.com<" target="_blank" itemprop="email">reservaspakarny@gmail.com</a>
+                                    </div>
+                                </div>
+                                <p class="card-text text-danger" id="distanciaUsuarioPakarny">
+                                    Calcular distancia a la ubicacion del usuario.
+                                </p>
+                                <div class="text-right">
+                                    <button href="#" class="btn btn-primary" style="width: 60px;" disabled="true">ir</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- EL TOKE -->
+                        <div class="card" style="width: 18rem; margin-top: 10px;">
+                            <img class="card-img-top" src="imagenes/Fotos sitio/El_toke/prox_el_toke.jpeg" alt=""/>
+                            <div class="card-body">
+                                <h5 class="card-title"><b>EL TOKE</b></h5>
+                                <div class="infoLine address" style="margin-bottom: 1px; visibility: visible;">
+                                    <span class="infoIcon"><i class="fa fa-map-marker fa-fw"></i></span>
+                                    <div class="infoData" itemprop="address" itemscope="" itemtype="http://schema.org/PostalAddress">
+                                        <span>Carrera 50 # 100-88</span>
+                                        <span>, Bogotá</span>
+                                    </div>
+                                </div>
+                                <div class="infoLine openclose open" style="margin-bottom: 1px; visibility: visible;">
+                                    <span class="infoIcon"><i class="fa fa-clock-o fa-fw"></i></span>
+                                    <div class="infoData">
+                                        <span class="today">
+                                            <span class="hours">9:00 am - 10:00 pm</span>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="infoLine email" style="margin-bottom: 1px; visibility: visible;">
+                                    <span class="infoIcon"><i class="fa fa-envelope-o fa-fw"></i></span>
+                                    <div class="infoData"><a href="mailto:ensayoseltoke@gmail.com" target="_blank" itemprop="email">ensayoseltoke@gmail.com</a></div>
+                                </div>
+                                <p class="card-text text-danger" id="distanciaUsuarioElToke">
+                                    Calcular distancia a la ubicacion del usuario.
+                                </p>
+                                <div class="text-right">
+                                    <button href="#" class="btn btn-primary" style="width: 60px;" disabled="true">ir</button>
                                 </div>
                             </div>
                         </div>
@@ -516,16 +586,16 @@
             <!-- CARDS SALAS -->
             <div id="cardsSalas" class="container-fluid">
                 <!-- Breadcrumbs-->
-                <ol class="breadcrumb">
+                <ol class="breadcrumb" id="breadcrumbSalas">
                     <li class="breadcrumb-item">
-                        <a href="index.html">Inicio</a>
+                        <a href="#" onClick="accesoInicio();">Inicio</a>
                     </li>
                     <li class="breadcrumb-item active">Card Salas</li>
                 </ol>
                 <!-- Cuerpo de la pagina -->
-                
+
                 <!-- LA CUEVA DE LA CEBRA -->
-                <div class="container">
+                <div id="salasCuevaCebra" class="container">
                     <div class="row card-salas">
                         <div class="card text-white bg-dark mb-3" style="max-width: 32rem;" onclick="alert()">
                             <div class="card-body" style="padding: 6px;">
@@ -685,8 +755,8 @@
 
                     </div>
                 </div>
-            
-                
+
+
             </div>
 
             <!-- CONTACTENOS -->
@@ -695,7 +765,7 @@
                     <!-- Breadcrumbs-->
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a href="index.html">Inicio</a>
+                            <a href="#" onClick="accesoInicio();">Inicio</a>
                         </li>
                         <li class="breadcrumb-item active">Contactenos</li>
                     </ol>
