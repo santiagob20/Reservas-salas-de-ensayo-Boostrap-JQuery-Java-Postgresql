@@ -2,7 +2,7 @@ $(document).ready(inicio);
 
 function inicio() {
     //INICIO LOCALIDADES
-    //skipInicio();
+
 
     //PRUEBA CALENDARIO ---------------------------------------------------------------------------------------------
     //calendarioReservas();
@@ -162,13 +162,16 @@ function skipInicio() {
     $("#footerAplicacion").hide();
     $("#mainNav").hide();
     $(".content-wrapper").hide();
-    //$("#inicioLocalidades").show();
+    $("#inicioLocalidades").show();
 }
 function skip() {
     $("#inicioLocalidades").hide();
     $("#pagContactenos").hide();
     $("#pagCalendarioPrueba").hide();
-    $("#cuevaDeLaCebra").hide();
+//    $("#pagSitios").hide();
+//    $("#cuevaDeLaCebra").hide();
+//    $("#cardsSitios").hide();
+//    $("#cardsSalas").hide();
 }
 function usuarioSesionIniciada() {
     $("#usuarioSesionIniciada").removeAttr("hidden");
@@ -255,4 +258,9 @@ function reservarFechaHora(id) {
 function busquedaRangoFechasCalendario() {
     alert($("#txtfechaInicialCalendario").val());
     alert($("#txtfechaFinalCalendario").val());
+}
+
+// ACCESO ---------------------------------------------------------------------------------------------
+function accesoSalasDeEnsayo() {
+
 }

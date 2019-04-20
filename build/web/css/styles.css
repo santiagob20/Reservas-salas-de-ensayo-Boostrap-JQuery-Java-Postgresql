@@ -145,7 +145,19 @@ span.infoIcon {
 .card-sitios, .card-salas{
     justify-content: space-around;
 }
-
-.card-salas .card:hover{
+.card-salas img:hover{
     cursor: pointer;
+}
+
+#carouselSalaCuevaBohio, #carouselSalaCuevaMiles, #carouselSalaCuevaAmatista{
+    position: relative; 
+    width: 240px; 
+    height: 240px; 
+    overflow: hidden;
+    margin-left: 14%;
+}
+#carouselSalaCuevaBohio img, #carouselSalaCuevaMiles img, #carouselSalaCuevaAmatista img{
+    width: 240px; 
+    height: 240px; 
+    object-fit: cover;
 }
