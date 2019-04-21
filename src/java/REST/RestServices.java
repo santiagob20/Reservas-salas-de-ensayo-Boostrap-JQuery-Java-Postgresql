@@ -5,7 +5,9 @@ package REST;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+import DAO.OperacionesReservas;
 import DAO.OperacionesUsuario;
+import Objetos.Reserva;
 import Objetos.Respuesta;
 import Objetos.Usuario;
 import javax.ws.rs.Consumes;
@@ -27,16 +29,7 @@ public class RestServices {
     @Consumes({MediaType.APPLICATION_JSON})
     @Produces({MediaType.APPLICATION_JSON})
     public Respuesta inicioSesionUsuario(Usuario u) {
-        return new OperacionesUsuario().read(u);
-    }
-
-    @POST
-    @Path("registrarUsuario")
-    @Consumes({MediaType.APPLICATION_JSON})
-    @Produces({MediaType.APPLICATION_JSON})
-    public Respuesta registrarUsuario(Usuario u) {
-        System.out.println(u.getNombre());
-        return new Respuesta();
+        return new OperacionesUsuario().autenticate(u);
     }
 
     @POST
@@ -46,6 +39,7 @@ public class RestServices {
     public Respuesta envioFormularioContactenos(Usuario u) {
         System.out.println(u.getNombre());
         System.out.println(u.getCorreoElectronico());
+        System.out.println(u.getTelefono());
         System.out.println(u.getMensajeContactenos());
         return new Respuesta();
     }
@@ -57,5 +51,48 @@ public class RestServices {
     public Respuesta crearUsuario(Usuario u) {
         return new OperacionesUsuario().create(u);
     }
+
+    @POST
+    @Path("editarUsuario")
+    @Consumes({MediaType.APPLICATION_JSON})
+    @Produces({MediaType.APPLICATION_JSON})
+    public Respuesta editarUsuario(Usuario u) {
+        return new OperacionesUsuario().update(u);
+    }
+
+    @POST
+    @Path("consultarUsuario")
+    @Consumes({MediaType.APPLICATION_JSON})
+    @Produces({MediaType.APPLICATION_JSON})
+    public Respuesta consultarUsuario(Usuario u) {
+        return new OperacionesUsuario().read(u);
+    }
+
+    @POST
+    @Path("crearReserva")
+    @Consumes({MediaType.APPLICATION_JSON})
+    @Produces({MediaType.APPLICATION_JSON})
+    public Respuesta crearReserva(Reserva r) {
+        return new OperacionesReservas().create(r);
+    }
+    
+    
+
+    //FUNCIONES RESERVA
+    @POST
+    @Path("calendarioReserva")
+    @Consumes({MediaType.APPLICATION_JSON})
+    @Produces({MediaType.APPLICATION_JSON})
+    public Respuesta calendarioReserva(Reserva r){
+        return null;
+    }
+    
+    @GET
+    @Path("verHorarios")
+    @Produces({MediaType.APPLICATION_JSON})
+    public Respuesta verHorarios(){
+        return new OperacionesReservas().showAvailable();
+    }
+    
     
 }

@@ -23,6 +23,7 @@ public class Respuesta {
     private ArrayList<Rol> listaRoles;
     private ArrayList<Instrumento> listaIntrumentos;
     private ArrayList<Accesorio> listaAccesorios;
+    private ArrayList<Calendario> listaHorarios;
 
     public int getCodigo() {
         return codigo;
@@ -110,6 +111,14 @@ public class Respuesta {
 
     public void setListaAccesorios(ArrayList<Accesorio> listaAccesorios) {
         this.listaAccesorios = listaAccesorios;
+    }
+
+    public ArrayList<Calendario> getListaHorarios() {
+        return listaHorarios;
+    }
+
+    public void setListaHorarios(ArrayList<Calendario> listaHorarios) {
+        this.listaHorarios = listaHorarios;
     }
     
     

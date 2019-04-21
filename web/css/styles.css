@@ -1,35 +1,53 @@
 /*  INICIO -----------------------------------------------------------*/
 .container-fluid{
-    margin-bottom: 15px;
+    margin-bottom: 0px;
 }
 
 /*  INICIO LOCALIDADES -----------------------------------------------------------*/
-#inicioLocalidades{
-    background-image: url("../imagenes/Fotos fondo/Festival-de-rock2.jpg");
-    overflow: hidden;
-    position: relative;
+#inicioRiff{
+    margin: -57px -50px -50px -50px;
+    z-index: 5;
+}
+
+#img-div-inicio{
+    z-index: 5;
+    position: absolute;
+    width: 50%;
+    margin: 32% 0% 0% 108%;
+}
+
+#bienvenido-div-inicio{
+    margin: 13% 0% 0% 85%;
+    position: absolute;
     width: 100%;
-    height: 100vh;
 }
-.cajaInicioLocalidades{
-    background: #f8f8f899;
-    color: black;
-    text-shadow: 0px 0px 1px #FFF;
+
+.titulo-inicio{
+    color: white;
+    font-size: 20px;
+    font-family: 'Poiret One', cursive;
 }
-#inicioLocalidades li{
-    margin-top: 17px;
+
+.parrafo-inicio{
+    color: white;
+    font-size: 15px;
+    font-family: 'Poiret One', cursive;
 }
-#inicioLocalidades li:hover{
-    font-size: 18px;
-    color: orangered;
-    text-shadow: 0px 0px 1px #FFF;
+
+.btn-primary{
+    background-color: #21395d;
+    border-color: #5f5f5f;
+    font-family: 'Roboto', sans-serif;
+}
+
+#footerAplicacion{
+    position: fixed;
 }
 
 
-/*  INICIO -----------------------------------------------------------*/
+/*  PAGINAS SITIOS  -----------------------------------------------------------*/
 .ingCarouselInicio{
-    width: 100%;
-    height: 50%;
+    height: 100%;
 }
 .bordeSombra{
     -webkit-box-shadow: 4px 7px 11px 5px rgba(0,0,0,0.69);
@@ -43,11 +61,14 @@
     -webkit-border-radius: 50%;
     border-radius: 50%;
     background: white;
-    margin-left: 25%;
+    margin-left: 15%;
 }
 .quienesSomos{
     padding: 14px 14px 14px 14px;
-    background: oldlace;
+    background: white;
+}
+.quienesSomos p{
+    text-align: center;
 }
 .serviciosSitioBanner{
     justify-content: space-evenly;
@@ -56,18 +77,24 @@
 }
 .serviciosSitio {
     width: 200px;
-    height: 52px;
-    background: #171717;
-    border-radius: 8% / 35%;
+    height: 80px;
+    background: #1a2a43;
+    border-radius: 5px;
     color: white;
     text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    cursor: pointer;
+    padding-top:7px;
+}
+.serviciosSitio:hover{
+    background: #21395d;
 }
 #pagInicio iframe{
     width: 100%;
 }
 .detailsContainer{
     padding: 14px 14px 14px 14px;
-    background: oldlace;
+    background: white;
 }
 div.infoLine {
     line-height: 130%;
@@ -134,4 +161,48 @@ span.infoIcon {
 .grillaEncabezado{
     background-color: #DAE1E7;
     font-weight: bold;
+}
+.busquedaSigCalendario{
+    color: white;
+    font-size: 21px;
+    font-weight: bold;
+    width: 20px;
+}
+
+/*  CARDS SITIOS Y SALAS -----------------------------------------------------------*/
+.card-sitios, .card-salas{
+    justify-content: space-around;
+}
+.card-salas img:hover{
+    cursor: pointer;
+}
+
+#carouselSalaCuevaBohio, #carouselSalaCuevaMiles, #carouselSalaCuevaAmatista{
+    position: relative; 
+    width: 240px; 
+    height: 240px; 
+    overflow: hidden;
+    margin-left: 14%;
+}
+#carouselSalaCuevaBohio img, #carouselSalaCuevaMiles img, #carouselSalaCuevaAmatista img{
+    width: 240px; 
+    height: 240px; 
+    object-fit: cover;
+}
+
+.breadcrumbSegundoNivel{
+    color: #007bff !important;
+    text-decoration: none !important;
+    background-color: transparent !important;
+    cursor: pointer;
+}
+
+.separadorCuevaCebra{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-image: url("../imagenes/Fotos sitio/Cueva de la Cebra/separador_cebra.png");
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    height: 10vh;
 }

@@ -5,6 +5,7 @@
  */
 package Interface;
 
+import Objetos.Reserva;
 import Objetos.Respuesta;
 
 /**
@@ -13,11 +14,13 @@ import Objetos.Respuesta;
  */
 public interface InterfaceReservas {
 
-    public Respuesta create();
+    public Respuesta create(Reserva r);
 
-    public Respuesta read();
+    public Respuesta read(Reserva r);
 
-    public Respuesta update();
+    public Respuesta update(Reserva r);
 
-    public Respuesta delete();
+    public Respuesta delete(Reserva r);
+    
+    public Respuesta showAvailable();
 }
