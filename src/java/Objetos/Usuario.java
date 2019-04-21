@@ -28,6 +28,7 @@ public class Usuario {
     private String mensajeContactenos;
     private String codigo;
     private String descripcion;
+    private String mensaje;
     
 
     public String getIdentificacion() {
@@ -148,5 +149,13 @@ public class Usuario {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    public String getMensaje() {
+        return mensaje;
+    }
+
+    public void setMensaje(String mensaje) {
+        this.mensaje = mensaje;
     }
 }
