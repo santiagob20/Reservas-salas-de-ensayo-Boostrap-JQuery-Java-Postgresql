@@ -7,15 +7,7 @@ function inicio() {
     //OPCIONES DE USUARIO ---------------------------------------------------------------------------------------------
     $("#btnIniciarSesion").click(clickInicioSesion);
     $("#cerrarSesionUsuario").click(clickCerrarSesion);
-    $("#perfilUsuario").click(function () {
-        //CLASES PARA LANZAR UN MODAL XL
-        $('#modalInformativo').addClass('bd-example-modal-xl');
-        $('#modal-dialog').addClass('modal-xl');
-        innerModalInformativo("perfilUsuario", "perfilUsuario", "perfilUsuario", true);
-    });
-    $("#configuracionUsuario").click(function () {
-        innerModalInformativo("configuracionUsuario", "configuracionUsuario", "configuracionUsuario", false);
-    });
+    $("#perfilUsuario").click(accesoPerfilUsuario);
 
     //REGISTRO DE USUARIO ---------------------------------------------------------------------------------------------
     $("#registroUsuario").click(function () {
@@ -59,6 +51,8 @@ var server2 = '';
 var dataUsuario = '';
 
 function clickInicioSesion() {
+    $("#btnIniciarSesion").hide();
+    spinerLoading("Login");
     let usuario = $("#usuarioSesion").val();
     let password = $("#passwordSesion").val();
     $.ajax({
@@ -83,6 +77,7 @@ function clickInicioSesion() {
                 alert(rta.descripcionError);
                 window.location = server + "Riff/index.html";
             }
+            $("#btnIniciarSesion").show();
         },
         error: function (err) {
             console.log(err);
@@ -96,52 +91,74 @@ function clickCerrarSesion() {
     window.location = server + "Riff/index.html";
 }
 function clickRegistroUsuario() {
+    $("#btnRegistrarUsuario").hide();
+    spinerLoading("Registro");
     let identificacion = $("#txtIdentificacion").val();
     let nombres = $("#txtNombres").val();
     let apellidos = $("#txtApellidos").val();
-    let fechaNacimiento = $("#fechaNacimiento").val();
+    let fechaNacimiento = new Date($("#fechaNacimiento").val());
     let direccionResidencia = $("#txtDireccion").val();
     let telefono = $("#txtTelefono").val();
     let correoElectronico = $("#txtCorreoElectronico").val();
     let usuario = $("#txtUsuario").val();
     let password = $("#txtPassword").val();
-    let nombreBanda = $("#txtNombreBanda").val();
-    let genero = $("#txtGenero").val();
-    // VALIDAR DATOS DE CADA CAMPO
-    $.ajax({
-        url: server + "Riff/app/restServices/registrarUsuario",
-        data: JSON.stringify({
-            identificacion: identificacion,
-            nombre: nombres,
-            apellido: apellidos,
-            fechaNacimiento: fechaNacimiento,
-            direccionResidencia: direccionResidencia,
-            telefono: telefono,
-            correoElectronico: correoElectronico,
-            usuario: usuario,
-            clave: password
-        }),
-        type: 'POST',
-        async: false,
-        cache: false,
-        contentType: 'application/json',
-        success: function (rta) {
-            console.log(rta);
-        },
-        error: function (error) {
-            console.log(error);
-        }
-    });
+    // VALIDAR DATOS DE CADA CAMPO (SE DEBEN LLENAR TODOS LOS CAMPOS)
+    if (identificacion !== '' && nombres !== '' &&
+            apellidos !== '' && fechaNacimiento !== '' &&
+            direccionResidencia !== '' && telefono !== '' &&
+            correoElectronico !== '' && usuario !== '' && password !== '') {
+        $.ajax({
+            url: server + "Riff/app/restServices/crearUsuario",
+            data: JSON.stringify({
+                identificacion: identificacion,
+                nombre: nombres,
+                apellido: apellidos,
+                fechaNacimiento: fechaNacimiento,
+                direccionResidencia: direccionResidencia,
+                telefono: telefono,
+                correoElectronico: correoElectronico,
+                usuario: usuario,
+                clave: password
+            }),
+            type: 'POST',
+            async: false,
+            cache: false,
+            contentType: 'application/json',
+            success: function (rta) {
+                if (rta.codigo === 1) {
+                    $("#registroModal").modal("hide");
+                    innerModalInformativo("<b>Registro de usuario</b>",
+                            "el usuario se ha registrado correctamente.<br><br>Por favor inicie sesión.",
+                            "", false);
+                    $("#loginModal").modal("show");
+                } else {
+                    innerModalInformativo("<b>Registro de Usuario</b>",
+                            "<p style='color: red;'>" + rta.descripcionError + "</p>",
+                            "", false);
+                }
+                $("#btnRegistrarUsuario").show();
+            },
+            error: function (error) {
+                console.log(error.status);
+            }
+        });
+    } else {
+        innerModalInformativo("<b>Registro de Usuario</b>",
+                "<p style='color: red;'>Por favor llenar el formulario completo.</p>",
+                "", false);
+    }
 }
 function clickContactoUsuarioApp() {
     let nombreContacto = $("#nombreContactenos").val();
     let emailContacto = $("#emailContactenos").val();
+    let telefonoContacto = $("#telefonoContactenos").val();
     let cajaMensajeContacto = $("#cajaMensajeContactenos").val();
     $.ajax({
         url: server + "Riff/app/restServices/envioFormularioContactenos",
         data: JSON.stringify({
             nombre: nombreContacto,
             correoElectronico: emailContacto,
+            telefono: telefonoContacto,
             mensajeContactenos: cajaMensajeContacto
         }),
         type: 'POST',
@@ -221,6 +238,14 @@ function innerModalInformativo(header, body, footer, xlModal) {
 
     $("#modalInformativo").modal('show');
 }
+function spinerLoading(id) {
+    document.getElementById("spinnerLoading" + id).innerHTML = null;
+    $("#spinnerLoading" + id).append("<div class='d-flex justify-content-center'>" +
+            "<div class='spinner-grow text-dark' role='status'>" +
+            "<span class='sr-only'>Loading...</span>" +
+            "</div>" +
+            "</div>");
+}
 
 // CALENDARIO ---------------------------------------------------------------------------------------------
 function calendarioReservas() {
@@ -281,6 +306,45 @@ function accesoInicio() {
     skip();
     $("#pagMapa").show();
 }
+function accesoPerfilUsuario() {
+
+    let dataUsuario = consultaDataPerfilUsuario();
+    //CLASES PARA LANZAR UN MODAL XL 
+//    $('#modalInformativo').addClass('bd-example-modal-xl');
+//    $('#modal-dialog').addClass('modal-xl');
+
+    //CLASES PARA LANZAR UN MODAL LG
+//    $('#modalInformativo').addClass('bd-example-modal-lg');
+//    $('#modal-dialog').addClass('modal-lg');
+    innerModalInformativo(
+            "Perfil de usuario",
+            "<div class='container'>" +
+            "<div class='row'>" +
+            "<div class='col-lg-6'>" +
+            "<img src='imagenes/Logo/logo_riff_blanco.png' style='width: 121px;margin: 10% 0% 0% 33%;'/>" +
+            "</div>" +
+            "<div class='col-lg-6'>" +
+            "<p style='font-size: 22px; font-weight: bolder; margin: 14% 36%;'>Usuario: </p>" +
+            "<p style='font-size: 19px; margin: 14% 36%;'>" + dataUsuario.usuario + "</p>" +
+            "</div>" +
+            "</div>" +
+            "<br>" +
+            "<hr>" +
+            "<div class='row'>" +
+            "<div class='col-lg-6'>" +
+            "<b>Nombres y apellidos: </b><p> " + dataUsuario.nombre + "</p>" +
+            "<b>Fecha de nacimiento: </b><p> " + dataUsuario.fechaNacimiento + "</p>" +
+            "<b>Direccion de residencia: </b><p> " + dataUsuario.direccionResidencia + "</p>" +
+            "</div>" +
+            "<div class='col-lg-6'>" +
+            "<b>Teléfono: </b><p> " + dataUsuario.telefono + "</p>" +
+            "<b>Correo Electronico: </b><p style='font-size: 14px;'> " + dataUsuario.correoElectronico + "</p>" +
+            "</div>" +
+            "</div>" +
+            "</div>",
+            "", false);
+
+}
 function accesoMapaRiff() {
     accesoInicio();
 }
@@ -334,6 +398,35 @@ function accesoContactenos() {
     skip();
     $("#pagMapa").hide();
     $("#pagContactenos").show();
+}
+
+// MAPA ------------------------------------------------------------------------------------------------
+function consultaDataPerfilUsuario() {
+    let idUsuario = JSON.parse(localStorage.getItem("dataUsuario")).id_usuario;
+    let dataUsuario;
+    $.ajax({
+        url: server + "Riff/app/restServices/consultarUsuario",
+        data: JSON.stringify({
+            id_usuario: idUsuario
+        }),
+        type: "POST",
+        async: false,
+        cache: false,
+        contentType: "application/json",
+        success: function (respuesta) {
+            if (respuesta.codigo === 1) {
+                dataUsuario = respuesta.listaUsuarios[0];
+            } else {
+                innerModalInformativo("<p style='color:red'>Error al consultar</p>",
+                        respuesta.descripcionError,
+                        "", false);
+            }
+        },
+        error: function (error) {
+            console.log(error);
+        }
+    });
+    return dataUsuario;
 }
 
 // MAPA ------------------------------------------------------------------------------------------------
@@ -458,4 +551,13 @@ function calcularDistancias() {
     document.getElementById("distanciaUsuarioElToke").innerHTML = "A <b>" +
             distanciaKMCoordenadasTierra(lat, lon, posicionElToke[0], posicionElToke[1]).toFixed(2) +
             " KM</b>, de su posición aproximadamente.";
+}
+
+// FUNCIONALIDADES SITIOS  -----------------------------------------------------------------------------------------
+function envioFormularioContacto(id) {
+    let nombreContacto = $("#nombreContactenosSitio" + id).val();
+    let emailContacto = $("#emailContactenosSitio" + id).val();
+    let mensajeContacto = $("#cajaMensajeContactenosSitio" + id).val();
+    let telefonoContacto = $("#telefonoContactenosSitio" + id).val();
+    
 }

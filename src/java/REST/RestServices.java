@@ -39,6 +39,7 @@ public class RestServices {
     public Respuesta envioFormularioContactenos(Usuario u) {
         System.out.println(u.getNombre());
         System.out.println(u.getCorreoElectronico());
+        System.out.println(u.getTelefono());
         System.out.println(u.getMensajeContactenos());
         return new Respuesta();
     }

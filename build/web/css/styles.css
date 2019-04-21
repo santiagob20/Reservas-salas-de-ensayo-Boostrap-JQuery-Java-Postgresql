@@ -77,11 +77,17 @@
 }
 .serviciosSitio {
     width: 200px;
-    height: 52px;
-    background: #171717;
-    border-radius: 8% / 35%;
+    height: 80px;
+    background: #1a2a43;
+    border-radius: 5px;
     color: white;
     text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    cursor: pointer;
+    padding-top:7px;
+}
+.serviciosSitio:hover{
+    background: #21395d;
 }
 #pagInicio iframe{
     width: 100%;
