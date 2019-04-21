@@ -5,6 +5,7 @@ package REST;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+import DAO.OperacionesContacto;
 import DAO.OperacionesReservas;
 import DAO.OperacionesUsuario;
 import Objetos.Reserva;
@@ -74,24 +75,37 @@ public class RestServices {
     public Respuesta crearReserva(Reserva r) {
         return new OperacionesReservas().create(r);
     }
-    
-    
 
     //FUNCIONES RESERVA
     @POST
     @Path("calendarioReserva")
     @Consumes({MediaType.APPLICATION_JSON})
     @Produces({MediaType.APPLICATION_JSON})
-    public Respuesta calendarioReserva(Reserva r){
+    public Respuesta calendarioReserva(Reserva r) {
         return null;
     }
-    
+
     @GET
     @Path("verHorarios")
     @Produces({MediaType.APPLICATION_JSON})
-    public Respuesta verHorarios(){
+    public Respuesta verHorarios() {
         return new OperacionesReservas().showAvailable();
     }
-    
-    
+
+    @POST
+    @Path("contactanosRiff")
+    @Consumes({MediaType.APPLICATION_JSON})
+    @Produces({MediaType.APPLICATION_JSON})
+    public Respuesta contactanosRiff(Usuario u) {
+        return new OperacionesContacto().contactoRiff(u);
+    }
+
+    @POST
+    @Path("contactanosCueva")
+    @Consumes({MediaType.APPLICATION_JSON})
+    @Produces({MediaType.APPLICATION_JSON})
+    public Respuesta contactanosCueva(Usuario u) {
+        return new OperacionesContacto().contactoLaCueva(u);
+    }
+
 }
