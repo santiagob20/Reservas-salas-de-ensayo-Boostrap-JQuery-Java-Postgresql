@@ -11,7 +11,7 @@ import java.util.ArrayList;
  *
  * @author User
  */
-class Sala {
+public class Sala {
     private int idSala;
     private String nombreSala;
     private int capacidadPersonas;

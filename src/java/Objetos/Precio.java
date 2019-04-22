@@ -16,6 +16,7 @@ public class Precio {
     private String tipoHorario;
     private int descuento;
     private int activo;
+    private int precio;
 
     public int getIdPrecio() {
         return idPrecio;
@@ -55,5 +56,13 @@ public class Precio {
 
     public void setActivo(int activo) {
         this.activo = activo;
+    }
+
+    public int getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(int precio) {
+        this.precio = precio;
     }
 }

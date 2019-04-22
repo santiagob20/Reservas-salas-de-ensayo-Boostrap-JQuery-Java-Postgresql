@@ -55,6 +55,7 @@ public class OperacionesUsuario implements InterfaceUsuario {
         }finally{
             cn.desconectar();
         }
+
         return rta;
     }
 
@@ -72,7 +73,6 @@ public class OperacionesUsuario implements InterfaceUsuario {
                 + ",direccion_residencia\n"
                 + ",correo_electronico\n"
                 + ",usuario\n"
-                + ",telefono\n"
                 + "from app.tbl_usuario "
                 + "where id_usuario = ? ";
         try {
@@ -88,15 +88,14 @@ public class OperacionesUsuario implements InterfaceUsuario {
                 usuario.setDireccionResidencia(rs.getString("direccion_residencia"));
                 usuario.setCorreoElectronico(rs.getString("correo_electronico"));
                 usuario.setUsuario(rs.getString("usuario"));
-                usuario.setTelefono(rs.getString("telefono"));
                 listaUsuarios.add(usuario);
             }
-            rta.setCodigo(1);
+            rta.setCodigo(Integer.parseInt(usuario.getCodigo()));
             rta.setDescripcion(usuario.getDescripcion());
             rta.setListaUsuarios(listaUsuarios);
         } catch (SQLException ex) {
             rta.setCodigo(0);
-            rta.setDescripcionError("Error al consultar " + ex);
+            rta.setDescripcionError("Error al autenticar " + ex);
         } finally {
             cn.desconectar();
         }
