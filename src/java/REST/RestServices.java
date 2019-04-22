@@ -6,6 +6,7 @@ package REST;
  * and open the template in the editor.
  */
 import DAO.OperacionesContacto;
+import DAO.OperacionesLog;
 import DAO.OperacionesReservas;
 import DAO.OperacionesUsuario;
 import Objetos.Reserva;
@@ -77,14 +78,6 @@ public class RestServices {
     }
 
     //FUNCIONES RESERVA
-    @POST
-    @Path("calendarioReserva")
-    @Consumes({MediaType.APPLICATION_JSON})
-    @Produces({MediaType.APPLICATION_JSON})
-    public Respuesta calendarioReserva(Reserva r) {
-        return null;
-    }
-
     @GET
     @Path("verHorarios")
     @Produces({MediaType.APPLICATION_JSON})
@@ -112,7 +105,23 @@ public class RestServices {
     @Path("consultarHistoricoReservas")
     @Consumes({MediaType.APPLICATION_JSON})
     @Produces({MediaType.APPLICATION_JSON})
-    public Respuesta consultarHistoricoReservas(Reserva r) {
-        return new OperacionesReservas().read(r);
+    public Respuesta consultarHistoricoReservas(Usuario u) {
+        return new OperacionesReservas().read(u);
+    }
+    
+    @POST
+    @Path("insertarLog")
+    @Consumes({MediaType.APPLICATION_JSON})
+    @Produces({MediaType.APPLICATION_JSON})
+    public Respuesta insertarLog(Usuario u){
+        return new OperacionesLog().create(u);
+    }
+
+    @POST
+    @Path("validarSesion")
+    @Consumes({MediaType.APPLICATION_JSON})
+    @Produces({MediaType.APPLICATION_JSON})
+    public Respuesta validarSesion(Usuario u) {
+        return new OperacionesLog().validarSesion(u);
     }
 }
