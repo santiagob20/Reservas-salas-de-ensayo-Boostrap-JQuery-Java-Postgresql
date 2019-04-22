@@ -28,7 +28,7 @@ public class OperacionesContacto implements InterfaceContacto {
     public Respuesta contactoLaCueva(Usuario u) {
         Respuesta rta = new Respuesta();
         String correoRiff = "reservasriff@gmail.com";
-        
+
         try {
             String host = "smtp-mail.outlook.com";
             String from = "snt.barrera@outlook.com";
@@ -42,6 +42,7 @@ public class OperacionesContacto implements InterfaceContacto {
             props.put("mail.smtp.starttls.enable", "true");
 
             Session session = Session.getDefaultInstance(props, new javax.mail.Authenticator() {
+                @Override
                 protected PasswordAuthentication getPasswordAuthentication() {
                     return new PasswordAuthentication(from, pass);
                 }
@@ -58,14 +59,13 @@ public class OperacionesContacto implements InterfaceContacto {
             Transport.send(msg);
             rta.setCodigo(1);
             rta.setDescripcion("Mensaje enviado correctamente");
-//            System.out.println("mensaje enviado");
         } catch (UnsupportedEncodingException ex) {
             rta.setCodigo(0);
-            rta.setDescripcion("error al enviar mensaje");
+            rta.setDescripcionError("error al enviar mensaje " + ex);
 
         } catch (MessagingException ex) {
             rta.setCodigo(0);
-            rta.setDescripcion("Error al enviar mensaje");
+            rta.setDescripcionError("Error al enviar mensaje " + ex);
         }
 
         //ENVVIAR CORREO A RIFF CON EL MENSAJE
@@ -82,6 +82,7 @@ public class OperacionesContacto implements InterfaceContacto {
             props.put("mail.smtp.starttls.enable", "true");
 
             Session session = Session.getInstance(props, new javax.mail.Authenticator() {
+                @Override
                 protected PasswordAuthentication getPasswordAuthentication() {
                     return new PasswordAuthentication(from, pass);
                 }
@@ -91,20 +92,19 @@ public class OperacionesContacto implements InterfaceContacto {
             msg.addRecipient(Message.RecipientType.TO,
                     new InternetAddress(correoRiff, "Sr"));
             msg.setSubject("Te han enviado un mensaje desde la web");
-            msg.setText(u.getMensaje());
+            msg.setText(u.getMensajeContactenos());
             Transport transport = session.getTransport("smtp");
             transport.connect(host, from, pass);//CAUSES EXCEPTION
             Transport.send(msg);
             rta.setCodigo(1);
             rta.setDescripcion("Mensaje enviado correctamente");
-//            System.out.println("mensaje enviado");
         } catch (UnsupportedEncodingException ex) {
             rta.setCodigo(0);
-            rta.setDescripcion("error al enviar mensaje, " + ex);
+            rta.setDescripcionError("error al enviar mensaje, " + ex);
 
         } catch (MessagingException ex) {
             rta.setCodigo(0);
-            rta.setDescripcion("Error al enviar mensaje, " + ex);
+            rta.setDescripcionError("Error al enviar mensaje, " + ex);
         }
         return rta;
     }
@@ -127,6 +127,7 @@ public class OperacionesContacto implements InterfaceContacto {
             props.put("mail.smtp.starttls.enable", "true");
 
             Session session = Session.getInstance(props, new javax.mail.Authenticator() {
+                @Override
                 protected PasswordAuthentication getPasswordAuthentication() {
                     return new PasswordAuthentication(from, pass);
                 }
@@ -143,14 +144,12 @@ public class OperacionesContacto implements InterfaceContacto {
             Transport.send(msg);
             rta.setCodigo(1);
             rta.setDescripcion("Mensaje enviado correctamente");
-//            System.out.println("mensaje enviado");
         } catch (UnsupportedEncodingException ex) {
             rta.setCodigo(0);
-            rta.setDescripcion("error al enviar mensaje, " + ex);
-
+            rta.setDescripcionError("error al enviar mensaje, " + ex);
         } catch (MessagingException ex) {
             rta.setCodigo(0);
-            rta.setDescripcion("Error al enviar mensaje, " + ex);
+            rta.setDescripcionError("Error al enviar mensaje, " + ex);
         }
 
         //ENVVIAR CORREO A RIFF CON EL MENSAJE
@@ -167,6 +166,7 @@ public class OperacionesContacto implements InterfaceContacto {
             props.put("mail.smtp.starttls.enable", "true");
 
             Session session = Session.getInstance(props, new javax.mail.Authenticator() {
+                @Override
                 protected PasswordAuthentication getPasswordAuthentication() {
                     return new PasswordAuthentication(from, pass);
                 }
@@ -176,20 +176,19 @@ public class OperacionesContacto implements InterfaceContacto {
             msg.addRecipient(Message.RecipientType.TO,
                     new InternetAddress(correoRiff, "Sr"));
             msg.setSubject("Te han enviado un mensaje desde la web");
-            msg.setText(u.getMensaje());
+            msg.setText(u.getMensajeContactenos());
             Transport transport = session.getTransport("smtp");
             transport.connect(host, from, pass);//CAUSES EXCEPTION
             Transport.send(msg);
             rta.setCodigo(1);
             rta.setDescripcion("Mensaje enviado correctamente");
-//            System.out.println("mensaje enviado");
         } catch (UnsupportedEncodingException ex) {
             rta.setCodigo(0);
-            rta.setDescripcion("error al enviar mensaje, " + ex);
+            rta.setDescripcionError("error al enviar mensaje, " + ex);
 
         } catch (MessagingException ex) {
             rta.setCodigo(0);
-            rta.setDescripcion("Error al enviar mensaje, " + ex);
+            rta.setDescripcionError("Error al enviar mensaje, " + ex);
         }
         return rta;
     }
