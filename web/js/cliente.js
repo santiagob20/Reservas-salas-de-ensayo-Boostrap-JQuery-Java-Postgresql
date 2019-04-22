@@ -248,49 +248,53 @@ function spinerLoading(id) {
 }
 
 // CALENDARIO ---------------------------------------------------------------------------------------------
-function calendarioReservas() {
-    let establecimiento = '';
-    let sala = '';
+function calendarioReservas(id) {
+    let establecimiento = id.split("-")[0];
+    let sala = id.split("-")[1];
     let fechaInicial = '';
     let fechaFinal = '';
-    $.ajax({
-        url: server + "Riff/app/restServices/calendarioReserva",
-        data: JSON.stringify({
 
-        }),
-        type: 'POST',
-        async: false,
-        cache: false,
-        contentType: 'application/json',
-        success: function (respuesta) {
-            console.log(respuesta);
-        },
-        error: function (error) {
-            console.log(error);
-        }
-    });
-
-
-    let diasSemana = ['LUN', 'MAR', 'MIE', 'JUE', 'VIE', 'SAB', 'DOM'];
-    let columnas = '<tr>' +
-            '<th class="grilla grillaEncabezado">Hora</th>';
-    for (let index = 0; index < 7; index++) {
-        columnas += '<th class="grilla grillaEncabezado">' + diasSemana[index] + '</th>';
-    }
-    $("#calendario").append(columnas);
-
-    for (var i = 8; i <= 23; i++) {
-        let filas = '<tr>' +
-                '<th id="' + i + 'Dia" class="grilla ui-widget-content">' + (i) + '</th>' +
-                '<th id="' + i + 'Lun" onclick="reservarFechaHora(this.id)" class="grilla ui-widget-content"></th>' +
-                '<th id="' + i + 'Mar" onclick="reservarFechaHora(this.id)" class="grilla ui-widget-content"></th>' +
-                '<th id="' + i + 'Mie" onclick="reservarFechaHora(this.id)" class="grilla ui-widget-content"></th>' +
-                '<th id="' + i + 'Jue" onclick="reservarFechaHora(this.id)" class="grilla ui-widget-content"></th>' +
-                '<th id="' + i + 'Vie" onclick="reservarFechaHora(this.id)" class="grilla ui-widget-content"></th>' +
-                '<th id="' + i + 'Sab" onclick="reservarFechaHora(this.id)" class="grilla ui-widget-content"></th>' +
-                '<th id="' + i + 'Dom" onclick="reservarFechaHora(this.id)" class="grilla ui-widget-content"></th>';
-        $("#calendario").append(filas);
-    }
+    
+    
+    console.log(establecimiento, sala);
+//    $.ajax({
+//        url: server + "Riff/app/restServices/calendarioReserva",
+//        data: JSON.stringify({
+//
+//        }),
+//        type: 'POST',
+//        async: false,
+//        cache: false,
+//        contentType: 'application/json',
+//        success: function (respuesta) {
+//            console.log(respuesta);
+//        },
+//        error: function (error) {
+//            console.log(error);
+//        }
+//    });
+//
+//
+//    let diasSemana = ['LUN', 'MAR', 'MIE', 'JUE', 'VIE', 'SAB', 'DOM'];
+//    let columnas = '<tr>' +
+//            '<th class="grilla grillaEncabezado">Hora</th>';
+//    for (let index = 0; index < 7; index++) {
+//        columnas += '<th class="grilla grillaEncabezado">' + diasSemana[index] + '</th>';
+//    }
+//    $("#calendario").append(columnas);
+//
+//    for (var i = 8; i <= 23; i++) {
+//        let filas = '<tr>' +
+//                '<th id="' + i + 'Dia" class="grilla ui-widget-content">' + (i) + '</th>' +
+//                '<th id="' + i + 'Lun" onclick="reservarFechaHora(this.id)" class="grilla ui-widget-content"></th>' +
+//                '<th id="' + i + 'Mar" onclick="reservarFechaHora(this.id)" class="grilla ui-widget-content"></th>' +
+//                '<th id="' + i + 'Mie" onclick="reservarFechaHora(this.id)" class="grilla ui-widget-content"></th>' +
+//                '<th id="' + i + 'Jue" onclick="reservarFechaHora(this.id)" class="grilla ui-widget-content"></th>' +
+//                '<th id="' + i + 'Vie" onclick="reservarFechaHora(this.id)" class="grilla ui-widget-content"></th>' +
+//                '<th id="' + i + 'Sab" onclick="reservarFechaHora(this.id)" class="grilla ui-widget-content"></th>' +
+//                '<th id="' + i + 'Dom" onclick="reservarFechaHora(this.id)" class="grilla ui-widget-content"></th>';
+//        $("#calendario").append(filas);
+//    }
 }
 function reservarFechaHora(id) {
     alert(id);
