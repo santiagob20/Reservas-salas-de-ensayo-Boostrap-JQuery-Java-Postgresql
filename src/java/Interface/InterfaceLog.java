@@ -5,23 +5,19 @@
  */
 package Interface;
 
-import Objetos.Reserva;
 import Objetos.Respuesta;
 import Objetos.Usuario;
 
 /**
  *
- * @author User
+ * @author developer
  */
-public interface InterfaceReservas {
-
-    public Respuesta create(Reserva r);
-
+public interface InterfaceLog {
+    public Respuesta create(Usuario u);
     public Respuesta read(Usuario u);
-
-    public Respuesta update(Reserva r);
-
-    public Respuesta delete(Reserva r);
+    public Respuesta update(Usuario u);
+    public Respuesta delete (Usuario u);
+    public Respuesta validarSesion (Usuario u);
     
-    public Respuesta showAvailable();
+    
 }

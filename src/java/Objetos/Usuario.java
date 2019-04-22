@@ -29,6 +29,11 @@ public class Usuario {
     private String codigo;
     private String descripcion;
     private String mensaje;
+    private String id_session;
+    private String tp_accion;
+    private String url;
+    private String ip;
+    private String activo;
     
 
     public String getIdentificacion() {
@@ -157,5 +162,45 @@ public class Usuario {
 
     public void setMensaje(String mensaje) {
         this.mensaje = mensaje;
+    }
+
+    public String getId_session() {
+        return id_session;
+    }
+
+    public void setId_session(String id_session) {
+        this.id_session = id_session;
+    }
+
+    public String getTp_accion() {
+        return tp_accion;
+    }
+
+    public void setTp_accion(String tp_accion) {
+        this.tp_accion = tp_accion;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public String getIp() {
+        return ip;
+    }
+
+    public void setIp(String ip) {
+        this.ip = ip;
+    }
+
+    public String getActivo() {
+        return activo;
+    }
+
+    public void setActivo(String activo) {
+        this.activo = activo;
     }
 }

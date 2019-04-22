@@ -10,17 +10,21 @@ import Interface.InterfaceUsuario;
 import Objetos.Respuesta;
 import Objetos.Usuario;
 import com.google.gson.Gson;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.UUID;
 
 /**
  *
  * @author Santiagob20
  */
 public class OperacionesUsuario implements InterfaceUsuario {
-
+    
     @Override
     public Respuesta create(Usuario u) {
         Respuesta rta = new Respuesta();
@@ -38,7 +42,7 @@ public class OperacionesUsuario implements InterfaceUsuario {
                 + "\"telefono\":\"" + u.getTelefono() + "\","
                 + "\"email\":\"" + u.getCorreoElectronico() + "\","
                 + "\"usuario\":\"" + u.getUsuario() + "\","
-                + "\"clave\":\"" + u.getClave() + "\"}');";
+                + "\"clave\":\"" + convertirSHA256(u.getClave()) + "\"}');";
         try {
             PreparedStatement ps = cn.conectar().prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
@@ -52,13 +56,13 @@ public class OperacionesUsuario implements InterfaceUsuario {
         } catch (SQLException ex) {
             rta.setCodigo(Integer.parseInt(usuario.getCodigo()));
             rta.setDescripcionError("Error al crear usuario: " + ex);
-        }finally{
+        } finally {
             cn.desconectar();
         }
-
+        
         return rta;
     }
-
+    
     @Override
     public Respuesta read(Usuario u) {
         Respuesta rta = new Respuesta();
@@ -69,13 +73,13 @@ public class OperacionesUsuario implements InterfaceUsuario {
                 + ",id_rol\n"
                 + ",identificacion\n"
                 + ",(nombre||' '||apellido) as nombre\n"
-                + ",fecha_nacimiento\n"
+                + ",fecha_nacimiento::text\n"
                 + ",direccion_residencia\n"
                 + ",correo_electronico\n"
                 + ",usuario\n"
                 + ",telefono\n"
                 + "from app.tbl_usuario "
-                + "where id_usuario = ? ";
+                + "where id_usuario = ?";
         try {
             PreparedStatement ps = cn.conectar().prepareStatement(sql);
             ps.setInt(1, u.getId_usuario());
@@ -85,25 +89,30 @@ public class OperacionesUsuario implements InterfaceUsuario {
                 usuario.setRol(String.valueOf(rs.getInt("id_rol")));
                 usuario.setIdentificacion(rs.getString("identificacion"));
                 usuario.setNombre(rs.getString("nombre"));
-                usuario.setFechaNacimiento(rs.getDate("fecha_nacimiento"));
+                usuario.setFechaNacimiento(Date.valueOf(rs.getString("fecha_nacimiento")));
                 usuario.setDireccionResidencia(rs.getString("direccion_residencia"));
                 usuario.setCorreoElectronico(rs.getString("correo_electronico"));
                 usuario.setUsuario(rs.getString("usuario"));
                 usuario.setTelefono(rs.getString("telefono"));
                 listaUsuarios.add(usuario);
+                
             }
             rta.setCodigo(1);
+<<<<<<< HEAD
+=======
+//            rta.setCodigo(Integer.parseInt(usuario.getCodigo()));
+>>>>>>> b0fc6780afe557b0e2f667e1590d5d339c1bd74c
             rta.setDescripcion(usuario.getDescripcion());
             rta.setListaUsuarios(listaUsuarios);
         } catch (SQLException ex) {
             rta.setCodigo(0);
-            rta.setDescripcionError("Error al autenticar " + ex);
+            rta.setDescripcionError("Error al consultar usuario " + ex);
         } finally {
             cn.desconectar();
         }
         return rta;
     }
-
+    
     @Override
     public Respuesta autenticate(Usuario u) {
         Respuesta rta = new Respuesta();
@@ -121,6 +130,8 @@ public class OperacionesUsuario implements InterfaceUsuario {
             rta.setCodigo(Integer.parseInt(usuario.getCodigo()));
             rta.setDescripcion(usuario.getDescripcion());
             rta.setListaUsuarios(listaUsuarios);
+            rta.setIdSession(UUID.randomUUID().toString().replace("-", ""));
+            
         } catch (SQLException ex) {
             rta.setCodigo(0);
             rta.setDescripcionError("Er|ror al autenticar " + ex);
@@ -129,7 +140,7 @@ public class OperacionesUsuario implements InterfaceUsuario {
         }
         return rta;
     }
-
+    
     @Override
     public Respuesta update(Usuario u) {
         Respuesta rta = new Respuesta();
@@ -163,10 +174,28 @@ public class OperacionesUsuario implements InterfaceUsuario {
         }
         return rta;
     }
-
+    
     @Override
     public Respuesta delete(Usuario u) {
         return null;
     }
-
+    
+    public String convertirSHA256(String password) {
+        MessageDigest md = null;
+        try {
+            md = MessageDigest.getInstance("SHA-256");
+        } catch (NoSuchAlgorithmException e) {            
+            e.printStackTrace();
+            return null;
+        }
+        
+        byte[] hash = md.digest(password.getBytes());
+        StringBuffer sb = new StringBuffer();
+        
+        for (byte b : hash) {            
+            sb.append(String.format("%02x", b));
+        }
+        
+        return sb.toString();
+    }
 }

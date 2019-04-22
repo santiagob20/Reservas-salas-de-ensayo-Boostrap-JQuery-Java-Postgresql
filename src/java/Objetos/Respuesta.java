@@ -15,6 +15,7 @@ public class Respuesta {
     private int codigo;
     private String descripcion;
     private String descripcionError;
+    private String idSession;
     private ArrayList<Reserva> listaReservas;
     private ArrayList<Banda> listaBandas;
     private ArrayList<Usuario> listaUsuarios;
@@ -119,6 +120,14 @@ public class Respuesta {
 
     public void setListaHorarios(ArrayList<Calendario> listaHorarios) {
         this.listaHorarios = listaHorarios;
+    }
+
+    public String getIdSession() {
+        return idSession;
+    }
+
+    public void setIdSession(String idSession) {
+        this.idSession = idSession;
     }
     
     

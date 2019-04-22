@@ -62,13 +62,13 @@ public class OperacionesReservas implements InterfaceReservas {
     }
 
     @Override
-    public Respuesta read(Reserva r) {
+    public Respuesta read(Usuario u) {
         Respuesta rta = new Respuesta();
         Conexion c = new Conexion();        
         String sql="";
         ArrayList<Reserva> listaReservas = new ArrayList<>();
-        if (r.getIdUsuario() > 0) {
-            sql = "select * from app.vst_historico_reservas where id_usuario = "+r.getIdUsuario();
+        if (u.getId_usuario() > 0) {
+            sql = "select * from app.vst_historico_reservas where id_usuario = "+u.getId_usuario();
         }else{
             sql = "select * from app.vst_historico_reservas";
         }
