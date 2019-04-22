@@ -20,6 +20,7 @@ public class Reserva {
     private Time horaInicio;
     private Time horaFin;
     private Usuario usuario;
+    private Precio precio;
     private Instrumento instrumento;
     private int pagoRealizado;
     private String codigo;
@@ -28,6 +29,7 @@ public class Reserva {
     private int idPrecio;
     private int idSala;
     private String detalles;
+    private String nombreEmpresa;
 
     public int getIdReserva() {
         return idReserva;
@@ -147,6 +149,22 @@ public class Reserva {
 
     public void setDetalles(String detalles) {
         this.detalles = detalles;
+    }
+
+    public String getNombreEmpresa() {
+        return nombreEmpresa;
+    }
+
+    public void setNombreEmpresa(String nombreEmpresa) {
+        this.nombreEmpresa = nombreEmpresa;
+    }
+
+    public Precio getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(Precio precio) {
+        this.precio = precio;
     }
     
     

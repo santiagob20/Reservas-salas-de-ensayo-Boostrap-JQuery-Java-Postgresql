@@ -108,4 +108,11 @@ public class RestServices {
         return new OperacionesContacto().contactoLaCueva(u);
     }
 
+    @POST
+    @Path("consultarHistoricoReservas")
+    @Consumes({MediaType.APPLICATION_JSON})
+    @Produces({MediaType.APPLICATION_JSON})
+    public Respuesta consultarHistoricoReservas(Reserva r) {
+        return new OperacionesReservas().read(r);
+    }
 }
