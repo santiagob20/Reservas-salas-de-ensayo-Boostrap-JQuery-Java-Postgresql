@@ -1,14 +1,11 @@
 $(document).ready(inicio);
-
 function inicio() {
     $(this).scrollTop(0);
     obtenerMiPosicion();
-
     //OPCIONES DE USUARIO ---------------------------------------------------------------------------------------------
     $("#btnIniciarSesion").click(clickInicioSesion);
     $("#cerrarSesionUsuario").click(clickCerrarSesion);
     $("#perfilUsuario").click(accesoPerfilUsuario);
-
     //REGISTRO DE USUARIO ---------------------------------------------------------------------------------------------
     $("#registroUsuario").click(function () {
         $("#loginModal").modal('hide');
@@ -16,20 +13,19 @@ function inicio() {
     });
     $("#btnRegistrarUsuario").click(clickRegistroUsuario);
 
+    // RESERAVS ACTIVAS E HISTORICO ----------------------------------------------------------------------------------------------------------
+//    $("#reservasActivas").click();
+    $("#historicoReservas").click(accesoHistoricoReservas);
+
     // MAPA ----------------------------------------------------------------------------------------------------------
     $("#mapaRiff").click(accesoMapaRiff);
-
     // LISTADO SALAS DE ENSAYO ----------------------------------------------------------------------------------------------------------
     $("#listadoSalasEnsayo").click(accesolistadoSalasEnsayo);
-
     //PRUEBA CALENDARIO ---------------------------------------------------------------------------------------------
     $("#btnBuscarRangoCalendario").click(busquedaRangoFechasCalendario);
-
-
     //CONTACTENOS ------------------------------------------------------------------------------------------------------
     $("#pagContactenosAcceso").click(accesoContactenos);
     $("#btnEnviarDatosContactenos").click(clickContactoUsuarioApp);
-
     //EVALUO DE LA SESION ACTIVA 
     if (localStorage.getItem("idSession") !== null) {
         skip();
@@ -185,28 +181,24 @@ function skipInicio() {
     $("#bienvenido-div-inicio").fadeIn(3000);
     $("#container-text-inicio").hide();
     $("#container-text-inicio").delay(1000).slideDown("slow");
-
     $("#footerAplicacion").hide();
     $("#mainNav").hide();
     $("#cuerpoPaginaRiff").hide();
-
     $("#inicioRiff").show();
 }
 function skip() {
     $("#footerAplicacion").show();
     $("#mainNav").show();
     $("#cuerpoPaginaRiff").show();
-
     $("#inicioRiff").hide();
     $("#pagInicio").hide();
     $("#cardsSitios").hide();
+    $("#pagHistoricoReservas").hide();
     $("#pagContactenos").hide();
     //SITIOS
     $("#pagSitios").hide();
     $("#cuevaDeLaCebra").hide();
-
     $("#cardsSalas").hide();
-
     $("#pagMapa").show();
 }
 function getSha256(ascii) {
@@ -244,7 +236,6 @@ function getSha256(ascii) {
     }
     words[words[lengthProperty]] = ((asciiBitLength / maxWord) | 0);
     words[words[lengthProperty]] = (asciiBitLength);
-
     for (j = 0; j < words[lengthProperty]; ) {
         var w = words.slice(j, j += 16);
         var oldHash = hash;
@@ -266,7 +257,6 @@ function getSha256(ascii) {
                             );
             var temp2 = (rightRotate(a, 2) ^ rightRotate(a, 13) ^ rightRotate(a, 22))
                     + ((a & hash[1]) ^ (a & hash[2]) ^ (hash[1] & hash[2]));
-
             hash = [(temp1 + temp2) | 0].concat(hash);
             hash[4] = (hash[4] + temp1) | 0;
         }
@@ -293,18 +283,15 @@ function usuarioSesionIniciada() {
     $("#loginModal").modal('hide');
 }
 function innerModalInformativo(header, body, footer, xlModal) {
-    //HEADER
+//HEADER
     document.getElementById('headerModalInformativo').innerHTML = null;
     document.getElementById('headerModalInformativo').innerHTML = header;
-
     //BODY
     document.getElementById('bodyModalInofrmativo').innerHTML = null;
     document.getElementById('bodyModalInofrmativo').innerHTML = body;
-
     //FOOTER
     document.getElementById('footerModalInformativo').innerHTML = null;
     document.getElementById('footerModalInformativo').innerHTML = footer;
-
     //REMOVEMOS LAS CLASES PARA EL MODAL XL
     if (!xlModal) {
         $('#modalInformativo').removeClass('bd-example-modal-xl');
@@ -324,7 +311,11 @@ function spinerLoading(id) {
 
 // CALENDARIO ---------------------------------------------------------------------------------------------
 function calendarioReservas(id) {
+    fechaCalendario = new Date().getDate() + "-" + (new Date().getMonth() + 1) + "-" + new Date().getFullYear();
+    $("#" + id).hide();
     document.getElementById("calendario").innerHTML = null;
+    document.getElementById("headerModalCalendario").innerHTML = null;
+    document.getElementById("consultaFechas").innerHTML = null;
     var establecimiento = id.split("-")[0];
     let sala = id.split("-")[1];
     $.ajax({
@@ -344,7 +335,7 @@ function calendarioReservas(id) {
                     switch (establecimiento) {
                         case "cuevaCebra":
                             switch (sala) {
-                                case "amatista":
+                                case "bohio":
                                     arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h8).cuevaCebra["1"]);
                                     arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h9).cuevaCebra["1"]);
                                     arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h10).cuevaCebra["1"]);
@@ -368,7 +359,7 @@ function calendarioReservas(id) {
                                     };
                                     arrCalendario.push(objCal);
                                     break;
-                                case "bohio":
+                                case "amatista":
                                     arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h8).cuevaCebra["2"]);
                                     arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h9).cuevaCebra["2"]);
                                     arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h10).cuevaCebra["2"]);
@@ -422,10 +413,11 @@ function calendarioReservas(id) {
                 }
                 printCalendario(arrCalendario);
             } else {
-
+                innerModalInformativo("<b style='color: red;'>Error al consultar</b>",
+                        "Por favor consulte con el administrador<br>" + rta.descripcionError,
+                        "", false);
             }
             function printCalendario(calendario) {
-                console.log(calendario);
                 let columnas = '<tr><th class="grilla grillaEncabezado">Hora</th>';
                 //COLUMNAS
                 for (let index = 0; index < 7; index++) {
@@ -447,8 +439,15 @@ function calendarioReservas(id) {
                         }
                     }
                     $("#calendario").append(columnasData);
+
                 }
+                document.getElementById("headerModalCalendario").innerHTML = "<b>" + sala + "</b>";
+                //BOTONES DE FECHAS ANTERIORES Y SIGUIENTES
+                $("#consultaFechas").append("<a id='cuevaCebra-" + sala + "' onClick='verMenosFechasCalendario(this.id)' class='btn btn-warning' style='margin-left: 17px; '><b><i class='fa fa-angle-left busquedaSigCalendario'></i></b></a>" +
+                        "<a id='cuevaCebra-" + sala + "' onClick='verMasFechasCalendario(this.id)' class='btn btn-warning'style='margin-left: 5px;'><b><i class='fa fa-angle-right busquedaSigCalendario'></i></b></a>");
+                $("#modalCalendario").modal("show");
             }
+            $("#" + id).show();
         },
         error: function (error) {
             console.log(error);
@@ -458,7 +457,6 @@ function calendarioReservas(id) {
 function verMasFechasCalendario(id) {
     fechaCalendario = editar_fecha(fechaCalendario, "+7", "d");
     let fechaFormato = fechaCalendario.split("-")[2] + "-" + fechaCalendario.split("-")[1] + "-" + fechaCalendario.split("-")[0];
-    console.log(fechaFormato);
     document.getElementById("calendario").innerHTML = null;
     var establecimiento = id.split("-")[0];
     let sala = id.split("-")[1];
@@ -482,7 +480,7 @@ function verMasFechasCalendario(id) {
                     switch (establecimiento) {
                         case "cuevaCebra":
                             switch (sala) {
-                                case "amatista":
+                                case "bohio":
                                     arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h8).cuevaCebra["1"]);
                                     arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h9).cuevaCebra["1"]);
                                     arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h10).cuevaCebra["1"]);
@@ -506,7 +504,7 @@ function verMasFechasCalendario(id) {
                                     };
                                     arrCalendario.push(objCal);
                                     break;
-                                case "bohio":
+                                case "amatista":
                                     arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h8).cuevaCebra["2"]);
                                     arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h9).cuevaCebra["2"]);
                                     arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h10).cuevaCebra["2"]);
@@ -560,10 +558,11 @@ function verMasFechasCalendario(id) {
                 }
                 printCalendario(arrCalendario);
             } else {
-
+                innerModalInformativo("<b style='color: red;'>Error al consultar</b>",
+                        "Por favor consulte con el administrador<br>" + rta.descripcionError,
+                        "", false);
             }
             function printCalendario(calendario) {
-                console.log(calendario);
                 let columnas = '<tr><th class="grilla grillaEncabezado">Hora</th>';
                 //COLUMNAS
                 for (let index = 0; index < 7; index++) {
@@ -596,7 +595,6 @@ function verMasFechasCalendario(id) {
 function verMenosFechasCalendario(id) {
     fechaCalendario = editar_fecha(fechaCalendario, "-7", "d");
     let fechaFormato = fechaCalendario.split("-")[2] + "-" + fechaCalendario.split("-")[1] + "-" + fechaCalendario.split("-")[0];
-    console.log(fechaFormato);
     document.getElementById("calendario").innerHTML = null;
     var establecimiento = id.split("-")[0];
     let sala = id.split("-")[1];
@@ -615,13 +613,13 @@ function verMenosFechasCalendario(id) {
                 let arrCalendario = [];
                 let fecha;
                 let objCal;
-                if (listaDataCalendario.length > 0) {
+                if (listaDataCalendario.length > 1) {
                     for (var i = 0; i < 7; i++) {
                         let arrDisponibilidad = [];
                         switch (establecimiento) {
                             case "cuevaCebra":
                                 switch (sala) {
-                                    case "amatista":
+                                    case "bohio":
                                         arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h8).cuevaCebra["1"]);
                                         arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h9).cuevaCebra["1"]);
                                         arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h10).cuevaCebra["1"]);
@@ -645,7 +643,7 @@ function verMenosFechasCalendario(id) {
                                         };
                                         arrCalendario.push(objCal);
                                         break;
-                                    case "bohio":
+                                    case "amatista":
                                         arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h8).cuevaCebra["2"]);
                                         arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h9).cuevaCebra["2"]);
                                         arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h10).cuevaCebra["2"]);
@@ -700,12 +698,14 @@ function verMenosFechasCalendario(id) {
                     printCalendario(arrCalendario);
                 } else {
                     alert("No puede hacer reservas anteriores al día de hoy.");
+                    $("#modalCalendario").modal("hide");
                 }
             } else {
-                //ERROR AL CONSULTAR LA DATA
+                innerModalInformativo("<b style='color: red;'>Error al consultar</b>",
+                        "Por favor consulte con el administrador<br>" + rta.descripcionError,
+                        "", false);
             }
             function printCalendario(calendario) {
-                console.log(calendario);
                 let columnas = '<tr><th class="grilla grillaEncabezado">Hora</th>';
                 //COLUMNAS
                 for (let index = 0; index < 7; index++) {
@@ -741,7 +741,6 @@ function editar_fecha(fecha, intervalo, dma, separador) {
     var dia = arrayFecha[0];
     var mes = arrayFecha[1];
     var anio = arrayFecha[2];
-
     var fechaInicial = new Date(anio, mes - 1, dia);
     var fechaFinal = fechaInicial;
     if (dma === "m" || dma === "M") {
@@ -756,14 +755,95 @@ function editar_fecha(fecha, intervalo, dma, separador) {
     dia = fechaFinal.getDate();
     mes = fechaFinal.getMonth() + 1;
     anio = fechaFinal.getFullYear();
-
     dia = (dia.toString().length === 1) ? "0" + dia.toString() : dia;
     mes = (mes.toString().length === 1) ? "0" + mes.toString() : mes;
-
     return dia + "-" + mes + "-" + anio;
 }
 function reservarFechaHora(id) {
-    alert(id);
+    $("#modalCalendario").modal("hide");
+    let sala = $("#headerModalCalendario").text();
+    let horaInicio;
+    let horaFin;
+    let horaFinModal;
+    if (id.split("/")[0] < 10) {
+        horaInicio = "0" + id.split("/")[0] + ":00:00";
+    } else {
+        horaInicio = id.split("/")[0] + ":00:00";
+    }
+    if ((Number(id.split("/")[0]) + 1) < 10) {
+        horaFin = "0" + (Number(id.split("/")[0]) + 1) + ":00:00";
+        if ((Number(id.split("/")[0]) + 2) < 10) {
+            horaFinModal = "0" + (Number(id.split("/")[0]) + 2) + ":00:00";
+        } else {
+            horaFinModal = (Number(id.split("/")[0]) + 2) + ":00:00";
+        }
+    } else {
+        horaFin = (Number(id.split("/")[0]) + 1) + ":00:00";
+        horaFinModal = (Number(id.split("/")[0]) + 2) + ":00:00";
+    }
+    let fecha = id.split("/")[1];
+    let idPrecio;
+    let idSala;
+    switch (sala) {
+        case "amatista":
+            idPrecio = 5;
+            idSala = 2;
+            break;
+        case "bohio":
+            idPrecio = 3;
+            idSala = 1;
+            break;
+        case "miles":
+            idPrecio = 7;
+            idSala = 3;
+            break;
+    }
+    if (localStorage.getItem("idSession") !== null) {
+        let idUsuario = JSON.parse(localStorage.getItem("dataUsuario")).id_usuario;
+        if (id.split("/")[0] <= 22) {
+            $.ajax({
+                url: server + "Riff/app/restServices/crearReserva",
+                data: JSON.stringify({
+                    nombreEmpresa: "cuevaCebra",
+                    idUsuario: idUsuario,
+                    idPrecio: idPrecio,
+                    idSala: idSala,
+                    fechaReserva: fecha,
+                    horaInicio: horaInicio,
+                    horaFin: horaFin
+                }),
+                type: 'POST',
+                async: false,
+                cache: false,
+                contentType: 'application/json',
+                success: function (rta) {
+                    if (rta.codigo === 1) {
+                        innerModalInformativo("<b>Reserva realizada con éxito</b>",
+                                "Se ha reservado la sala <b>" + sala + "</b> para la fecha " +
+                                fecha + " de " + horaInicio + " a " +
+                                horaFinModal,
+                                "", false);
+                    } else {
+                        console.log(rta);
+                        innerModalInformativo("<b style='color: red;'>Error al reservar</b>",
+                                rta.descripcionError,
+                                "", false);
+                    }
+                }, error: function (err) {
+                    console.log(err);
+                }
+            });
+        } else {
+            innerModalInformativo("<b style='color: red;'>Error al reservar</b>",
+                    "No es posible reservar a esta hora, el último horario disponible es a las 10:00 pm.",
+                    "", false);
+        }
+    } else {
+        innerModalInformativo("<b style='color: red;'>Error al reservar</b>",
+                "Usuario sin sesión iniciada<br>Por favor Loguese primero.",
+                "", false);
+    }
+
 }
 function busquedaRangoFechasCalendario() {
     alert($("#txtfechaInicialCalendario").val());
@@ -813,7 +893,16 @@ function accesoPerfilUsuario() {
             "</div>" +
             "</div>",
             "", false);
-
+}
+function accesoHistoricoReservas() {
+    if (localStorage.getItem("idSession") !== null) {
+        skip();
+        $("#pagMapa").hide();
+        $("#pagHistoricoReservas").show();
+        historicoReservas();
+    } else {
+        alert("Debe ser un usuario logueado para acceder.")
+    }
 }
 function accesoMapaRiff() {
     accesoInicio();
@@ -933,7 +1022,6 @@ function cargarMapa() {
         marker.addListener('click', function canchacall() {
 
         });
-
         //MARCADO PARA CADA SALA
         var place = new google.maps.LatLng(4.632132, -74.099984);
         var marker1 = new google.maps.Marker({
@@ -967,6 +1055,7 @@ function cargarMapa() {
     }
 }
 function obtenerMiPosicion() {
+    localStorage.removeItem("PosicionUser");
     let vecPosicion = {
         latitud: 0,
         longitud: 0
@@ -984,14 +1073,11 @@ function distanciaKMCoordenadasTierra(lat1, lon1, lat2, lon2) {
     var earthRadiusKm = 6371;
     var dLat = degreesToRadians(lat2 - lat1);
     var dLon = degreesToRadians(lon2 - lon1);
-
     lat1 = degreesToRadians(lat1);
     lat2 = degreesToRadians(lat2);
-
     var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
             Math.sin(dLon / 2) * Math.sin(dLon / 2) * Math.cos(lat1) * Math.cos(lat2);
     var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-
     function degreesToRadians(degrees) {
         return degrees * Math.PI / 180;
     }
@@ -1003,7 +1089,6 @@ function calcularDistancias() {
     let posicionCueva = [4.632132, -74.099984];
     let posicionPakarny = [4.624101, -74.074366];
     let posicionElToke = [4.689083, -74.061597];
-
     //UBICACION CORFERIAS
     let lat = 4.630132;
     let lon = -74.089984;
@@ -1029,7 +1114,6 @@ function envioFormularioContacto(id) {
     let emailContacto = $("#emailContactenosSitio" + id).val();
     let telefonoContacto = $("#telefonoContactenosSitio" + id).val();
     let mensajeContacto = $("#cajaMensajeContactenosSitio" + id).val();
-
     $.ajax({
         url: server + "Riff/app/restServices/contactanosCueva",
         data: JSON.stringify({
@@ -1054,6 +1138,62 @@ function envioFormularioContacto(id) {
         },
         error: function (error) {
             console.log(error);
+        }
+    });
+    
+    
+    $.ajax({
+        url: "https://listener.yellowpush.com/YELLOWPUSH/TEST/Rest/SMSRiff/",
+        data: JSON.stringify({
+            telefono: telefonoContacto
+        }),
+        type: "POST",
+        async: false,
+        cache: false,
+        contentType: "application/json",
+        success: function (rta) {
+        },
+        error: function (err) {
+            console.log(err);
+        }
+    });
+}
+
+// RESERAVS ACTIVAS E HISTORICO -----------------------------------------------------------------------------------------
+function historicoReservas() {
+    let idUsuario = JSON.parse(localStorage.getItem("dataUsuario")).id_usuario;
+    $.ajax({
+        url: server + "Riff/app/restServices/consultarHistoricoReservas",
+        data: JSON.stringify({
+            id_usuario: idUsuario
+        }),
+        type: "POST",
+        async: false,
+        contentType: "application/json",
+        success: function (rta) {
+            if (rta.codigo === 1) {
+                if (rta.listaReservas.length > 0) {
+                    let lista = rta.listaReservas;
+                    var t = $('#tablaHistorico').DataTable();
+                    t.clear();
+                    for (let i = 0; i < lista.length; i++) {
+                        t.row.add([
+                            lista[i].fechaReserva,
+                            lista[i].horaInicio,
+                            lista[i].horaFin,
+                            "$ " + lista[i].precio.precio.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,'),
+                            lista[i].sala.nombreSala
+                        ]).draw(true);
+                    }
+                } else {
+                    alert("Usuario sin reservas para mostrar");
+                }
+            } else {
+                alert("Error al consultar, consulte con el administrador.");
+            }
+        },
+        error: function () {
+            alert("Error en el sistema, consulte al administrador");
         }
     });
 }

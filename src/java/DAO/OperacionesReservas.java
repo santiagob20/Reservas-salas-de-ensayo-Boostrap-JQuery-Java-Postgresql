@@ -33,13 +33,13 @@ public class OperacionesReservas implements InterfaceReservas {
         ArrayList<Reserva> listaReservas = new ArrayList<>();
         String sql = "select app.sp_reserva_crud('"
                 + "{\"operacion\":\"CREATE\","
-                + "\"nombre_empresa\":" + r.getNombreEmpresa() + ","
+                + "\"nombre_empresa\":\"" + r.getNombreEmpresa() + "\","
                 + "\"id_usuario\":" + r.getIdUsuario() + ","
                 + "\"id_precio\":" + r.getIdPrecio() + ","
                 + "\"id_sala\":" + r.getIdSala() + ","
                 + "\"fecha_reserva\":\"" + r.getFechaReserva() + "\","
-                + "\"\"hora_inicio\":\"" + r.getHoraInicio() + "\","
-                + "\"\"hora_fin\":\"" + r.getHoraFin() + "\","
+                + "\"hora_inicio\":\"" + r.getHoraInicio() + "\","
+                + "\"hora_fin\":\"" + r.getHoraFin() + "\","
                 + "\"pago_realizado\":0,"
                 + "\"detalles\":\"N/A\"}');";
         try {
@@ -64,12 +64,12 @@ public class OperacionesReservas implements InterfaceReservas {
     @Override
     public Respuesta read(Usuario u) {
         Respuesta rta = new Respuesta();
-        Conexion c = new Conexion();        
-        String sql="";
+        Conexion c = new Conexion();
+        String sql = "";
         ArrayList<Reserva> listaReservas = new ArrayList<>();
         if (u.getId_usuario() > 0) {
-            sql = "select * from app.vst_historico_reservas where id_usuario = "+u.getId_usuario();
-        }else{
+            sql = "select * from app.vst_historico_reservas where id_usuario = " + u.getId_usuario();
+        } else {
             sql = "select * from app.vst_historico_reservas";
         }
         try {
@@ -81,7 +81,7 @@ public class OperacionesReservas implements InterfaceReservas {
                 Usuario usuario = new Usuario();
                 Sala sala = new Sala();
                 Precio precio = new Precio();
-               
+
                 reserva.setIdReserva(rs.getInt("id_reserva"));
                 reserva.setIdUsuario(rs.getInt("id_usuario"));
                 usuario.setUsuario(rs.getString("usuario"));
@@ -92,7 +92,7 @@ public class OperacionesReservas implements InterfaceReservas {
                 reserva.setFechaReserva(rs.getDate("fecha_reserva"));
                 reserva.setHoraInicio(rs.getTime("hora_inicio"));
                 reserva.setHoraFin(rs.getTime("hora_fin"));
-                
+
                 reserva.setUsuario(usuario);
                 reserva.setSala(sala);
                 reserva.setPrecio(precio);
@@ -182,7 +182,7 @@ public class OperacionesReservas implements InterfaceReservas {
 
         return rta;
     }
-    
+
     @Override
     public Respuesta showMoreAvailable(Reserva r) {
         Respuesta rta = new Respuesta();
@@ -205,7 +205,7 @@ public class OperacionesReservas implements InterfaceReservas {
                 + ", h_21::text\n"
                 + ", h_22::text\n"
                 + ", h_23::text\n"
-                + "FROM app.vst_calendario where fecha between '"+r.getFechaReserva()+"' and '"+r.getFechaReserva()+"'::Date + interval '7 days' order by fecha::date;";
+                + "FROM app.vst_calendario where fecha between '" + r.getFechaReserva() + "' and '" + r.getFechaReserva() + "'::Date + interval '7 days' order by fecha::date;";
         try {
             PreparedStatement ps = cn.conectar().prepareStatement(sql);
             ResultSet rs = ps.executeQuery();

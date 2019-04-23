@@ -21,7 +21,8 @@
         <link href="css/styles.css" rel="stylesheet" type="text/css"/>
         <link rel="shortcut icon" href="imagenes/Logo/logo_riff.png" />
         <link href="https://fonts.googleapis.com/css?family=Poiret+One|Roboto|Montserrat|Ubuntu" rel="stylesheet">
-
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.18/datatables.min.css"/>
+        <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.18/datatables.min.js"></script>
     </head>
     <body class="fixed-nav sticky-footer bg-dark-user-user toggled sidenav-toggled" id="page-top">
 
@@ -93,6 +94,18 @@
                         <a class="nav-link" id="listadoSalasEnsayo">
                             <i class="fa fa-fw fa-list-ul"></i>
                             <span class="nav-link-text"><b> Listado Sala de ensayo</b></span>
+                        </a>
+                    </li>
+                    <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Reservas activas">
+                        <a class="nav-link" id="reservasActivas">
+                            <i class="fa fa-fw fa-check"></i>
+                            <span class="nav-link-text"><b> Reservas activas</b></span>
+                        </a>
+                    </li>
+                    <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Historico reservas">
+                        <a class="nav-link" id="historicoReservas">
+                            <i class="fa fa-fw fa-archive"></i>
+                            <span class="nav-link-text"><b> Historico reservas</b></span>
                         </a>
                     </li>
                     <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Contactenos">
@@ -221,7 +234,6 @@
 
         <div class="content-wrapper" id="cuerpoPaginaRiff">
 
-
             <!-- PAGINA DE INICIO -->
             <div id="pagInicio" class="container-fluid">
                 <!-- Breadcrumbs-->
@@ -281,7 +293,7 @@
                     <div class="row">
                         <!-- LOGO -->
                         <div class="col-lg-6">
-                            <img src="imagenes/Fotos sitio/Cueva de la Cebra/logo_nombre.png" width="100%" alt=""/>
+                            <img src="imagenes/Fotos sitio/Cueva de la Cebra/logo_nombre.jpeg" width="100%" alt=""/>
                         </div>
                         <!-- COROUSEL -->
                         <div class="col-lg-6">
@@ -394,7 +406,7 @@
                         <!-- DATOS DE CONTACTO -->
                         <div class="col-lg-4">
                             <div class="detailsContainer bordeSombra" style="left: 127px; margin-top: 25%;">
-                                <img src="imagenes/Fotos sitio/Cueva de la Cebra/la-cueva-nombre.PNG" alt="" style="width: 200px; margin-left: 20%;" />
+                                <img src="imagenes/Fotos sitio/Cueva de la Cebra/la-cueva-nombre.jpeg" alt="" style="width: 200px; margin-left: 20%;" />
                                 <br>
                                 <div class="infoLine phone"
                                      style="font-size: 14px; margin-bottom: 1px; visibility: visible;font-family: 'Ubuntu', sans-serif;">
@@ -425,7 +437,7 @@
                                 <h3 style="text-align: center; margin-top: 5%;"><b>CONTACTENOS</b></h3>
                                 <input type="text" id="nombreContactenosSitioCuevaCebra" class="form-control" placeholder="Nombre" required="required" autofocus="autofocus">
                                 <input type="text" id="emailContactenosSitioCuevaCebra" class="form-control" placeholder="Email" required="required" autofocus="autofocus">
-                                <input type="text" id="telefonoContactenosSitioCuevaCebra" class="form-control" placeholder="Numero de telefono" required="required" autofocus="autofocus">
+                                <input type="text" id="telefonoContactenosSitioCuevaCebra" class="form-control" placeholder="Numero de celular ej:573100000000" required="required" autofocus="autofocus">
                                 <textarea name="" id="cajaMensajeContactenosSitioCuevaCebra" class="form-control" data-required_mark="required" data-field_type="text" data-original_id="mensaje" placeholder="Escribenos un mensaje..." style="height: 200px; max-height: 200px; min-height: 200px;"></textarea>
                                 <input id="CuevaCebra" type="submit" value="Enviar" class="btn btn-success btn-block" onClick="envioFormularioContacto(this.id);">
                             </div>
@@ -588,7 +600,7 @@
                             <div class="card-body" style="padding: 6px;">
                                 <div class="row">
                                     <div class="col-lg-12">
-                                        <img id="cuevaCebraAmatista" onclick="alert(this.id)" src="imagenes/Fotos sitio/Cueva de la Cebra/Salas/Amatista/la cueva de la cebra - sala AMATISTA.png" width="328px" alt=""/>
+                                        <img id="cuevaCebraAmatista" src="imagenes/Fotos sitio/Cueva de la Cebra/Salas/Amatista/la cueva de la cebra - sala AMATISTA.png" width="328px" alt=""/>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -621,8 +633,8 @@
                                     <div class="col-lg-12 text-center" style="border-top: solid white;"> 
                                         <br>
                                         <p style="text-align: center;font-size: 16px;font-weight: bold;">$ 40.000 / 2 hr </p>
-                                        <p style="text-align: center;font-size: 13px;font-weight: bold; color: #F1CC01;">$ 24.000 / hr</p>
-                                        <p style="text-align: center;font-size: 13px;font-weight: bold; color: #F1CC01;">$ 60.000 / 3 hr</p>
+                                        <!--<p style="text-align: center;font-size: 13px;font-weight: bold; color: #F1CC01;">$ 24.000 / hr</p>-->
+                                        <!--<p style="text-align: center;font-size: 13px;font-weight: bold; color: #F1CC01;">$ 60.000 / 3 hr</p>-->
                                         <button id="cuevaCebra-amatista" onClick="calendarioReservas(this.id)" type="submit" class="btn btn-primary">Reservar</button>
                                     </div>
                                 </div>
@@ -635,7 +647,7 @@
                             <div class="card-body" style="padding: 6px;">
                                 <div class="row">
                                     <div class="col-lg-12">
-                                        <img onclick="alert()" src="imagenes/Fotos sitio/Cueva de la Cebra/Salas/Bohio/la cueva de la cebra - sala BOHIO.png" width="328px" alt=""/>
+                                        <img src="imagenes/Fotos sitio/Cueva de la Cebra/Salas/Bohio/la cueva de la cebra - sala BOHIO.png" width="328px" alt=""/>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -668,8 +680,8 @@
                                     <div class="col-lg-12 text-center" style="border-top: solid white;">
                                         <br>
                                         <p style="text-align: center;font-size: 16px;font-weight: bold;">$ 60.000 / 2 hr </p>
-                                        <p style="text-align: center;font-size: 13px;font-weight: bold; color: #F1CC01;">$ 36.000 / hr</p>
-                                        <p style="text-align: center;font-size: 13px;font-weight: bold; color: #F1CC01;">$ 85.000 / 3 hr</p>
+                                        <!--<p style="text-align: center;font-size: 13px;font-weight: bold; color: #F1CC01;">$ 36.000 / hr</p>-->
+                                        <!--<p style="text-align: center;font-size: 13px;font-weight: bold; color: #F1CC01;">$ 85.000 / 3 hr</p>-->
                                         <button id="cuevaCebra-bohio" onClick="calendarioReservas(this.id)" type="submit" class="btn btn-primary">Reservar</button>
                                     </div>
                                 </div>
@@ -683,7 +695,7 @@
                             <div class="card-body" style="padding: 6px;">
                                 <div class="row">
                                     <div class="col-lg-12">
-                                        <img onclick="alert()" src="imagenes/Fotos sitio/Cueva de la Cebra/Salas/Miles/la cueva de la cebra - sala MILES.png" width="328px" alt=""/>
+                                        <img src="imagenes/Fotos sitio/Cueva de la Cebra/Salas/Miles/la cueva de la cebra - sala MILES.png" width="328px" alt=""/>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -716,8 +728,7 @@
                                     <div class="col-lg-12 text-center" style="border-top: solid white;">
                                         <br>
                                         <p style="text-align: center;font-size: 16px;font-weight: bold;">$ 50.000 / 2 hr </p>
-                                        <p style="text-align: center;font-size: 13px;font-weight: bold; color: #F1CC01;">$ 30.000 / hr</p>
-                                        <p style="text-align: center;font-size: 13px;font-weight: bold; color: #F1CC01;">$ 73.000 / 3 hr</p>
+                                        <!--<p style="text-align: center;font-size: 13px;font-weight: bold; color: #F1CC01;">$ 73.000 / 3 hr</p>-->
                                         <button id="cuevaCebra-miles" onClick="calendarioReservas(this.id)" type="submit" class="btn btn-primary">Reservar</button>
                                     </div>
                                 </div>
@@ -726,58 +737,34 @@
                             </div>
                         </div>
 
-                        
-                        
-                        
-                        
-                        <!-- CALENDARIO -->
-                        <div id="pagCalendarioPrueba" class="container-fluid">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <form class="form-inline">
-                                            <div class="form-group mb-2">
-                                                <h6 style="margin-right: 10px;"><b>Fecha inicial</b></h6>
-                                                <input class="form-control" placeholder="Elegir fecha..." type="text" id="txtfechaInicialCalendario" required="true">
-                                                <script>
-                                                    $(function () {
-                                                        $("#txtfechaInicialCalendario").datepicker();
-                                                    });
-                                                </script>
-                                            </div>
-                                            <div class="form-group mx-sm-3 mb-2">
-                                                <h6 style="margin-right: 10px;"><b>Fecha final</b></h6>
-                                                <input class="form-control" placeholder="Elegir fecha..." type="text" id="txtfechaFinalCalendario" required="true">
-                                                <script>
-                                                    $(function () {
-                                                        $("#txtfechaFinalCalendario").datepicker();
-                                                    });
-                                                </script>
-                                            </div>
-                                            <button type="submit" class="btn btn-primary mb-2" id="btnBuscarRangoCalendario">Buscar</button>
-                                            <div class="form-group mb-2">
-                                                <a id="cuevaCebra-amatista" onClick="verMenosFechasCalendario(this.id)" class="btn btn-warning" style="margin-left: 17px;"><b><i class="fa fa-angle-left busquedaSigCalendario"></i></b></a> 
-                                                <a id="cuevaCebra-amatista" onClick="verMasFechasCalendario(this.id)" class="btn btn-warning"style="margin-left: 5px;"><b><i class="fa fa-angle-right busquedaSigCalendario"></i></b></a> 
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-12">
-                                        <table id="calendario" style="width:80%;" class="table table-striped table-sm table-bordered">
-
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        
-                        
                     </div>
                 </div>
 
+            </div>
 
+            <!-- HISTORICO RESERVAS -->
+            <div id="pagHistoricoReservas" class="container-fluid" style="height: -webkit-fill-available;">
+                <!-- Breadcrumbs-->
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a href="#" onClick="accesoInicio();">Inicio</a>
+                    </li>
+                    <li class="breadcrumb-item active">Historico Reservas <b>Riff</b></li>
+                </ol>
+                <!-- Cuerpo de la pagina -->
+                <!-- PAGINA INICIO RIFF -->
+                <div id="historicoReservas" >
+                    <table class="table table-hover" id="tablaHistorico" style="width: 99%; font-size: 15px;">
+                        <thead style="font-weight: bold">
+                        <td>Fecha reserva</td>
+                        <td>Hora inicio</td>
+                        <td>Hora fin</td>
+                        <td>Precio</td>
+                        <td>Nombre de la sala</td>
+                        </thead>
+                    </table>
+
+                </div>
             </div>
 
             <!-- CONTACTENOS -->
@@ -803,7 +790,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="container text-center" style="margin: 2% 0% 3% 0%;">
-                                        <p>¡Hola! Para ponerte encontacto con nosotros llena este formulario o envianos un correo a <b>riffApp@gmail.com</b></p>
+                                        <p>¡Hola! Para ponerte encontacto con nosotros llena este formulario o envianos un correo a <b>reservasRiff@gmail.com</b></p>
                                         <p>Te responderemos en la mayor brevedad posible</p>
                                         <p>Gracias.</p>
                                     </div>
@@ -819,7 +806,7 @@
                                     <div class="col-lg-6">
                                         <div id="cajaDesarrolladores" class="container">
                                             <img id="imgAlberto" src="imagenes/Fotos equipo Desarollo/team2.jpg"/>
-                                            <h6 style="margin-top: 10px;">Santiago Uritnive</h6>
+                                            <h6 style="margin-top: 10px;">Santiago Barrera</h6>
                                             <h8>Estudiante Ingenieria de Sistemas</h8>
                                         </div>
                                     </div>
@@ -831,7 +818,7 @@
                                 <h1 style="text-align: center; margin-bottom: 7%;">Contáctenos</h1>
                                 <input type="text" id="nombreContactenos" class="form-control" placeholder="Nombre" required="required" autofocus="autofocus">
                                 <input type="text" id="emailContactenos" class="form-control" placeholder="Email" required="required" autofocus="autofocus">
-                                <input type="text" id="telefonoContactenos" class="form-control" placeholder="Numero de telefono" required="required" autofocus="autofocus">
+                                <input type="text" id="telefonoContactenos" class="form-control" placeholder="Numero de celular ej:573100000000" required="required" autofocus="autofocus">
                                 <textarea name="" id="cajaMensajeContactenos" class="form-control" data-required_mark="required" data-field_type="text" data-original_id="mensaje" placeholder="Escribenos un mensaje..."></textarea>
                                 <input id="btnEnviarDatosContactenos" type="submit" value="Enviar" class="btn btn-success btn-block" >
                             </div>
@@ -976,6 +963,68 @@
                         <div id="bodyModalInofrmativo" class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                         <div class="modal-footer">
                             <div id="footerModalInformativo"></div>
+                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cerrar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MODAL CALENDARIO -->
+            <div class="modal fade bd-example-modal-xl" id="modalCalendario" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-xl" role="document" id="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header text-center">
+                            <div id="headerModalCalendario" style="margin-left: 44%;font-size: 28px;text-transform: uppercase;font-family: 'Roboto', 'sans-serif';"></div>
+                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div id="bodyModalCalendario" class="modal-body">
+                            <!-- CALENDARIO -->
+                            <div class="container-fluid">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-lg-4"></div>
+                                        <div class="col-lg-4"></div>
+                                        <div class="col-lg-4">
+                                            <form class="form-inline" style="justify-content: flex-end;">
+                                                <div class="form-group mb-2" hidden="true">
+                                                    <h6 style="margin-right: 10px;"><b>Fecha inicial</b></h6>
+                                                    <input class="form-control" placeholder="Elegir fecha..." type="text" id="txtfechaInicialCalendario" required="true">
+                                                    <script>
+                                                        $(function () {
+                                                            $("#txtfechaInicialCalendario").datepicker();
+                                                        });
+                                                    </script>
+                                                </div>
+                                                <div class="form-group mx-sm-3 mb-2" hidden="true">
+                                                    <h6 style="margin-right: 10px;"><b>Fecha final</b></h6>
+                                                    <input class="form-control" placeholder="Elegir fecha..." type="text" id="txtfechaFinalCalendario" required="true">
+                                                    <script>
+                                                        $(function () {
+                                                            $("#txtfechaFinalCalendario").datepicker();
+                                                        });
+                                                    </script>
+                                                </div>
+                                                <button type="submit" class="btn btn-primary mb-2" id="btnBuscarRangoCalendario" hidden="true">Buscar</button>
+                                                <div class="form-group mb-2" id="consultaFechas">
+
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <table id="calendario" style="width:100%;" class="table table-striped table-sm table-bordered">
+
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <div id="footerModalCalendario"></div>
                             <button class="btn btn-secondary" type="button" data-dismiss="modal">Cerrar</button>
                         </div>
                     </div>
