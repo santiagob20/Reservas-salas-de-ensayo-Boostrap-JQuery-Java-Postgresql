@@ -86,6 +86,13 @@ public class RestServices {
     }
 
     @POST
+    @Path("verMasHorarios")
+    @Produces({MediaType.APPLICATION_JSON})
+    public Respuesta verMasHorarios(Reserva r) {
+        return new OperacionesReservas().showMoreAvailable(r);
+    }
+
+    @POST
     @Path("contactanosRiff")
     @Consumes({MediaType.APPLICATION_JSON})
     @Produces({MediaType.APPLICATION_JSON})
@@ -108,12 +115,12 @@ public class RestServices {
     public Respuesta consultarHistoricoReservas(Usuario u) {
         return new OperacionesReservas().read(u);
     }
-    
+
     @POST
     @Path("insertarLog")
     @Consumes({MediaType.APPLICATION_JSON})
     @Produces({MediaType.APPLICATION_JSON})
-    public Respuesta insertarLog(Usuario u){
+    public Respuesta insertarLog(Usuario u) {
         return new OperacionesLog().create(u);
     }
 

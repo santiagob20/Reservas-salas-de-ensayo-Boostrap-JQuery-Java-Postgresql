@@ -95,13 +95,8 @@ public class OperacionesUsuario implements InterfaceUsuario {
                 usuario.setUsuario(rs.getString("usuario"));
                 usuario.setTelefono(rs.getString("telefono"));
                 listaUsuarios.add(usuario);
-                
             }
             rta.setCodigo(1);
-<<<<<<< HEAD
-=======
-//            rta.setCodigo(Integer.parseInt(usuario.getCodigo()));
->>>>>>> b0fc6780afe557b0e2f667e1590d5d339c1bd74c
             rta.setDescripcion(usuario.getDescripcion());
             rta.setListaUsuarios(listaUsuarios);
         } catch (SQLException ex) {

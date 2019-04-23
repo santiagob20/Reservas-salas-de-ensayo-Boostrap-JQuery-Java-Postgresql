@@ -13,158 +13,261 @@ import java.sql.Date;
  */
 public class Calendario {
     private Date fecha;
-    private String _8;
-    private String _9;
-    private String _10;
-    private String _11;
-    private String _12;
-    private String _13;
-    private String _14;
-    private String _15;
-    private String _16;
-    private String _17;
-    private String _18;
-    private String _19;
-    private String _20;
-    private String _21;
-    private String _22;
-    private String _23;
+    private String h8;
+    private String h9;
+    private String h10;
+    private String h11;
+    private String h12;
+    private String h13;
+    private String h14;
+    private String h15;
+    private String h16;
+    private String h17;
+    private String h18;
+    private String h19;
+    private String h20;
+    private String h21;
+    private String h22;
+    private String h23;
 
+    /**
+     * @return the fecha
+     */
     public Date getFecha() {
         return fecha;
     }
 
+    /**
+     * @param fecha the fecha to set
+     */
     public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
 
-    public String get8() {
-        return _8;
+    /**
+     * @return the h8
+     */
+    public String getH8() {
+        return h8;
     }
 
-    public void set8(String _8) {
-        this._8 = _8;
+    /**
+     * @param h8 the h8 to set
+     */
+    public void setH8(String h8) {
+        this.h8 = h8;
     }
 
-    public String get9() {
-        return _9;
+    /**
+     * @return the h9
+     */
+    public String getH9() {
+        return h9;
     }
 
-    public void set9(String _9) {
-        this._9 = _9;
+    /**
+     * @param h9 the h9 to set
+     */
+    public void setH9(String h9) {
+        this.h9 = h9;
     }
 
-    public String get10() {
-        return _10;
+    /**
+     * @return the h10
+     */
+    public String getH10() {
+        return h10;
     }
 
-    public void set10(String _10) {
-        this._10 = _10;
+    /**
+     * @param h10 the h10 to set
+     */
+    public void setH10(String h10) {
+        this.h10 = h10;
     }
 
-    public String get11() {
-        return _11;
+    /**
+     * @return the h11
+     */
+    public String getH11() {
+        return h11;
     }
 
-    public void set11(String _11) {
-        this._11 = _11;
+    /**
+     * @param h11 the h11 to set
+     */
+    public void setH11(String h11) {
+        this.h11 = h11;
     }
 
-    public String get12() {
-        return _12;
+    /**
+     * @return the h12
+     */
+    public String getH12() {
+        return h12;
     }
 
-    public void set12(String _12) {
-        this._12 = _12;
+    /**
+     * @param h12 the h12 to set
+     */
+    public void setH12(String h12) {
+        this.h12 = h12;
     }
 
-    public String get13() {
-        return _13;
+    /**
+     * @return the h13
+     */
+    public String getH13() {
+        return h13;
     }
 
-    public void set13(String _13) {
-        this._13 = _13;
+    /**
+     * @param h13 the h13 to set
+     */
+    public void setH13(String h13) {
+        this.h13 = h13;
     }
 
-    public String get14() {
-        return _14;
+    /**
+     * @return the h14
+     */
+    public String getH14() {
+        return h14;
     }
 
-    public void set14(String _14) {
-        this._14 = _14;
+    /**
+     * @param h14 the h14 to set
+     */
+    public void setH14(String h14) {
+        this.h14 = h14;
     }
 
-    public String get15() {
-        return _15;
+    /**
+     * @return the h15
+     */
+    public String getH15() {
+        return h15;
     }
 
-    public void set15(String _15) {
-        this._15 = _15;
+    /**
+     * @param h15 the h15 to set
+     */
+    public void setH15(String h15) {
+        this.h15 = h15;
     }
 
-    public String get16() {
-        return _16;
+    /**
+     * @return the h16
+     */
+    public String getH16() {
+        return h16;
     }
 
-    public void set16(String _16) {
-        this._16 = _16;
+    /**
+     * @param h16 the h16 to set
+     */
+    public void setH16(String h16) {
+        this.h16 = h16;
     }
 
-    public String get17() {
-        return _17;
+    /**
+     * @return the h17
+     */
+    public String getH17() {
+        return h17;
     }
 
-    public void set17(String _17) {
-        this._17 = _17;
+    /**
+     * @param h17 the h17 to set
+     */
+    public void setH17(String h17) {
+        this.h17 = h17;
     }
 
-    public String get18() {
-        return _18;
+    /**
+     * @return the h18
+     */
+    public String getH18() {
+        return h18;
     }
 
-    public void set18(String _18) {
-        this._18 = _18;
+    /**
+     * @param h18 the h18 to set
+     */
+    public void setH18(String h18) {
+        this.h18 = h18;
     }
 
-    public String get19() {
-        return _19;
+    /**
+     * @return the h19
+     */
+    public String getH19() {
+        return h19;
     }
 
-    public void set19(String _19) {
-        this._19 = _19;
+    /**
+     * @param h19 the h19 to set
+     */
+    public void setH19(String h19) {
+        this.h19 = h19;
     }
 
-    public String get20() {
-        return _20;
+    /**
+     * @return the h20
+     */
+    public String getH20() {
+        return h20;
     }
 
-    public void set20(String _20) {
-        this._20 = _20;
+    /**
+     * @param h20 the h20 to set
+     */
+    public void setH20(String h20) {
+        this.h20 = h20;
     }
 
-    public String get21() {
-        return _21;
+    /**
+     * @return the h21
+     */
+    public String getH21() {
+        return h21;
     }
 
-    public void set21(String _21) {
-        this._21 = _21;
+    /**
+     * @param h21 the h21 to set
+     */
+    public void setH21(String h21) {
+        this.h21 = h21;
     }
 
-    public String get22() {
-        return _22;
+    /**
+     * @return the h22
+     */
+    public String getH22() {
+        return h22;
     }
 
-    public void set22(String _22) {
-        this._22 = _22;
+    /**
+     * @param h22 the h22 to set
+     */
+    public void setH22(String h22) {
+        this.h22 = h22;
     }
 
-    public String get23() {
-        return _23;
+    /**
+     * @return the h23
+     */
+    public String getH23() {
+        return h23;
     }
 
-    public void set23(String _23) {
-        this._23 = _23;
+    /**
+     * @param h23 the h23 to set
+     */
+    public void setH23(String h23) {
+        this.h23 = h23;
     }
+
     
     
 }

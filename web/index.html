@@ -220,47 +220,7 @@
         </nav>
 
         <div class="content-wrapper" id="cuerpoPaginaRiff">
-            <!-- CALENDARIO -->
-            <div id="pagCalendarioPrueba" class="container-fluid">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <form class="form-inline">
-                                <div class="form-group mb-2">
-                                    <h6 style="margin-right: 10px;"><b>Fecha inicial</b></h6>
-                                    <input class="form-control" placeholder="Elegir fecha..." type="text" id="txtfechaInicialCalendario" required="true">
-                                    <script>
-                                        $(function () {
-                                            $("#txtfechaInicialCalendario").datepicker();
-                                        });
-                                    </script>
-                                </div>
-                                <div class="form-group mx-sm-3 mb-2">
-                                    <h6 style="margin-right: 10px;"><b>Fecha final</b></h6>
-                                    <input class="form-control" placeholder="Elegir fecha..." type="text" id="txtfechaFinalCalendario" required="true">
-                                    <script>
-                                        $(function () {
-                                            $("#txtfechaFinalCalendario").datepicker();
-                                        });
-                                    </script>
-                                </div>
-                                <button type="submit" class="btn btn-primary mb-2" id="btnBuscarRangoCalendario">Buscar</button>
-                                <div class="form-group mb-2">
-                                    <a id="anteriorFechaCalendario" class="btn btn-warning" style="margin-left: 17px;"><b><i class="fa fa-angle-left busquedaSigCalendario"></i></b></a> 
-                                    <a id="siguienteFechaCalendario" class="btn btn-warning"style="margin-left: 5px;"><b><i class="fa fa-angle-right busquedaSigCalendario"></i></b></a> 
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <table id="calendario" style="width:80%;" class="table table-striped table-sm table-bordered">
 
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
             <!-- PAGINA DE INICIO -->
             <div id="pagInicio" class="container-fluid">
@@ -321,7 +281,7 @@
                     <div class="row">
                         <!-- LOGO -->
                         <div class="col-lg-6">
-                            <img src="imagenes/Fotos sitio/Cueva de la Cebra/logo_nombre.PNG" width="100%" alt=""/>
+                            <img src="imagenes/Fotos sitio/Cueva de la Cebra/logo_nombre.png" width="100%" alt=""/>
                         </div>
                         <!-- COROUSEL -->
                         <div class="col-lg-6">
@@ -645,11 +605,11 @@
                                                     <img class="d-block w-100"src="imagenes/Fotos sitio/Cueva de la Cebra/Salas/Amatista/foto sala 3.png"  alt=""/>
                                                 </div>
                                             </div>
-                                            <a class="carousel-control-prev" href="#carouselSalaCuevaBohio" role="button" data-slide="prev">
+                                            <a class="carousel-control-prev" href="#carouselSalaCuevaAmatista" role="button" data-slide="prev">
                                                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                                 <span class="sr-only">Previous</span>
                                             </a>
-                                            <a class="carousel-control-next" href="#carouselSalaCuevaBohio" role="button" data-slide="next">
+                                            <a class="carousel-control-next" href="#carouselSalaCuevaAmatista" role="button" data-slide="next">
                                                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                                 <span class="sr-only">Next</span>
                                             </a>
@@ -740,11 +700,11 @@
                                                     <img class="d-block w-100"src="imagenes/Fotos sitio/Cueva de la Cebra/Salas/Miles/foto sala 3.png"  alt=""/>
                                                 </div>
                                             </div>
-                                            <a class="carousel-control-prev" href="#carouselSalaCuevaBohio" role="button" data-slide="prev">
+                                            <a class="carousel-control-prev" href="#carouselSalaCuevaMiles" role="button" data-slide="prev">
                                                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                                 <span class="sr-only">Previous</span>
                                             </a>
-                                            <a class="carousel-control-next" href="#carouselSalaCuevaBohio" role="button" data-slide="next">
+                                            <a class="carousel-control-next" href="#carouselSalaCuevaMiles" role="button" data-slide="next">
                                                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                                 <span class="sr-only">Next</span>
                                             </a>
@@ -766,6 +726,54 @@
                             </div>
                         </div>
 
+                        
+                        
+                        
+                        
+                        <!-- CALENDARIO -->
+                        <div id="pagCalendarioPrueba" class="container-fluid">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <form class="form-inline">
+                                            <div class="form-group mb-2">
+                                                <h6 style="margin-right: 10px;"><b>Fecha inicial</b></h6>
+                                                <input class="form-control" placeholder="Elegir fecha..." type="text" id="txtfechaInicialCalendario" required="true">
+                                                <script>
+                                                    $(function () {
+                                                        $("#txtfechaInicialCalendario").datepicker();
+                                                    });
+                                                </script>
+                                            </div>
+                                            <div class="form-group mx-sm-3 mb-2">
+                                                <h6 style="margin-right: 10px;"><b>Fecha final</b></h6>
+                                                <input class="form-control" placeholder="Elegir fecha..." type="text" id="txtfechaFinalCalendario" required="true">
+                                                <script>
+                                                    $(function () {
+                                                        $("#txtfechaFinalCalendario").datepicker();
+                                                    });
+                                                </script>
+                                            </div>
+                                            <button type="submit" class="btn btn-primary mb-2" id="btnBuscarRangoCalendario">Buscar</button>
+                                            <div class="form-group mb-2">
+                                                <a id="cuevaCebra-amatista" onClick="verMenosFechasCalendario(this.id)" class="btn btn-warning" style="margin-left: 17px;"><b><i class="fa fa-angle-left busquedaSigCalendario"></i></b></a> 
+                                                <a id="cuevaCebra-amatista" onClick="verMasFechasCalendario(this.id)" class="btn btn-warning"style="margin-left: 5px;"><b><i class="fa fa-angle-right busquedaSigCalendario"></i></b></a> 
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <table id="calendario" style="width:80%;" class="table table-striped table-sm table-bordered">
+
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        
+                        
                     </div>
                 </div>
 

@@ -143,7 +143,7 @@ public class OperacionesReservas implements InterfaceReservas {
                 + ", h_21::text\n"
                 + ", h_22::text\n"
                 + ", h_23::text\n"
-                + "FROM app.vst_calendario;";
+                + "FROM app.vst_calendario order by fecha::date;";
 
         try {
             PreparedStatement ps = cn.conectar().prepareStatement(sql);
@@ -152,22 +152,83 @@ public class OperacionesReservas implements InterfaceReservas {
             while (rs.next()) {
                 Calendario horario = new Calendario();
                 horario.setFecha(rs.getDate("fecha"));
-                horario.set8(rs.getString("h_08"));
-                horario.set9(rs.getString("h_09"));
-                horario.set10(rs.getString("h_10"));
-                horario.set11(rs.getString("h_11"));
-                horario.set12(rs.getString("h_12"));
-                horario.set13(rs.getString("h_13"));
-                horario.set14(rs.getString("h_14"));
-                horario.set15(rs.getString("h_15"));
-                horario.set16(rs.getString("h_16"));
-                horario.set17(rs.getString("h_17"));
-                horario.set18(rs.getString("h_18"));
-                horario.set19(rs.getString("h_19"));
-                horario.set20(rs.getString("h_20"));
-                horario.set21(rs.getString("h_21"));
-                horario.set22(rs.getString("h_22"));
-                horario.set23(rs.getString("h_23"));
+                horario.setH8(rs.getString("h_08"));
+                horario.setH9(rs.getString("h_09"));
+                horario.setH10(rs.getString("h_10"));
+                horario.setH11(rs.getString("h_11"));
+                horario.setH12(rs.getString("h_12"));
+                horario.setH13(rs.getString("h_13"));
+                horario.setH14(rs.getString("h_14"));
+                horario.setH15(rs.getString("h_15"));
+                horario.setH16(rs.getString("h_16"));
+                horario.setH17(rs.getString("h_17"));
+                horario.setH18(rs.getString("h_18"));
+                horario.setH19(rs.getString("h_19"));
+                horario.setH20(rs.getString("h_20"));
+                horario.setH21(rs.getString("h_21"));
+                horario.setH22(rs.getString("h_22"));
+                horario.setH23(rs.getString("h_23"));
+                listaHorarios.add(horario);
+            }
+            rta.setCodigo(1);
+            rta.setDescripcion("Consulta de horarios exitosa");
+            rta.setListaHorarios(listaHorarios);
+        } catch (SQLException ex) {
+            rta.setCodigo(0);
+            rta.setDescripcionError("Error al consultar horarios, " + ex);
+        } finally {
+            cn.desconectar();
+        }
+
+        return rta;
+    }
+    
+    @Override
+    public Respuesta showMoreAvailable(Reserva r) {
+        Respuesta rta = new Respuesta();
+        ArrayList<Calendario> listaHorarios = new ArrayList<>();
+        Conexion cn = new Conexion();
+        String sql = "SELECT fecha\n"
+                + ",h_08::text\n"
+                + ", h_09::text\n"
+                + ", h_10::text\n"
+                + ", h_11::text\n"
+                + ", h_12::text\n"
+                + ", h_13::text\n"
+                + ", h_14::text\n"
+                + ", h_15::text\n"
+                + ", h_16::text\n"
+                + ", h_17::text\n"
+                + ", h_18::text\n"
+                + ", h_19::text\n"
+                + ", h_20::text\n"
+                + ", h_21::text\n"
+                + ", h_22::text\n"
+                + ", h_23::text\n"
+                + "FROM app.vst_calendario where fecha between '"+r.getFechaReserva()+"' and '"+r.getFechaReserva()+"'::Date + interval '7 days' order by fecha::date;";
+        try {
+            PreparedStatement ps = cn.conectar().prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Calendario horario = new Calendario();
+                horario.setFecha(rs.getDate("fecha"));
+                horario.setH8(rs.getString("h_08"));
+                horario.setH9(rs.getString("h_09"));
+                horario.setH10(rs.getString("h_10"));
+                horario.setH11(rs.getString("h_11"));
+                horario.setH12(rs.getString("h_12"));
+                horario.setH13(rs.getString("h_13"));
+                horario.setH14(rs.getString("h_14"));
+                horario.setH15(rs.getString("h_15"));
+                horario.setH16(rs.getString("h_16"));
+                horario.setH17(rs.getString("h_17"));
+                horario.setH18(rs.getString("h_18"));
+                horario.setH19(rs.getString("h_19"));
+                horario.setH20(rs.getString("h_20"));
+                horario.setH21(rs.getString("h_21"));
+                horario.setH22(rs.getString("h_22"));
+                horario.setH23(rs.getString("h_23"));
                 listaHorarios.add(horario);
             }
             rta.setCodigo(1);

@@ -24,12 +24,7 @@ function inicio() {
 
     //PRUEBA CALENDARIO ---------------------------------------------------------------------------------------------
     $("#btnBuscarRangoCalendario").click(busquedaRangoFechasCalendario);
-    $("#anteriorFechaCalendario").click(function () {
-        alert("anteriorFechaCalendario");
-    });
-    $("#siguienteFechaCalendario").click(function () {
-        alert("siguienteFechaCalendario");
-    });
+
 
     //CONTACTENOS ------------------------------------------------------------------------------------------------------
     $("#pagContactenosAcceso").click(accesoContactenos);
@@ -48,6 +43,7 @@ function inicio() {
 var server = 'http://localhost:9591/';
 var server2 = '';
 var dataUsuario = '';
+var fechaCalendario = new Date().getDate() + "-" + (new Date().getMonth() + 1) + "-" + new Date().getFullYear();
 
 function clickInicioSesion() {
     $("#btnIniciarSesion").hide();
@@ -87,6 +83,7 @@ function clickCerrarSesion() {
     localStorage.removeItem('idSession');
     localStorage.removeItem('usuarioLogueado');
     localStorage.removeItem('dataUsuario');
+    localStorage.removeItem('PosicionUser');
     window.location = server + "Riff/index.html";
 }
 function clickRegistroUsuario() {
@@ -208,7 +205,6 @@ function skip() {
     $("#pagSitios").hide();
     $("#cuevaDeLaCebra").hide();
 
-    $("#pagCalendarioPrueba").hide();
     $("#cardsSalas").hide();
 
     $("#pagMapa").show();
@@ -328,52 +324,443 @@ function spinerLoading(id) {
 
 // CALENDARIO ---------------------------------------------------------------------------------------------
 function calendarioReservas(id) {
-    let establecimiento = id.split("-")[0];
+    document.getElementById("calendario").innerHTML = null;
+    var establecimiento = id.split("-")[0];
     let sala = id.split("-")[1];
-    let fechaInicial = '';
-    let fechaFinal = '';
+    $.ajax({
+        url: server + "Riff/app/restServices/verHorarios",
+        type: 'GET',
+        async: false,
+        cache: false,
+        contentType: 'application/json',
+        success: function (rta) {
+            if (rta.codigo === 1) {
+                let listaDataCalendario = rta.listaHorarios;
+                let arrCalendario = [];
+                let fecha;
+                let objCal;
+                for (var i = 0; i < 7; i++) {
+                    let arrDisponibilidad = [];
+                    switch (establecimiento) {
+                        case "cuevaCebra":
+                            switch (sala) {
+                                case "amatista":
+                                    arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h8).cuevaCebra["1"]);
+                                    arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h9).cuevaCebra["1"]);
+                                    arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h10).cuevaCebra["1"]);
+                                    arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h11).cuevaCebra["1"]);
+                                    arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h12).cuevaCebra["1"]);
+                                    arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h13).cuevaCebra["1"]);
+                                    arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h14).cuevaCebra["1"]);
+                                    arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h15).cuevaCebra["1"]);
+                                    arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h16).cuevaCebra["1"]);
+                                    arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h17).cuevaCebra["1"]);
+                                    arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h18).cuevaCebra["1"]);
+                                    arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h19).cuevaCebra["1"]);
+                                    arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h20).cuevaCebra["1"]);
+                                    arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h21).cuevaCebra["1"]);
+                                    arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h22).cuevaCebra["1"]);
+                                    arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h23).cuevaCebra["1"]);
+                                    fecha = listaDataCalendario[i].fecha;
+                                    objCal = {
+                                        fecha: fecha,
+                                        arrHorarios: arrDisponibilidad
+                                    };
+                                    arrCalendario.push(objCal);
+                                    break;
+                                case "bohio":
+                                    arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h8).cuevaCebra["2"]);
+                                    arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h9).cuevaCebra["2"]);
+                                    arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h10).cuevaCebra["2"]);
+                                    arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h11).cuevaCebra["2"]);
+                                    arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h12).cuevaCebra["2"]);
+                                    arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h13).cuevaCebra["2"]);
+                                    arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h14).cuevaCebra["2"]);
+                                    arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h15).cuevaCebra["2"]);
+                                    arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h16).cuevaCebra["2"]);
+                                    arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h17).cuevaCebra["2"]);
+                                    arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h18).cuevaCebra["2"]);
+                                    arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h19).cuevaCebra["2"]);
+                                    arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h20).cuevaCebra["2"]);
+                                    arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h21).cuevaCebra["2"]);
+                                    arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h22).cuevaCebra["2"]);
+                                    arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h23).cuevaCebra["2"]);
+                                    fecha = listaDataCalendario[i].fecha;
+                                    objCal = {
+                                        fecha: fecha,
+                                        arrHorarios: arrDisponibilidad
+                                    };
+                                    arrCalendario.push(objCal);
+                                    break;
+                                case "miles":
+                                    arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h8).cuevaCebra["3"]);
+                                    arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h9).cuevaCebra["3"]);
+                                    arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h10).cuevaCebra["3"]);
+                                    arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h11).cuevaCebra["3"]);
+                                    arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h12).cuevaCebra["3"]);
+                                    arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h13).cuevaCebra["3"]);
+                                    arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h14).cuevaCebra["3"]);
+                                    arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h15).cuevaCebra["3"]);
+                                    arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h16).cuevaCebra["3"]);
+                                    arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h17).cuevaCebra["3"]);
+                                    arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h18).cuevaCebra["3"]);
+                                    arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h19).cuevaCebra["3"]);
+                                    arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h20).cuevaCebra["3"]);
+                                    arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h21).cuevaCebra["3"]);
+                                    arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h22).cuevaCebra["3"]);
+                                    arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h23).cuevaCebra["3"]);
+                                    fecha = listaDataCalendario[i].fecha;
+                                    objCal = {
+                                        fecha: fecha,
+                                        arrHorarios: arrDisponibilidad
+                                    };
+                                    arrCalendario.push(objCal);
+                                    break;
+                            }
+                            break;
+                    }
+                }
+                printCalendario(arrCalendario);
+            } else {
 
+            }
+            function printCalendario(calendario) {
+                console.log(calendario);
+                let columnas = '<tr><th class="grilla grillaEncabezado">Hora</th>';
+                //COLUMNAS
+                for (let index = 0; index < 7; index++) {
+                    columnas += '<th class="grilla grillaEncabezado">' + calendario[index].fecha + '</th>';
+                }
+                $("#calendario").append(columnas);
+                //FILAS
+                for (var i = 0; i <= 15; i++) {
+                    let columnasData = '<tr><th class="grilla ui-widget-content">' + (i + 8) + '</th>';
+                    //COLUMNAS
+                    for (var j = 0; j < 7; j++) {
+                        if (calendario[j].arrHorarios[i].estado === 'ocupado') {
+                            columnasData += '<th id="Ya reservado, favor selecione otro horario." onclick="alert(this.id)" style="background-color: #DE0000CC;color: white;" class="grilla ui-widget-content">' +
+                                    calendario[j].arrHorarios[i].estado + '</th>';
+                        } else {
+                            columnasData += '<th id="' + (i + 8) + "/" + calendario[j].fecha +
+                                    '" onclick="reservarFechaHora(this.id)" class="grilla ui-widget-content">' +
+                                    calendario[j].arrHorarios[i].estado + '</th>';
+                        }
+                    }
+                    $("#calendario").append(columnasData);
+                }
+            }
+        },
+        error: function (error) {
+            console.log(error);
+        }
+    });
+}
+function verMasFechasCalendario(id) {
+    fechaCalendario = editar_fecha(fechaCalendario, "+7", "d");
+    let fechaFormato = fechaCalendario.split("-")[2] + "-" + fechaCalendario.split("-")[1] + "-" + fechaCalendario.split("-")[0];
+    console.log(fechaFormato);
+    document.getElementById("calendario").innerHTML = null;
+    var establecimiento = id.split("-")[0];
+    let sala = id.split("-")[1];
+    $.ajax({
+        url: server + "Riff/app/restServices/verMasHorarios",
+        data: JSON.stringify({
+            fechaReserva: fechaFormato
+        }),
+        type: 'POST',
+        async: false,
+        cache: false,
+        contentType: 'application/json',
+        success: function (rta) {
+            if (rta.codigo === 1) {
+                let listaDataCalendario = rta.listaHorarios;
+                let arrCalendario = [];
+                let fecha;
+                let objCal;
+                for (var i = 0; i < 7; i++) {
+                    let arrDisponibilidad = [];
+                    switch (establecimiento) {
+                        case "cuevaCebra":
+                            switch (sala) {
+                                case "amatista":
+                                    arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h8).cuevaCebra["1"]);
+                                    arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h9).cuevaCebra["1"]);
+                                    arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h10).cuevaCebra["1"]);
+                                    arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h11).cuevaCebra["1"]);
+                                    arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h12).cuevaCebra["1"]);
+                                    arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h13).cuevaCebra["1"]);
+                                    arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h14).cuevaCebra["1"]);
+                                    arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h15).cuevaCebra["1"]);
+                                    arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h16).cuevaCebra["1"]);
+                                    arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h17).cuevaCebra["1"]);
+                                    arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h18).cuevaCebra["1"]);
+                                    arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h19).cuevaCebra["1"]);
+                                    arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h20).cuevaCebra["1"]);
+                                    arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h21).cuevaCebra["1"]);
+                                    arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h22).cuevaCebra["1"]);
+                                    arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h23).cuevaCebra["1"]);
+                                    fecha = listaDataCalendario[i].fecha;
+                                    objCal = {
+                                        fecha: fecha,
+                                        arrHorarios: arrDisponibilidad
+                                    };
+                                    arrCalendario.push(objCal);
+                                    break;
+                                case "bohio":
+                                    arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h8).cuevaCebra["2"]);
+                                    arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h9).cuevaCebra["2"]);
+                                    arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h10).cuevaCebra["2"]);
+                                    arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h11).cuevaCebra["2"]);
+                                    arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h12).cuevaCebra["2"]);
+                                    arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h13).cuevaCebra["2"]);
+                                    arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h14).cuevaCebra["2"]);
+                                    arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h15).cuevaCebra["2"]);
+                                    arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h16).cuevaCebra["2"]);
+                                    arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h17).cuevaCebra["2"]);
+                                    arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h18).cuevaCebra["2"]);
+                                    arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h19).cuevaCebra["2"]);
+                                    arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h20).cuevaCebra["2"]);
+                                    arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h21).cuevaCebra["2"]);
+                                    arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h22).cuevaCebra["2"]);
+                                    arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h23).cuevaCebra["2"]);
+                                    fecha = listaDataCalendario[i].fecha;
+                                    objCal = {
+                                        fecha: fecha,
+                                        arrHorarios: arrDisponibilidad
+                                    };
+                                    arrCalendario.push(objCal);
+                                    break;
+                                case "miles":
+                                    arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h8).cuevaCebra["3"]);
+                                    arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h9).cuevaCebra["3"]);
+                                    arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h10).cuevaCebra["3"]);
+                                    arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h11).cuevaCebra["3"]);
+                                    arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h12).cuevaCebra["3"]);
+                                    arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h13).cuevaCebra["3"]);
+                                    arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h14).cuevaCebra["3"]);
+                                    arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h15).cuevaCebra["3"]);
+                                    arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h16).cuevaCebra["3"]);
+                                    arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h17).cuevaCebra["3"]);
+                                    arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h18).cuevaCebra["3"]);
+                                    arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h19).cuevaCebra["3"]);
+                                    arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h20).cuevaCebra["3"]);
+                                    arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h21).cuevaCebra["3"]);
+                                    arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h22).cuevaCebra["3"]);
+                                    arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h23).cuevaCebra["3"]);
+                                    fecha = listaDataCalendario[i].fecha;
+                                    objCal = {
+                                        fecha: fecha,
+                                        arrHorarios: arrDisponibilidad
+                                    };
+                                    arrCalendario.push(objCal);
+                                    break;
+                            }
+                            break;
+                    }
+                }
+                printCalendario(arrCalendario);
+            } else {
 
+            }
+            function printCalendario(calendario) {
+                console.log(calendario);
+                let columnas = '<tr><th class="grilla grillaEncabezado">Hora</th>';
+                //COLUMNAS
+                for (let index = 0; index < 7; index++) {
+                    columnas += '<th class="grilla grillaEncabezado">' + calendario[index].fecha + '</th>';
+                }
+                $("#calendario").append(columnas);
+                //FILAS
+                for (var i = 0; i <= 15; i++) {
+                    let columnasData = '<tr><th class="grilla ui-widget-content">' + (i + 8) + '</th>';
+                    //COLUMNAS
+                    for (var j = 0; j < 7; j++) {
+                        if (calendario[j].arrHorarios[i].estado === 'ocupado') {
+                            columnasData += '<th id="Ya reservado, favor selecione otro horario." onclick="alert(this.id)" style="background-color: #DE0000CC;color: white;" class="grilla ui-widget-content">' +
+                                    calendario[j].arrHorarios[i].estado + '</th>';
+                        } else {
+                            columnasData += '<th id="' + (i + 8) + "/" + calendario[j].fecha +
+                                    '" onclick="reservarFechaHora(this.id)" class="grilla ui-widget-content">' +
+                                    calendario[j].arrHorarios[i].estado + '</th>';
+                        }
+                    }
+                    $("#calendario").append(columnasData);
+                }
+            }
+        },
+        error: function (error) {
+            console.log(error);
+        }
+    });
+}
+function verMenosFechasCalendario(id) {
+    fechaCalendario = editar_fecha(fechaCalendario, "-7", "d");
+    let fechaFormato = fechaCalendario.split("-")[2] + "-" + fechaCalendario.split("-")[1] + "-" + fechaCalendario.split("-")[0];
+    console.log(fechaFormato);
+    document.getElementById("calendario").innerHTML = null;
+    var establecimiento = id.split("-")[0];
+    let sala = id.split("-")[1];
+    $.ajax({
+        url: server + "Riff/app/restServices/verMasHorarios",
+        data: JSON.stringify({
+            fechaReserva: fechaFormato
+        }),
+        type: 'POST',
+        async: false,
+        cache: false,
+        contentType: 'application/json',
+        success: function (rta) {
+            if (rta.codigo === 1) {
+                let listaDataCalendario = rta.listaHorarios;
+                let arrCalendario = [];
+                let fecha;
+                let objCal;
+                if (listaDataCalendario.length > 0) {
+                    for (var i = 0; i < 7; i++) {
+                        let arrDisponibilidad = [];
+                        switch (establecimiento) {
+                            case "cuevaCebra":
+                                switch (sala) {
+                                    case "amatista":
+                                        arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h8).cuevaCebra["1"]);
+                                        arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h9).cuevaCebra["1"]);
+                                        arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h10).cuevaCebra["1"]);
+                                        arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h11).cuevaCebra["1"]);
+                                        arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h12).cuevaCebra["1"]);
+                                        arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h13).cuevaCebra["1"]);
+                                        arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h14).cuevaCebra["1"]);
+                                        arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h15).cuevaCebra["1"]);
+                                        arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h16).cuevaCebra["1"]);
+                                        arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h17).cuevaCebra["1"]);
+                                        arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h18).cuevaCebra["1"]);
+                                        arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h19).cuevaCebra["1"]);
+                                        arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h20).cuevaCebra["1"]);
+                                        arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h21).cuevaCebra["1"]);
+                                        arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h22).cuevaCebra["1"]);
+                                        arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h23).cuevaCebra["1"]);
+                                        fecha = listaDataCalendario[i].fecha;
+                                        objCal = {
+                                            fecha: fecha,
+                                            arrHorarios: arrDisponibilidad
+                                        };
+                                        arrCalendario.push(objCal);
+                                        break;
+                                    case "bohio":
+                                        arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h8).cuevaCebra["2"]);
+                                        arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h9).cuevaCebra["2"]);
+                                        arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h10).cuevaCebra["2"]);
+                                        arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h11).cuevaCebra["2"]);
+                                        arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h12).cuevaCebra["2"]);
+                                        arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h13).cuevaCebra["2"]);
+                                        arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h14).cuevaCebra["2"]);
+                                        arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h15).cuevaCebra["2"]);
+                                        arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h16).cuevaCebra["2"]);
+                                        arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h17).cuevaCebra["2"]);
+                                        arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h18).cuevaCebra["2"]);
+                                        arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h19).cuevaCebra["2"]);
+                                        arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h20).cuevaCebra["2"]);
+                                        arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h21).cuevaCebra["2"]);
+                                        arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h22).cuevaCebra["2"]);
+                                        arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h23).cuevaCebra["2"]);
+                                        fecha = listaDataCalendario[i].fecha;
+                                        objCal = {
+                                            fecha: fecha,
+                                            arrHorarios: arrDisponibilidad
+                                        };
+                                        arrCalendario.push(objCal);
+                                        break;
+                                    case "miles":
+                                        arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h8).cuevaCebra["3"]);
+                                        arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h9).cuevaCebra["3"]);
+                                        arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h10).cuevaCebra["3"]);
+                                        arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h11).cuevaCebra["3"]);
+                                        arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h12).cuevaCebra["3"]);
+                                        arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h13).cuevaCebra["3"]);
+                                        arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h14).cuevaCebra["3"]);
+                                        arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h15).cuevaCebra["3"]);
+                                        arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h16).cuevaCebra["3"]);
+                                        arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h17).cuevaCebra["3"]);
+                                        arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h18).cuevaCebra["3"]);
+                                        arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h19).cuevaCebra["3"]);
+                                        arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h20).cuevaCebra["3"]);
+                                        arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h21).cuevaCebra["3"]);
+                                        arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h22).cuevaCebra["3"]);
+                                        arrDisponibilidad.push(JSON.parse(listaDataCalendario[i].h23).cuevaCebra["3"]);
+                                        fecha = listaDataCalendario[i].fecha;
+                                        objCal = {
+                                            fecha: fecha,
+                                            arrHorarios: arrDisponibilidad
+                                        };
+                                        arrCalendario.push(objCal);
+                                        break;
+                                }
+                                break;
+                        }
+                    }
+                    printCalendario(arrCalendario);
+                } else {
+                    alert("No puede hacer reservas anteriores al día de hoy.");
+                }
+            } else {
+                //ERROR AL CONSULTAR LA DATA
+            }
+            function printCalendario(calendario) {
+                console.log(calendario);
+                let columnas = '<tr><th class="grilla grillaEncabezado">Hora</th>';
+                //COLUMNAS
+                for (let index = 0; index < 7; index++) {
+                    columnas += '<th class="grilla grillaEncabezado">' + calendario[index].fecha + '</th>';
+                }
+                $("#calendario").append(columnas);
+                //FILAS
+                for (var i = 0; i <= 15; i++) {
+                    let columnasData = '<tr><th class="grilla ui-widget-content">' + (i + 8) + '</th>';
+                    //COLUMNAS
+                    for (var j = 0; j < 7; j++) {
+                        if (calendario[j].arrHorarios[i].estado === 'ocupado') {
+                            columnasData += '<th id="Ya reservado, favor selecione otro horario." onclick="alert(this.id)" style="background-color: #DE0000CC;color: white;" class="grilla ui-widget-content">' +
+                                    calendario[j].arrHorarios[i].estado + '</th>';
+                        } else {
+                            columnasData += '<th id="' + (i + 8) + "/" + calendario[j].fecha +
+                                    '" onclick="reservarFechaHora(this.id)" class="grilla ui-widget-content">' +
+                                    calendario[j].arrHorarios[i].estado + '</th>';
+                        }
+                    }
+                    $("#calendario").append(columnasData);
+                }
+            }
+        },
+        error: function (error) {
+            console.log(error);
+        }
+    });
+}
+function editar_fecha(fecha, intervalo, dma, separador) {
+    var separador = separador || "-";
+    var arrayFecha = fecha.split(separador);
+    var dia = arrayFecha[0];
+    var mes = arrayFecha[1];
+    var anio = arrayFecha[2];
 
-    console.log(establecimiento, sala);
-//    $.ajax({
-//        url: server + "Riff/app/restServices/calendarioReserva",
-//        data: JSON.stringify({
-//
-//        }),
-//        type: 'POST',
-//        async: false,
-//        cache: false,
-//        contentType: 'application/json',
-//        success: function (respuesta) {
-//            console.log(respuesta);
-//        },
-//        error: function (error) {
-//            console.log(error);
-//        }
-//    });
-//
-//
-//    let diasSemana = ['LUN', 'MAR', 'MIE', 'JUE', 'VIE', 'SAB', 'DOM'];
-//    let columnas = '<tr>' +
-//            '<th class="grilla grillaEncabezado">Hora</th>';
-//    for (let index = 0; index < 7; index++) {
-//        columnas += '<th class="grilla grillaEncabezado">' + diasSemana[index] + '</th>';
-//    }
-//    $("#calendario").append(columnas);
-//
-//    for (var i = 8; i <= 23; i++) {
-//        let filas = '<tr>' +
-//                '<th id="' + i + 'Dia" class="grilla ui-widget-content">' + (i) + '</th>' +
-//                '<th id="' + i + 'Lun" onclick="reservarFechaHora(this.id)" class="grilla ui-widget-content"></th>' +
-//                '<th id="' + i + 'Mar" onclick="reservarFechaHora(this.id)" class="grilla ui-widget-content"></th>' +
-//                '<th id="' + i + 'Mie" onclick="reservarFechaHora(this.id)" class="grilla ui-widget-content"></th>' +
-//                '<th id="' + i + 'Jue" onclick="reservarFechaHora(this.id)" class="grilla ui-widget-content"></th>' +
-//                '<th id="' + i + 'Vie" onclick="reservarFechaHora(this.id)" class="grilla ui-widget-content"></th>' +
-//                '<th id="' + i + 'Sab" onclick="reservarFechaHora(this.id)" class="grilla ui-widget-content"></th>' +
-//                '<th id="' + i + 'Dom" onclick="reservarFechaHora(this.id)" class="grilla ui-widget-content"></th>';
-//        $("#calendario").append(filas);
-//    }
+    var fechaInicial = new Date(anio, mes - 1, dia);
+    var fechaFinal = fechaInicial;
+    if (dma === "m" || dma === "M") {
+        fechaFinal.setMonth(fechaInicial.getMonth() + parseInt(intervalo));
+    } else if (dma === "y" || dma === "Y") {
+        fechaFinal.setFullYear(fechaInicial.getFullYear() + parseInt(intervalo));
+    } else if (dma === "d" || dma === "D") {
+        fechaFinal.setDate(fechaInicial.getDate() + parseInt(intervalo));
+    } else {
+        return fecha;
+    }
+    dia = fechaFinal.getDate();
+    mes = fechaFinal.getMonth() + 1;
+    anio = fechaFinal.getFullYear();
+
+    dia = (dia.toString().length === 1) ? "0" + dia.toString() : dia;
+    mes = (mes.toString().length === 1) ? "0" + mes.toString() : mes;
+
+    return dia + "-" + mes + "-" + anio;
 }
 function reservarFechaHora(id) {
     alert(id);

@@ -3,37 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-            <file>file:/C:/Users/User/Desktop/Reservas%20de%20salas%20-%20Riff/Riff/src/java/DAO/OperacionesContacto.java</file>
-            <file>file:/C:/Users/User/Desktop/Reservas%20de%20salas%20-%20Riff/Riff/web/js/cliente.js</file>
-            <file>file:/C:/Users/User/Desktop/Reservas%20de%20salas%20-%20Riff/Riff/src/java/DAO/OperacionesUsuario.java</file>
-            <file>file:/C:/Users/User/Desktop/Reservas%20de%20salas%20-%20Riff/Riff/web/index.html</file>
-            <file>file:/C:/Users/User/Desktop/Reservas%20de%20salas%20-%20Riff/Riff/src/java/REST/RestServices.java</file>
-=======
-<<<<<<< ours
-<<<<<<< HEAD
-            <file>file:/C:/Users/Sebastian%20Pinto%20B/Desktop/Reservas%20de%20salas%20-%20Riff/Riff/src/java/DAO/OperacionesReservas.java</file>
+            <file>file:/C:/Users/Sebastian%20Pinto%20B/Desktop/Reservas%20de%20salas%20-%20Riff/Riff/src/java/REST/RestServices.java</file>
             <file>file:/C:/Users/Sebastian%20Pinto%20B/Desktop/Reservas%20de%20salas%20-%20Riff/Riff/web/index.html</file>
+            <file>file:/C:/Users/Sebastian%20Pinto%20B/Desktop/Reservas%20de%20salas%20-%20Riff/Riff/src/java/DAO/OperacionesReservas.java</file>
             <file>file:/C:/Users/Sebastian%20Pinto%20B/Desktop/Reservas%20de%20salas%20-%20Riff/Riff/src/java/DAO/OperacionesUsuario.java</file>
             <file>file:/C:/Users/Sebastian%20Pinto%20B/Desktop/Reservas%20de%20salas%20-%20Riff/Riff/web/js/cliente.js</file>
-            <file>file:/C:/Users/Sebastian%20Pinto%20B/Desktop/Reservas%20de%20salas%20-%20Riff/Riff/src/java/REST/RestServices.java</file>
-=======
-            <file>file:/C:/Users/developer/Documents/2-Desarrollo/Reservas/Reservas-salas-de-ensayo-Boostrap-JQuery-Java-Postgresql/src/java/REST/RestServices.java</file>
-=======
->>>>>>> theirs
-            <file>file:/C:/Users/developer/Documents/2-Desarrollo/Reservas/Reservas-salas-de-ensayo-Boostrap-JQuery-Java-Postgresql/web/index.html</file>
-            <file>file:/C:/Users/developer/Documents/2-Desarrollo/Reservas/Reservas-salas-de-ensayo-Boostrap-JQuery-Java-Postgresql/src/java/Objetos/Usuario.java</file>
-            <file>file:/C:/Users/developer/Documents/2-Desarrollo/Reservas/Reservas-salas-de-ensayo-Boostrap-JQuery-Java-Postgresql/src/java/DAO/OperacionesUsuario.java</file>
-            <file>file:/C:/Users/developer/Documents/2-Desarrollo/Reservas/Reservas-salas-de-ensayo-Boostrap-JQuery-Java-Postgresql/src/java/REST/RestServices.java</file>
-            <file>file:/C:/Users/developer/Documents/2-Desarrollo/Reservas/Reservas-salas-de-ensayo-Boostrap-JQuery-Java-Postgresql/src/java/REST/RestConf.java</file>
-            <file>file:/C:/Users/developer/Documents/2-Desarrollo/Reservas/Reservas-salas-de-ensayo-Boostrap-JQuery-Java-Postgresql/src/java/DAO/OperacionesReservas.java</file>
-<<<<<<< ours
->>>>>>> 004d70a1196993d326d2f95a09573aeb70ce80e6
-=======
-            <file>file:/C:/Users/developer/Documents/2-Desarrollo/Reservas/Reservas-salas-de-ensayo-Boostrap-JQuery-Java-Postgresql/src/java/DAO/OperacionesLog.java</file>
-            <file>file:/C:/Users/developer/Documents/2-Desarrollo/Reservas/Reservas-salas-de-ensayo-Boostrap-JQuery-Java-Postgresql/src/java/Objetos/Respuesta.java</file>
->>>>>>> theirs
->>>>>>> b0fc6780afe557b0e2f667e1590d5d339c1bd74c
         </group>
     </open-files>
 </project-private>
