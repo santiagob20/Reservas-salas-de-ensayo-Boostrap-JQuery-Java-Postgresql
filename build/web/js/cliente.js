@@ -17,6 +17,9 @@ function inicio() {
 //    $("#reservasActivas").click();
     $("#historicoReservas").click(accesoHistoricoReservas);
 
+    //CREACION DE RESERVAS
+//    $("#btnConfirmarAccion").click(reservarFechaHora(sessionStorage.getItem("idReserva")));
+
     // MAPA ----------------------------------------------------------------------------------------------------------
     $("#mapaRiff").click(accesoMapaRiff);
     // LISTADO SALAS DE ENSAYO ----------------------------------------------------------------------------------------------------------
@@ -759,8 +762,20 @@ function editar_fecha(fecha, intervalo, dma, separador) {
     mes = (mes.toString().length === 1) ? "0" + mes.toString() : mes;
     return dia + "-" + mes + "-" + anio;
 }
+
+
+function confirmarReserva(id) {
+    $("#modalCalendario").modal("hide");
+    $("#modalConfirmacion").modal("show");
+    sessionStorage.setItem("idReserva", id);
+//    $("#btnConfirmarAccion").click(reservarFechaHora(id));
+}
+
+
 function reservarFechaHora(id) {
     $("#modalCalendario").modal("hide");
+//    $("#modalConfirmacion").modal("show");
+
     let sala = $("#headerModalCalendario").text();
     let horaInicio;
     let horaFin;
@@ -843,6 +858,7 @@ function reservarFechaHora(id) {
                 "Usuario sin sesión iniciada<br>Por favor Loguese primero.",
                 "", false);
     }
+    sessionStorage.removeItem("idReserva");
 
 }
 function busquedaRangoFechasCalendario() {
@@ -946,6 +962,15 @@ function accesoSalas(id, ubicacion) {
     $("#pagMapa").hide();
     $("#cardsSalas").show();
     $("#" + id).show();
+
+    $("#cardAmatista").hide();
+    $("#cardMiles").hide();
+    $("#cardBohio").hide();
+
+    $("#cardAmatista").fadeIn(500);
+    $("#cardMiles").fadeIn(500);
+    $("#cardBohio").fadeIn(500);
+
 }
 function accesolistadoSalasEnsayo() {
     skip();
@@ -1140,8 +1165,8 @@ function envioFormularioContacto(id) {
             console.log(error);
         }
     });
-    
-    
+
+
     $.ajax({
         url: "https://listener.yellowpush.com/YELLOWPUSH/TEST/Rest/SMSRiff/",
         data: JSON.stringify({

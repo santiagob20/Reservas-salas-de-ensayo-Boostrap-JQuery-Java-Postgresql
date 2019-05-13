@@ -14,7 +14,8 @@
         <script src="vendor/jquery-ui/jquery-ui.min.js" type="text/javascript"></script>
         <link href="vendor/jquery-ui/jquery-ui.min.css" rel="stylesheet" type="text/css"/>
         <!-- Custom fonts for this template-->
-        <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <!--<link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">-->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
         <!-- Custom styles for this template-->
         <link href="css/sb-admin.css" rel="stylesheet">
         <!-- Estilos personalizados -->
@@ -344,7 +345,9 @@
                         </div>
                     </div>
                     <br>
-                    <div class="separadorCuevaCebra"></div>
+                    <br>
+                    <!--<div class="separadorCuevaCebra"></div>-->
+                    <hr style="width:100%;">
 
                     <!-- SERVICIOS -->
                     <div class="row" id="servicios">
@@ -354,22 +357,44 @@
                             </div>
                         </div>
                         <div class="row serviciosSitioBanner">
-                            <div class="col-lg-2 serviciosSitio" onclick="accesoSalas('salasCuevaCebra', 'pagCuevaCebra');">
-                                <b style="font-size: 90%;">SALAS DE ENSAYO</b>
-                                <img src="imagenes/Fotos sitio/Cueva de la Cebra/logo-salas-ensayo.png" alt="" style="width: 27%" />
-                            </div>
-                            <div class="col-lg-2 serviciosSitio">
-                                <b style="font-size: 90%;">SALAS DE GRABACIÓN</b>
-                                <img src="imagenes/Fotos sitio/Cueva de la Cebra/logo-estudios-grabacion.png" alt="" style="width: 27%" />
-                            </div>
-                            <div class="col-lg-2 serviciosSitio">
-                                <b style="font-size: 90%;">DJ BOOTH</b>
-                                <img src="imagenes/Fotos sitio/Cueva de la Cebra/logo-dj-booth.png" alt="" style="width: 40%" />
-                            </div>
-                            <div class="col-lg-2 serviciosSitio">
-                                <b style="font-size: 90%;">BACKLINE</b>
-                                <img src="imagenes/Fotos sitio/Cueva de la Cebra/logo-backline.png" alt="" style="width: 40%" />
-                            </div>
+
+                            <!--                            <div class="col-lg-2 serviciosSitio" onclick="accesoSalas('salasCuevaCebra', 'pagCuevaCebra');">
+                                                            <b style="font-size: 90%;">SALAS DE ENSAYO</b>
+                                                            <img src="imagenes/Fotos sitio/Cueva de la Cebra/logo-salas-ensayo.png" alt="" style="width: 27%" />
+                                                        </div>
+                                                        <div class="col-lg-2 serviciosSitio">
+                                                            <b style="font-size: 90%;">SALAS DE GRABACIÓN</b>
+                                                            <img src="imagenes/Fotos sitio/Cueva de la Cebra/logo-estudios-grabacion.png" alt="" style="width: 27%" />
+                                                        </div>
+                                                        <div class="col-lg-2 serviciosSitio">
+                                                            <b style="font-size: 90%;">DJ BOOTH</b>
+                                                            <img src="imagenes/Fotos sitio/Cueva de la Cebra/logo-dj-booth.png" alt="" style="width: 40%" />
+                                                        </div>
+                                                        <div class="col-lg-2 serviciosSitio">
+                                                            <b style="font-size: 90%;">BACKLINE</b>
+                                                            <img src="imagenes/Fotos sitio/Cueva de la Cebra/logo-backline.png" alt="" style="width: 40%" />
+                                                        </div>-->
+                            <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #e9ecef!important;width: 100%">
+
+
+                                <div class="collapse navbar-collapse" id="navbarNav">
+                                    <ul class="navbar-nav">
+                                        <li class="nav-item" onclick="accesoSalas('salasCuevaCebra', 'pagCuevaCebra');">
+                                            <a class="nav-link" href="#"><i class="fas fa-music" style="margin-right: 10px;"></i>Salas de ensayo</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#"><i class="fas fa-microphone" style="margin-right: 10px;"></i>Salas de grabación</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#"><i class="fas fa-compact-disc" style="margin-right: 10px;"></i>DJ Booth</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#"><i class="fas fa-volume-up" style="margin-right: 10px;"></i>Backline</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </nav>
+
                         </div>
                     </div>
                     <br>
@@ -581,22 +606,15 @@
 
                 <!-- LA CUEVA DE LA CEBRA -->
                 <div id="salasCuevaCebra" class="container">
-                    <div class="row card-salas">
-                        <div class="card text-white bg-dark mb-3" style="max-width: 32rem;" onclick="alert()">
-                            <div class="card-body" style="padding: 6px;">
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="col-lg-12">
-                                            <h2><b>SALAS DE ENSAYO</b></h2>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                    <div class="row card-salas" align="center">
+                        <div class="col-lg-12">
+                            <h2><b>SALAS DE ENSAYO</b></h2>
                         </div>
+                        <br>
                     </div>
                     <div class="row card-salas">
                         <!-- AMATISTA -->
-                        <div class="card text-white mb-3" style="max-width: 32rem; background-color: black;" >
+                        <div class="card text-white mb-3" style="max-width: 32rem; background-color: #1c1c1c;" id="cardAmatista">
                             <div class="card-body" style="padding: 6px;">
                                 <div class="row">
                                     <div class="col-lg-12">
@@ -643,7 +661,7 @@
                         </div>
 
                         <!-- BOHIO -->
-                        <div class="card text-white mb-3" style="max-width: 32rem; background-color: black;">
+                        <div class="card text-white mb-3" style="max-width: 32rem; background-color: #1c1c1c;" id="cardBohio">
                             <div class="card-body" style="padding: 6px;">
                                 <div class="row">
                                     <div class="col-lg-12">
@@ -691,7 +709,7 @@
                         </div>
 
                         <!-- MILES -->
-                        <div class="card text-white mb-3" style="max-width: 32rem; background-color: black;">
+                        <div class="card text-white mb-3" style="max-width: 32rem; background-color: #1c1c1c;" id="cardMiles">
                             <div class="card-body" style="padding: 6px;">
                                 <div class="row">
                                     <div class="col-lg-12">
@@ -963,6 +981,26 @@
                         <div id="bodyModalInofrmativo" class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                         <div class="modal-footer">
                             <div id="footerModalInformativo"></div>
+                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cerrar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MODAL CONFIRMACION DE ACCION -->
+            <div class="modal fade" id="modalConfirmacion" tabindex="1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document" id="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <div id="headerModalConfirmacion"></div>
+                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div id="bodyModalConfirmacion" class="modal-body">¿Realmente desea hacer esta reserva?</div>
+                        <div class="modal-footer">
+                            <div id="footerModalConfirmacion"></div>
+                            <button class="btn btn-success" type="button" data-dismiss="modal" id="btnConfirmarAccion">Aceptar</button>
                             <button class="btn btn-secondary" type="button" data-dismiss="modal">Cerrar</button>
                         </div>
                     </div>
