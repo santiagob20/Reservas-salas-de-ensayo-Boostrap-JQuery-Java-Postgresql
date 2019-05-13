@@ -2,6 +2,12 @@
 .container-fluid{
     margin-bottom: 0px;
 }
+/*  FUENTES-----------------------------------------------------------*/
+h1,h2,h3,h4{
+    color: #21395d;
+    font-family: 'Montserrat', sans-serif;
+}
+
 
 /*  INICIO LOCALIDADES -----------------------------------------------------------*/
 #inicioRiff{
@@ -230,4 +236,15 @@ span.infoIcon {
     color: #fff;
     background-color: #21395de6;
     border-color: #21395d;
+}
+
+
+
+.nav-item{
+    margin-right: 20px;
+}
+
+.btn-success{
+    background-color: #21395d!important;
+    border-color: #1a2a43!important;
 }
