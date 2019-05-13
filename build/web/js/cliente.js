@@ -14,7 +14,7 @@ function inicio() {
     $("#btnRegistrarUsuario").click(clickRegistroUsuario);
 
     // RESERAVS ACTIVAS E HISTORICO ----------------------------------------------------------------------------------------------------------
-//    $("#reservasActivas").click();
+    $("#reservasActivas").click(accesoReservasActivas);
     $("#historicoReservas").click(accesoHistoricoReservas);
 
     // MAPA ----------------------------------------------------------------------------------------------------------
@@ -443,8 +443,8 @@ function calendarioReservas(id) {
                 }
                 document.getElementById("headerModalCalendario").innerHTML = "<b>" + sala + "</b>";
                 //BOTONES DE FECHAS ANTERIORES Y SIGUIENTES
-                $("#consultaFechas").append("<a id='cuevaCebra-" + sala + "' onClick='verMenosFechasCalendario(this.id)' class='btn btn-warning' style='margin-left: 17px; '><b><i class='fa fa-angle-left busquedaSigCalendario'></i></b></a>" +
-                        "<a id='cuevaCebra-" + sala + "' onClick='verMasFechasCalendario(this.id)' class='btn btn-warning'style='margin-left: 5px;'><b><i class='fa fa-angle-right busquedaSigCalendario'></i></b></a>");
+                $("#consultaFechas").append("<a id='cuevaCebra-" + sala + "' onClick='verMenosFechasCalendario(this.id)' class='btn btn-primary' style='margin-left: 17px; '><b><i class='fa fa-angle-left busquedaSigCalendario'></i></b></a>" +
+                        "<a id='cuevaCebra-" + sala + "' onClick='verMasFechasCalendario(this.id)' class='btn btn-primary'style='margin-left: 5px;'><b><i class='fa fa-angle-right busquedaSigCalendario'></i></b></a>");
                 $("#modalCalendario").modal("show");
             }
             $("#" + id).show();
@@ -893,6 +893,9 @@ function accesoPerfilUsuario() {
             "</div>" +
             "</div>",
             "", false);
+}
+function accesoReservasActivas() {
+    alert();
 }
 function accesoHistoricoReservas() {
     if (localStorage.getItem("idSession") !== null) {

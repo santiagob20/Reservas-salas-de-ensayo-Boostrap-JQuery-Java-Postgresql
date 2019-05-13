@@ -491,3 +491,11 @@ footer.sticky-footer {
 #panelIzquierdo .nav-link:hover{
     background-color: #212121e6;
 }
+
+
+
+.btn-primary:hover {
+    color: #fff;
+    background-color: #21395de6;
+    border-color: #21395d;
+}
