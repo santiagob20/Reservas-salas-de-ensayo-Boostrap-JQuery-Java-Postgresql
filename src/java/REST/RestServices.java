@@ -117,6 +117,14 @@ public class RestServices {
     }
 
     @POST
+    @Path("consultarReservasActivas")
+    @Consumes({MediaType.APPLICATION_JSON})
+    @Produces({MediaType.APPLICATION_JSON})
+    public Respuesta consultarReservasActivas(Usuario u) {
+        return new OperacionesReservas().consultaReservasActivas(u);
+    }
+
+    @POST
     @Path("insertarLog")
     @Consumes({MediaType.APPLICATION_JSON})
     @Produces({MediaType.APPLICATION_JSON})

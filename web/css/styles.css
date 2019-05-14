@@ -62,9 +62,9 @@ h1,h2,h3,h4{
     height: 100%;
 }
 .bordeSombra{
-/*    -webkit-box-shadow: 4px 7px 11px 5px rgba(0,0,0,0.69);
-    -moz-box-shadow: 4px 7px 11px 5px rgba(0,0,0,0.69);
-    box-shadow: 4px 7px 11px 5px rgba(0,0,0,0.69);*/
+    /*    -webkit-box-shadow: 4px 7px 11px 5px rgba(0,0,0,0.69);
+        -moz-box-shadow: 4px 7px 11px 5px rgba(0,0,0,0.69);
+        box-shadow: 4px 7px 11px 5px rgba(0,0,0,0.69);*/
 }
 .circuloLogoInicio{
     width: 250px;
@@ -101,6 +101,12 @@ h1,h2,h3,h4{
 .serviciosSitio:hover{
     background: #21395d;
 }
+
+.serviciosSitioBanner .navbar li:hover{
+    color: black;
+    font-weight: bold;
+}
+
 #pagInicio iframe{
     width: 100%;
 }
@@ -251,4 +257,11 @@ span.infoIcon {
 .btn-success{
     background-color: #21395d!important;
     border-color: #1a2a43!important;
+}
+
+#distanciaUsuarioCueva, #distanciaUsuarioPakarny, #distanciaUsuarioElToke{
+    text-align: center;
+    font-size: 15px;
+    margin-top: 11%;
+    margin-bottom: 11%;
 }

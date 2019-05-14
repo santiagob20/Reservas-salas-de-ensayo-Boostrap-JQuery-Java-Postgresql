@@ -29,7 +29,7 @@
 
         <!-- INICIO APLICATIVO -->
         <div id="inicioRiff">
-            <img src="imagenes/Fotos fondo/nav-bar-inicio.jpg" alt="" style="position: absolute; width: 109%"/>
+            <img src="imagenes/Fotos fondo/nav-bar-inicio.jpg" alt="" style="position: fixed; width: 109%"/>
             <div class="container">
                 <div class="col-lg-4"></div>
                 <div class="col-lg-4" style="margin-left: 5%">
@@ -375,8 +375,6 @@
                                                             <img src="imagenes/Fotos sitio/Cueva de la Cebra/logo-backline.png" alt="" style="width: 40%" />
                                                         </div>-->
                             <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #e9ecef!important;width: 100%">
-
-
                                 <div class="collapse navbar-collapse" id="navbarNav">
                                     <ul class="navbar-nav">
                                         <li class="nav-item" onclick="accesoSalas('salasCuevaCebra', 'pagCuevaCebra');">
@@ -654,6 +652,7 @@
                                         <!--<p style="text-align: center;font-size: 13px;font-weight: bold; color: #F1CC01;">$ 24.000 / hr</p>-->
                                         <!--<p style="text-align: center;font-size: 13px;font-weight: bold; color: #F1CC01;">$ 60.000 / 3 hr</p>-->
                                         <button id="cuevaCebra-amatista" onClick="calendarioReservas(this.id)" type="submit" class="btn btn-primary">Reservar</button>
+                                        <div id="spinnerLoadingcuevaCebra-amatista"></div>
                                     </div>
                                 </div>
 
@@ -701,6 +700,7 @@
                                         <!--<p style="text-align: center;font-size: 13px;font-weight: bold; color: #F1CC01;">$ 36.000 / hr</p>-->
                                         <!--<p style="text-align: center;font-size: 13px;font-weight: bold; color: #F1CC01;">$ 85.000 / 3 hr</p>-->
                                         <button id="cuevaCebra-bohio" onClick="calendarioReservas(this.id)" type="submit" class="btn btn-primary">Reservar</button>
+                                        <div id="spinnerLoadingcuevaCebra-bohio"></div>
                                     </div>
                                 </div>
 
@@ -748,6 +748,7 @@
                                         <p style="text-align: center;font-size: 16px;font-weight: bold;">$ 50.000 / 2 hr </p>
                                         <!--<p style="text-align: center;font-size: 13px;font-weight: bold; color: #F1CC01;">$ 73.000 / 3 hr</p>-->
                                         <button id="cuevaCebra-miles" onClick="calendarioReservas(this.id)" type="submit" class="btn btn-primary">Reservar</button>
+                                        <div id="spinnerLoadingcuevaCebra-miles"></div>
                                     </div>
                                 </div>
 
@@ -758,6 +759,31 @@
                     </div>
                 </div>
 
+            </div>
+
+            <!-- RESERVAS ACTIVAS -->
+            <div id="pagReservasActivas" class="container-fluid" style="height: -webkit-fill-available;">
+                <!-- Breadcrumbs-->
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a href="#" onClick="accesoInicio();">Inicio</a>
+                    </li>
+                    <li class="breadcrumb-item active">Reservas Activas <b>Riff</b></li>
+                </ol>
+                <!-- Cuerpo de la pagina -->
+                <!-- PAGINA INICIO RIFF -->
+                <div id="reservasActivas">
+                    <table class="table table-hover" id="tablaReservasActivas" style="width: 99%; font-size: 15px;">
+                        <thead style="font-weight: bold">
+                        <td>Fecha reserva</td>
+                        <td>Hora inicio</td>
+                        <td>Hora fin</td>
+                        <td>Precio</td>
+                        <td>Nombre de la sala</td>
+                        <td>Cancelar reserva</td>
+                        </thead>
+                    </table>
+                </div>
             </div>
 
             <!-- HISTORICO RESERVAS -->

@@ -196,6 +196,7 @@ function skip() {
     $("#inicioRiff").hide();
     $("#pagInicio").hide();
     $("#cardsSitios").hide();
+    $("#pagReservasActivas").hide();
     $("#pagHistoricoReservas").hide();
     $("#pagContactenos").hide();
     //SITIOS
@@ -314,8 +315,10 @@ function spinerLoading(id) {
 
 // CALENDARIO ---------------------------------------------------------------------------------------------
 function calendarioReservas(id) {
+    console.log(id);
     fechaCalendario = new Date().getDate() + "-" + (new Date().getMonth() + 1) + "-" + new Date().getFullYear();
     $("#" + id).hide();
+    spinerLoading(id);
     document.getElementById("calendario").innerHTML = null;
     document.getElementById("headerModalCalendario").innerHTML = null;
     document.getElementById("consultaFechas").innerHTML = null;
@@ -450,6 +453,7 @@ function calendarioReservas(id) {
                         "<a id='cuevaCebra-" + sala + "' onClick='verMasFechasCalendario(this.id)' class='btn btn-primary'style='margin-left: 5px;'><b><i class='fa fa-angle-right busquedaSigCalendario'></i></b></a>");
                 $("#modalCalendario").modal("show");
             }
+            $("#spinnerLoading" + id).hide();
             $("#" + id).show();
         },
         error: function (error) {
@@ -911,7 +915,14 @@ function accesoPerfilUsuario() {
             "", false);
 }
 function accesoReservasActivas() {
-    alert();
+    if (localStorage.getItem("idSession") !== null) {
+        skip();
+        $("#pagMapa").hide();
+        $("#pagReservasActivas").show();
+        reservasActivas();
+    } else {
+        alert("Debe ser un usuario logueado para acceder.");
+    }
 }
 function accesoHistoricoReservas() {
     if (localStorage.getItem("idSession") !== null) {
@@ -943,6 +954,7 @@ function accesoSitios(id, ubicacion) {
             $("#breadcrumbSitios").append(" <li class='breadcrumb-item'>" +
                     "<a href='index.html'>Inicio</a>" +
                     "</li>" +
+                    "<li class='breadcrumb-item' ><a class='breadcrumbSegundoNivel' onclick='accesoMapaRiff()'>Mapa</a></li>" +
                     "<li class='breadcrumb-item' ><a class='breadcrumbSegundoNivel' onclick='accesolistadoSalasEnsayo()'>Listado Sitios</a></li>" +
                     "<li class='breadcrumb-item active'>La Cueva de la cebra</li>");
             break;
@@ -960,8 +972,11 @@ function accesoSalas(id, ubicacion) {
     $("#breadcrumbSalas").append(" <li class='breadcrumb-item'>" +
             "<a href='#' onClick='accesoInicio();'>Inicio</a>" +
             "</li>" +
-            "<li class='breadcrumb-item' ><a class='breadcrumbSegundoNivel' onclick='accesoSitios('cuevaDeLaCebra', 'mapa')'>La Cueva de la cebra</a></li>" +
+            "<li class='breadcrumb-item' ><a class='breadcrumbSegundoNivel' onclick='accesoMapaRiff()'>Mapa</a></li>" +
+            "<li class='breadcrumb-item' ><a class='breadcrumbSegundoNivel' onclick='accesolistadoSalasEnsayo()'>Listado Sitios</a></li>" +
+            '<li class="breadcrumb-item" ><a class="breadcrumbSegundoNivel" id="breadcrumbCuevaCebra" >La Cueva de la cebra</a></li>' +
             "<li class='breadcrumb-item active'>Salas de ensayo</li>");
+    $("#breadcrumbCuevaCebra").attr("onclick", "accesoSitios('cuevaDeLaCebra', 'mapa')");
     $("#pagMapa").hide();
     $("#cardsSalas").show();
     $("#" + id).show();
@@ -1024,11 +1039,11 @@ function cargarMapa() {
     }
 
     function showPosition(position) {
-        var lat = position.coords.latitude;
-        var lon = position.coords.longitude;
+//        var lat = position.coords.latitude;
+//        var lon = position.coords.longitude;
         //Posicion en Corferias
-//        var lat = 4.630132;
-//        var lon = -74.089984;
+        var lat = 4.606084;
+        var lon = -74.068658;
         latlon = new google.maps.LatLng(lat, lon);
         mapholder = document.getElementById('mapholder');
         mapholder.style.height = 'auto';
@@ -1123,15 +1138,15 @@ function calcularDistancias() {
 //    let lat = JSON.parse(localStorage.getItem("PosicionUser")).latitud;
 //    let lon = JSON.parse(localStorage.getItem("PosicionUser")).longitud;
 // DISTANCIA AL A CUEVA
-    document.getElementById("distanciaUsuarioCueva").innerHTML = "A <b>" +
+    document.getElementById("distanciaUsuarioCueva").innerHTML = "La sala se encuentra aproximadamente a <b>" +
             distanciaKMCoordenadasTierra(lat, lon, posicionCueva[0], posicionCueva[1]).toFixed(2) +
-            " KM</b>, de su posición aproximadamente.";
+            " KM</b>, de su posición.";
     //DISTANCIA A PAKARNY
-    document.getElementById("distanciaUsuarioPakarny").innerHTML = "A <b>" +
+    document.getElementById("distanciaUsuarioPakarny").innerHTML = "La sala se encuentra aproximadamente a <b>" +
             distanciaKMCoordenadasTierra(lat, lon, posicionPakarny[0], posicionPakarny[1]).toFixed(2) +
             " KM</b>, de su posición aproximadamente.";
     //DISTANCIA AL TOKE
-    document.getElementById("distanciaUsuarioElToke").innerHTML = "A <b>" +
+    document.getElementById("distanciaUsuarioElToke").innerHTML = "La sala se encuentra aproximadamente a <b>" +
             distanciaKMCoordenadasTierra(lat, lon, posicionElToke[0], posicionElToke[1]).toFixed(2) +
             " KM</b>, de su posición aproximadamente.";
 }
@@ -1207,10 +1222,49 @@ function historicoReservas() {
                     for (let i = 0; i < lista.length; i++) {
                         t.row.add([
                             lista[i].fechaReserva,
-                            lista[i].horaInicio,
-                            lista[i].horaFin,
+                            lista[i].horaInicio.split("-")[0],
+                            lista[i].horaFin.split("-")[0],
                             "$ " + lista[i].precio.precio.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,'),
                             lista[i].sala.nombreSala
+                        ]).draw(true);
+                    }
+                } else {
+                    alert("Usuario sin reservas para mostrar");
+                }
+            } else {
+                alert("Error al consultar, consulte con el administrador.");
+            }
+        },
+        error: function () {
+            alert("Error en el sistema, consulte al administrador");
+        }
+    });
+}
+function reservasActivas() {
+    let idUsuario = JSON.parse(localStorage.getItem("dataUsuario")).id_usuario;
+    $.ajax({
+        url: server + "Riff/app/restServices/consultarReservasActivas",
+        data: JSON.stringify({
+            id_usuario: idUsuario
+        }),
+        type: "POST",
+        async: false,
+        contentType: "application/json",
+        success: function (rta) {
+            if (rta.codigo === 1) {
+                if (rta.listaReservas.length > 0) {
+                    let lista = rta.listaReservas;
+                    var t = $('#tablaReservasActivas').DataTable();
+                    t.clear();
+                    for (let i = 0; i < lista.length; i++) {
+                        t.row.add([
+                            lista[i].fechaReserva,
+                            lista[i].horaInicio.split("-")[0],
+                            lista[i].horaFin.split("-")[0],
+                            "$ " + lista[i].precio.precio.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,'),
+                            lista[i].sala.nombreSala,
+                            "<button onclick='alert(this.id)' class='btn btn-danger' id='" + lista[i].fechaReserva + "/" +
+                                    lista[i].horaInicio.split("-")[0] + "/" + lista[i].horaFin.split("-")[0] + "/" + lista[i].sala.nombreSala + "'>Cancelar reserva</button>"
                         ]).draw(true);
                     }
                 } else {

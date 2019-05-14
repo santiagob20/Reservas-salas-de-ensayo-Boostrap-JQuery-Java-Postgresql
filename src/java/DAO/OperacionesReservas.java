@@ -244,4 +244,53 @@ public class OperacionesReservas implements InterfaceReservas {
         return rta;
     }
 
+    @Override
+    public Respuesta consultaReservasActivas(Usuario u) {
+        Respuesta rta = new Respuesta();
+        Conexion c = new Conexion();
+        ArrayList<Reserva> listaReservas = new ArrayList<>();
+        String sql = "";
+        if (u.getId_usuario() > 0) {
+            sql = "SELECT * FROM app.vst_historico_reservas where id_usuario = " + u.getId_usuario()
+                    + " and fecha_reserva >= now()::date;";
+        } else {
+            sql = "SELECT * FROM app.vst_historico_reservas where fecha_reserva >= now()::date";
+        }
+        try {
+            PreparedStatement ps = c.conectar().prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Reserva reserva = new Reserva();
+                Usuario usuario = new Usuario();
+                Sala sala = new Sala();
+                Precio precio = new Precio();
+
+                reserva.setIdReserva(rs.getInt("id_reserva"));
+                reserva.setIdUsuario(rs.getInt("id_usuario"));
+                usuario.setUsuario(rs.getString("usuario"));
+                usuario.setNombre(rs.getString("nombre"));
+                precio.setPrecio(rs.getInt("precio"));
+                sala.setNombreSala(rs.getString("nombre_sala"));
+                sala.setCapacidadPersonas(rs.getInt("capacidad"));
+                reserva.setFechaReserva(rs.getDate("fecha_reserva"));
+                reserva.setHoraInicio(rs.getTime("hora_inicio"));
+                reserva.setHoraFin(rs.getTime("hora_fin"));
+
+                reserva.setUsuario(usuario);
+                reserva.setSala(sala);
+                reserva.setPrecio(precio);
+                listaReservas.add(reserva);
+            }
+            rta.setCodigo(1);
+            rta.setDescripcion("reservas consultadas correctamente");
+            rta.setListaReservas(listaReservas);
+        } catch (SQLException ex) {
+            rta.setCodigo(0);
+            rta.setDescripcionError("Error al consultar reservas: " + ex);
+        } finally {
+            c.desconectar();
+        }
+        return rta;
+    }
+
 }
