@@ -766,16 +766,12 @@ function editar_fecha(fecha, intervalo, dma, separador) {
     mes = (mes.toString().length === 1) ? "0" + mes.toString() : mes;
     return dia + "-" + mes + "-" + anio;
 }
-
-
 function confirmarReserva(id) {
     $("#modalCalendario").modal("hide");
     $("#modalConfirmacion").modal("show");
     sessionStorage.setItem("idReserva", id);
 //    $("#btnConfirmarAccion").click(reservarFechaHora(id));
 }
-
-
 function reservarFechaHora(id) {
     $("#modalCalendario").modal("hide");
 //    $("#modalConfirmacion").modal("show");
@@ -949,7 +945,7 @@ function accesoSitios(id, ubicacion) {
                     "</li>" +
                     "<li class='breadcrumb-item' ><a class='breadcrumbSegundoNivel' onclick='accesoMapaRiff()'>Mapa</a></li>" +
                     "<li class='breadcrumb-item active'>La Cueva de la cebra</li>");
-            break;  
+            break;
         case "cardListado":
             $("#breadcrumbSitios").append(" <li class='breadcrumb-item'>" +
                     "<a href='index.html'>Inicio</a>" +
@@ -980,7 +976,7 @@ function accesoSalas(id, ubicacion) {
     $("#pagMapa").hide();
     $("#cardsSalas").show();
     $("#" + id).show();
-    
+
 
     $("#cardAmatista").hide();
     $("#cardMiles").hide();
@@ -1264,8 +1260,8 @@ function reservasActivas() {
                             lista[i].horaFin.split("-")[0],
                             "$ " + lista[i].precio.precio.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,'),
                             lista[i].sala.nombreSala,
-                            "<button onclick='alert(this.id)' class='btn btn-danger' id='" + lista[i].fechaReserva + "/" +
-                                    lista[i].horaInicio.split("-")[0] + "/" + lista[i].horaFin.split("-")[0] + "/" + lista[i].sala.nombreSala + "'>Cancelar reserva</button>"
+                            "<button onclick='cancelarReservaActiva(this.id)' class='btn btn-danger' id='" + lista[i].fechaReserva + "/" +
+                                    lista[i].horaInicio.split("-")[0] + "/" + lista[i].horaFin.split("-")[0] + "/" + lista[i].sala.nombreSala + "'><i class='fa fa-fw fa-x3 fa-times-circle'></i> Cancelar reserva</button>"
                         ]).draw(true);
                     }
                 } else {
@@ -1273,6 +1269,51 @@ function reservasActivas() {
                 }
             } else {
                 alert("Error al consultar, consulte con el administrador.");
+            }
+        },
+        error: function () {
+            alert("Error en el sistema, consulte al administrador");
+        }
+    });
+}
+function cancelarReservaActiva(id) {
+    let idSala;
+    switch (id.split("/")[3]) {
+        case "Bohio":
+            idSala = 1;
+            break;
+        case "Amatista":
+            idSala = 2;
+            break;
+        case "Miles":
+            idSala = 3;
+            break;
+    }
+    let idUsuario = JSON.parse(localStorage.getItem("dataUsuario")).id_usuario;
+    $.ajax({
+        url: server + "Riff/app/restServices/cancelarReservaActiva",
+        data: JSON.stringify({
+            fechaReserva: id.split("/")[0],
+            horaInicio: id.split("/")[1],
+            horaFin: id.split("/")[2],
+            detalles: idSala + "/" + idUsuario,
+            nombreEmpresa: "cuevaCebra"
+        }),
+        type: "POST",
+        async: false,
+        contentType: "application/json",
+        success: function (rta) {
+            if (rta.codigo === 1) {
+                innerModalInformativo("<b style='color: red;'>" + JSON.parse(rta.descripcion).descripcion + "</b>",
+                        "La reserva: "
+                        + "<br>* Sitio: <b>La cueva de la cebra</b>"
+                        + "<br>* Nombre de la Sala: <b>" + id.split("/")[3] + "</b>"
+                        + "<br>* hora de inicio: <b>" + id.split("/")[1] + "</b>"
+                        + "<br>* hora de fin: <b>" + id.split("/")[2] + "</b>"
+                        + "<br>ha sido cancelada.", "");
+                reservasActivas();
+            } else {
+                alert("Error al cancelar la reserva");
             }
         },
         error: function () {

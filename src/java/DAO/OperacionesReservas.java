@@ -24,7 +24,7 @@ import java.util.ArrayList;
  * @author User
  */
 public class OperacionesReservas implements InterfaceReservas {
-
+    
     @Override
     public Respuesta create(Reserva r) {
         Respuesta rta = new Respuesta();
@@ -45,7 +45,7 @@ public class OperacionesReservas implements InterfaceReservas {
         try {
             PreparedStatement ps = c.conectar().prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
-
+            
             while (rs.next()) {
                 reserva = new Gson().fromJson(rs.getString("sp_reserva_crud"), Reserva.class);
                 listaReservas.add(reserva);
@@ -60,7 +60,7 @@ public class OperacionesReservas implements InterfaceReservas {
         }
         return rta;
     }
-
+    
     @Override
     public Respuesta read(Usuario u) {
         Respuesta rta = new Respuesta();
@@ -75,13 +75,13 @@ public class OperacionesReservas implements InterfaceReservas {
         try {
             PreparedStatement ps = c.conectar().prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
-
+            
             while (rs.next()) {
                 Reserva reserva = new Reserva();
                 Usuario usuario = new Usuario();
                 Sala sala = new Sala();
                 Precio precio = new Precio();
-
+                
                 reserva.setIdReserva(rs.getInt("id_reserva"));
                 reserva.setIdUsuario(rs.getInt("id_usuario"));
                 usuario.setUsuario(rs.getString("usuario"));
@@ -92,7 +92,7 @@ public class OperacionesReservas implements InterfaceReservas {
                 reserva.setFechaReserva(rs.getDate("fecha_reserva"));
                 reserva.setHoraInicio(rs.getTime("hora_inicio"));
                 reserva.setHoraFin(rs.getTime("hora_fin"));
-
+                
                 reserva.setUsuario(usuario);
                 reserva.setSala(sala);
                 reserva.setPrecio(precio);
@@ -108,19 +108,19 @@ public class OperacionesReservas implements InterfaceReservas {
             c.desconectar();
         }
         return rta;
-
+        
     }
-
+    
     @Override
     public Respuesta update(Reserva r) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
+    
     @Override
     public Respuesta delete(Reserva r) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
+    
     @Override
     public Respuesta showAvailable() {
         Respuesta rta = new Respuesta();
@@ -144,11 +144,11 @@ public class OperacionesReservas implements InterfaceReservas {
                 + ", h_22::text\n"
                 + ", h_23::text\n"
                 + "FROM app.vst_calendario order by fecha::date;";
-
+        
         try {
             PreparedStatement ps = cn.conectar().prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
-
+            
             while (rs.next()) {
                 Calendario horario = new Calendario();
                 horario.setFecha(rs.getDate("fecha"));
@@ -179,10 +179,10 @@ public class OperacionesReservas implements InterfaceReservas {
         } finally {
             cn.desconectar();
         }
-
+        
         return rta;
     }
-
+    
     @Override
     public Respuesta showMoreAvailable(Reserva r) {
         Respuesta rta = new Respuesta();
@@ -209,7 +209,7 @@ public class OperacionesReservas implements InterfaceReservas {
         try {
             PreparedStatement ps = cn.conectar().prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
-
+            
             while (rs.next()) {
                 Calendario horario = new Calendario();
                 horario.setFecha(rs.getDate("fecha"));
@@ -240,10 +240,10 @@ public class OperacionesReservas implements InterfaceReservas {
         } finally {
             cn.desconectar();
         }
-
+        
         return rta;
     }
-
+    
     @Override
     public Respuesta consultaReservasActivas(Usuario u) {
         Respuesta rta = new Respuesta();
@@ -264,7 +264,7 @@ public class OperacionesReservas implements InterfaceReservas {
                 Usuario usuario = new Usuario();
                 Sala sala = new Sala();
                 Precio precio = new Precio();
-
+                
                 reserva.setIdReserva(rs.getInt("id_reserva"));
                 reserva.setIdUsuario(rs.getInt("id_usuario"));
                 usuario.setUsuario(rs.getString("usuario"));
@@ -275,7 +275,7 @@ public class OperacionesReservas implements InterfaceReservas {
                 reserva.setFechaReserva(rs.getDate("fecha_reserva"));
                 reserva.setHoraInicio(rs.getTime("hora_inicio"));
                 reserva.setHoraFin(rs.getTime("hora_fin"));
-
+                
                 reserva.setUsuario(usuario);
                 reserva.setSala(sala);
                 reserva.setPrecio(precio);
@@ -292,5 +292,32 @@ public class OperacionesReservas implements InterfaceReservas {
         }
         return rta;
     }
-
+    
+    @Override
+    public Respuesta cancelarReservaActiva(Reserva u) {
+        Respuesta rta = new Respuesta();
+        Conexion cn = new Conexion();
+        String sql = "select app.sp_reserva_crud('{\n"
+                + "\"operacion\":\"DELETE\",\n"
+                + "\"nombre_empresa\":\"" + u.getNombreEmpresa() + "\",\n"
+                + "\"id_sala\":" + u.getDetalles().split("/")[0] + ",\n"
+                + "\"fecha_reserva\":\"" + u.getFechaReserva() + "\",\n"
+                + "\"hora_inicio\":\"" + u.getHoraInicio() + "\",\n"
+                + "\"hora_fin\":\"" + u.getHoraInicio() + "\"}');";
+        try {
+            PreparedStatement ps = cn.conectar().prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {                
+                rta.setDescripcion(rs.getString("sp_reserva_crud"));
+            }
+            rta.setCodigo(1);
+        } catch (SQLException e) {
+            rta.setCodigo(0);
+            rta.setDescripcionError("Error al cancelarReservaActiva: " + e);
+        } finally {
+            cn.desconectar();
+        }
+        return rta;
+    }
+    
 }

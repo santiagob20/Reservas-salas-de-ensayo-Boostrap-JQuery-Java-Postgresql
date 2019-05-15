@@ -28,4 +28,6 @@ public interface InterfaceReservas {
     public Respuesta showMoreAvailable(Reserva r);
     
     public Respuesta consultaReservasActivas(Usuario u);
+    
+    public Respuesta cancelarReservaActiva(Reserva u);
 }

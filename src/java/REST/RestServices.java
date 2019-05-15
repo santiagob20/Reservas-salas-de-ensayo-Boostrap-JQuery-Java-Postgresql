@@ -123,6 +123,14 @@ public class RestServices {
     public Respuesta consultarReservasActivas(Usuario u) {
         return new OperacionesReservas().consultaReservasActivas(u);
     }
+    
+    @POST
+    @Path("cancelarReservaActiva")
+    @Consumes({MediaType.APPLICATION_JSON})
+    @Produces({MediaType.APPLICATION_JSON})
+    public Respuesta cancelarReservaActiva(Reserva r) {
+        return new OperacionesReservas().cancelarReservaActiva(r);
+    }
 
     @POST
     @Path("insertarLog")
