@@ -33,13 +33,16 @@
             <div class="container">
                 <div class="col-lg-4"></div>
                 <div class="col-lg-4" style="margin-left: 5%">
-                    <div class="row">
+                    <div class="row" align="center">
                         <img src="imagenes/Fotos fondo/bienvenido_reservas.png" id="bienvenido-div-inicio" alt=""/>
-                        <img src="imagenes/Logo/logo_fondo_naranja.png" alt="" id="img-div-inicio"/>
+                        <img src="imagenes/Logo/logo_fondo_naranja.png" alt="" id="img-div-inicio" hidden=""/>
                     </div>
+                    <video src="imagenes/instrucciones.mp4" autoplay muted loop style="margin-top: 42%; margin-left: 50%"></video>
                 </div>
             </div>
-            <div class="container" style="margin-top: 27%" >
+
+            <div class="container" >
+                <br>
                 <div class="row" id="container-text-inicio">
                     <div class="col-lg-2"></div>
                     <div class="col-lg-3">
@@ -59,7 +62,7 @@
                 <br>
                 <br>
                 <div class="row" style="justify-content: center">
-                    <button class="btn btn-primary" style="position: absolute;" onClick="accesoInicio();">Entrar al sitio
+                    <button class="btn btn-primary" style="position: absolute; background-color: #e5932c" onClick="accesoInicio();">Entrar al sitio
                     </button>
                 </div>
             </div>
@@ -399,8 +402,7 @@
 
                     <!-- QUIENES SOMOS -->
                     <div class="row">
-                        <div class="col-lg-3"></div>
-                        <div class="col-lg-6">
+                        <div class="container">
                             <div class="quienesSomos bordeSombra" style="font-family: 'Ubuntu', sans-serif;">
                                 <p>
                                     CREEMOS QUE LA EXPRESIÓN ARTÍSTICA, COMO FORMA DE COMUNICACIÓN, NOS UNE EN NUESTRA
@@ -419,7 +421,7 @@
                                 </p>
                             </div>
                         </div>
-                        <div class="col-lg-3"></div>
+
                     </div>
                     <br>
                     <div class="separadorCuevaCebra"></div>
@@ -428,28 +430,31 @@
                     <div class="row">
                         <!-- DATOS DE CONTACTO -->
                         <div class="col-lg-6">
-                            <div class="detailsContainer bordeSombra" style="left: 127px; margin-top: 25%;">
-                                <img src="imagenes/Fotos sitio/Cueva de la Cebra/la-cueva-nombre.jpeg" alt="" style="width: 200px; margin-left: 20%;" />
+                            <div class="detailsContainer bordeSombra" style="left: 127px; margin-top: 2%;">
+                                <img src="https://static.wixstatic.com/media/e8161b_2a874521e0d14b58a3166662176d4505~mv2.png/v1/crop/x_32,y_1024,w_1116,h_316/fill/w_757,h_215,al_c,q_80,usm_0.66_1.00_0.01/verticales-01.webp" 
+                                     alt="" style="width: 350px;" />
+                                <hr>
+                                <br>
+                                <h4 style="margin-left: 7%">Datos de contacto</h4>
                                 <br>
                                 <div class="infoLine phone"
-                                     style="font-size: 14px; margin-bottom: 1px; visibility: visible;font-family: 'Ubuntu', sans-serif;">
+                                     style="font-size: 18px; margin-bottom: 8px;margin-left: 7% ; visibility: visible;font-family: 'Ubuntu', sans-serif;">
                                     <span class="infoIcon"><i class="fa fa-phone fa-fw"></i></span>
-                                    <div class="infoData" itemprop="telephone" style="font-family: 'Ubuntu', sans-serif;">
-                                        319 5972878
+                                    <div class="infoData" itemprop="telephone" style="font-family: 'Ubuntu', sans-serif;margin-left: 3%;">
+                                        Telefono: 319 5972878
                                     </div>
                                 </div>
-                                <div class="infoLine address" style="margin-bottom: 1px; visibility: visible;">
+                                <div class="infoLine address" style="font-size: 18px;margin-bottom: 8px;margin-left: 7%; visibility: visible;">
                                     <span class="infoIcon"><i class="fa fa-map-marker fa-fw"></i></span>
                                     <div class="infoData" itemprop="address" itemscope="" itemtype="http://schema.org/PostalAddress">
-                                        <span>CRA 36 # 25A - 24</span>
+                                        <span style="margin-left: 3%; ">Direccion: CRA 36 # 25A - 24</span>
                                         <span>, Bogotá</span>
                                     </div>
                                 </div>
-                                <br>
-                                <div class="infoLine email" style="margin-bottom: 1px; visibility: visible;">
-                                    <span class="infoIcon"><i class="fa fa-envelope-o fa-fw"></i></span>
+                                <div class="infoLine email" style="margin-bottom: 1px; visibility: visible;font-size: 18px;margin-left: 7%;">
+                                    <span class="infoIcon"><i class="fa fa-envelope"></i></span>
                                     <div class="infoData"><a href="mailto:lacuevadelacebra@gmail.com" target="_blank"
-                                                             itemprop="email">lacuevadelacebra@gmail.com</a></div>
+                                                             itemprop="email" style="margin-left: 3%;">Correo electrónico: lacuevadelacebra@gmail.com</a></div>
                                 </div>
                             </div>
                             <!--<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3976.7982305661726!2d-74.08911828525278!3d4.630055896636541!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f9bd70dd7b09f%3A0x77855eb85ee460aa!2sLa+Cueva+De+La+Cebra!5e0!3m2!1ses-419!2sco!4v1554697013820!5m2!1ses-419!2sco" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>-->
@@ -457,11 +462,15 @@
                         <!-- CONTACTENOS -->
                         <div class="col-lg-6">
                             <div class="container">
-                                <h3 style="text-align: center; margin-top: 5%;"><b>CONTACTENOS</b></h3>
-                                <input type="text" id="nombreContactenosSitioCuevaCebra" class="form-control" placeholder="Nombre" required="required" autofocus="autofocus">
-                                <input type="text" id="emailContactenosSitioCuevaCebra" class="form-control" placeholder="Email" required="required" autofocus="autofocus">
-                                <input type="text" id="telefonoContactenosSitioCuevaCebra" class="form-control" placeholder="Numero de celular ej:573100000000" required="required" autofocus="autofocus">
-                                <textarea name="" id="cajaMensajeContactenosSitioCuevaCebra" class="form-control" data-required_mark="required" data-field_type="text" data-original_id="mensaje" placeholder="Escribenos un mensaje..." style="height: 200px; max-height: 200px; min-height: 200px;"></textarea>
+                                <h3 style="text-align: center; margin-top: 5%;"><b>CONTÁCTENOS</b></h3>
+                                <input style="margin-bottom: 7px;" type="text" id="nombreContactenosSitioCuevaCebra" class="form-control" placeholder="Nombre" required="required" autofocus="autofocus">
+                                
+                                <input style="margin-bottom: 7px;" type="text" id="emailContactenosSitioCuevaCebra" class="form-control" placeholder="Email" required="required" autofocus="autofocus">
+                                
+                                <input style="margin-bottom: 7px;" type="text" id="telefonoContactenosSitioCuevaCebra" class="form-control" placeholder="Número de celular ej:573100000000" required="required" autofocus="autofocus">
+                                
+                                <textarea style="margin-bottom: 7px;" name="" id="cajaMensajeContactenosSitioCuevaCebra" class="form-control" data-required_mark="required" data-field_type="text" data-original_id="mensaje" placeholder="Déjanos tu mensaje..." style="height: 70px;"></textarea>
+                                
                                 <input id="cuevaCebraContactenosBtn" type="submit" value="Enviar" class="btn btn-success btn-block" onClick="envioFormularioContacto(this.id);">
                             </div>
                         </div>
@@ -510,7 +519,7 @@
                                     <span class="infoIcon"><i class="fa fa-envelope-o fa-fw"></i></span>
                                     <div class="infoData"><a href="mailto:lacuevadelacebra@gmail.com" target="_blank" itemprop="email">lacuevadelacebra@gmail.com</a></div>
                                 </div>
-                                <p class="card-text text-danger" id="distanciaUsuarioCueva">
+                                <p class="card-text" style="color: whitesmoke" id="distanciaUsuarioCueva">
                                     Calcular distancia a la ubicacion del usuario.
                                 </p>
                                 <div class="text-right">
@@ -521,7 +530,7 @@
 
                         <!-- PAKARNY MUSIC HOUSE -->
                         <div class="card" style="width: 18rem; margin-top: 10px;">
-                            <img class="card-img-top" src="imagenes/Fotos sitio/Pakarny/prox_parkanymusic.png" alt=""/>
+                            <img class="card-img-top" src="imagenes/Fotos sitio/Pakarny/prox_parkanymusic.png" style="filter: contrast(40%)" alt=""/>
                             <div class="card-body">
                                 <h5 class="card-title"><b>PAKARNY MUSIC HOUSE</b></h5>
                                 <div class="infoLine address" style="margin-bottom: 1px; visibility: visible;">
@@ -545,7 +554,7 @@
                                         <a href="mailto:reservaspakarny@gmail.com<" target="_blank" itemprop="email">reservaspakarny@gmail.com</a>
                                     </div>
                                 </div>
-                                <p class="card-text text-danger" id="distanciaUsuarioPakarny">
+                                <p class="card-text" id="distanciaUsuarioPakarny">
                                     Calcular distancia a la ubicacion del usuario.
                                 </p>
                                 <div class="text-right">
@@ -556,7 +565,7 @@
 
                         <!-- EL TOKE -->
                         <div class="card" style="width: 18rem; margin-top: 10px;">
-                            <img class="card-img-top" src="imagenes/Fotos sitio/El_toke/prox_el_toke.jpeg" alt=""/>
+                            <img class="card-img-top" src="imagenes/Fotos sitio/El_toke/prox_el_toke.jpeg" style="filter: contrast(40%)" alt=""/>
                             <div class="card-body">
                                 <h5 class="card-title"><b>EL TOKE</b></h5>
                                 <div class="infoLine address" style="margin-bottom: 1px; visibility: visible;">
@@ -578,7 +587,7 @@
                                     <span class="infoIcon"><i class="fa fa-envelope-o fa-fw"></i></span>
                                     <div class="infoData"><a href="mailto:ensayoseltoke@gmail.com" target="_blank" itemprop="email">ensayoseltoke@gmail.com</a></div>
                                 </div>
-                                <p class="card-text text-danger" id="distanciaUsuarioElToke">
+                                <p class="card-text" id="distanciaUsuarioElToke">
                                     Calcular distancia a la ubicacion del usuario.
                                 </p>
                                 <div class="text-right">

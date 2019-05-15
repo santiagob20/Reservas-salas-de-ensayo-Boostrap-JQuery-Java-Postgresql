@@ -949,7 +949,7 @@ function accesoSitios(id, ubicacion) {
                     "</li>" +
                     "<li class='breadcrumb-item' ><a class='breadcrumbSegundoNivel' onclick='accesoMapaRiff()'>Mapa</a></li>" +
                     "<li class='breadcrumb-item active'>La Cueva de la cebra</li>");
-            break;
+            break;  
         case "cardListado":
             $("#breadcrumbSitios").append(" <li class='breadcrumb-item'>" +
                     "<a href='index.html'>Inicio</a>" +
@@ -980,6 +980,7 @@ function accesoSalas(id, ubicacion) {
     $("#pagMapa").hide();
     $("#cardsSalas").show();
     $("#" + id).show();
+    
 
     $("#cardAmatista").hide();
     $("#cardMiles").hide();
