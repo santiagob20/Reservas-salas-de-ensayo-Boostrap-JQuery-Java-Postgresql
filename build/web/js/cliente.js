@@ -1157,32 +1157,32 @@ function envioFormularioContacto(id) {
     let mensajeContacto = $("#cajaMensajeContactenos" + id).val();
     if (nombreContacto !== '' && emailContacto !== '' &&
             telefonoContacto !== '' && mensajeContacto !== '') {
-        $.ajax({
-            url: server + "Riff/app/restServices/contactanosCueva",
-            data: JSON.stringify({
-                nombre: nombreContacto,
-                correoElectronico: emailContacto,
-                mensajeContactenos: mensajeContacto
-            }),
-            type: 'POST',
-            cache: false,
-            async: false,
-            contentType: 'application/json',
-            success: function (respuesta) {
-                if (respuesta.codigo === 1) {
-                    innerModalInformativo("Mensaje enviado",
-                            respuesta.descripcion + "<br><br>En breve nos contactaremos.",
-                            "", false);
-                } else {
-                    innerModalInformativo("Error al enviar el mensaje",
-                            respuesta.descripcionError,
-                            "", false);
-                }
-            },
-            error: function (error) {
-                console.log(error);
-            }
-        });
+//        $.ajax({
+//            url: server + "Riff/app/restServices/contactanosCueva",
+//            data: JSON.stringify({
+//                nombre: nombreContacto,
+//                correoElectronico: emailContacto,
+//                mensajeContactenos: mensajeContacto
+//            }),
+//            type: 'POST',
+//            cache: false,
+//            async: false,
+//            contentType: 'application/json',
+//            success: function (respuesta) {
+//                if (respuesta.codigo === 1) {
+//                    innerModalInformativo("Mensaje enviado",
+//                            respuesta.descripcion + "<br><br>En breve nos contactaremos.",
+//                            "", false);
+//                } else {
+//                    innerModalInformativo("Error al enviar el mensaje",
+//                            respuesta.descripcionError,
+//                            "", false);
+//                }
+//            },
+//            error: function (error) {
+//                console.log(error);
+//            }
+//        });
 
 
         $.ajax({
@@ -1195,6 +1195,9 @@ function envioFormularioContacto(id) {
             cache: false,
             contentType: "application/json",
             success: function (rta) {
+                innerModalInformativo("SMS enviado",
+                        rta.descripcion + ", en breve nos contactaremos.",
+                        "", false);
             },
             error: function (err) {
                 console.log(err);

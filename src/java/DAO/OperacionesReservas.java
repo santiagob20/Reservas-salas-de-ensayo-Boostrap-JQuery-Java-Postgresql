@@ -267,9 +267,10 @@ public class OperacionesReservas implements InterfaceReservas {
                 + "on r.id_sala = s.id_sala\n"
                 + "inner join app.tbl_usuario u\n"
                 + "on r.id_usuario = u.id_usuario\n"
-                + "where r.id_usuario = 2 \n"
+                + "where r.id_usuario = u.id_usuario \n"
                 + "and r.fecha_reserva >= now()::date \n"
                 + "and NOT (detalles @> '{\"adicionales\": \"cancelada\"}'::jsonb);";
+//        System.out.println(sql);
         try {
             PreparedStatement ps = c.conectar().prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
@@ -319,6 +320,7 @@ public class OperacionesReservas implements InterfaceReservas {
                 + "\"fecha_reserva\":\"" + u.getFechaReserva() + "\",\n"
                 + "\"hora_inicio\":\"" + u.getHoraInicio() + "\",\n"
                 + "\"hora_fin\":\"" + u.getHoraFin()+ "\"}');";
+//        System.out.println(sql);
         try {
             PreparedStatement ps = cn.conectar().prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
