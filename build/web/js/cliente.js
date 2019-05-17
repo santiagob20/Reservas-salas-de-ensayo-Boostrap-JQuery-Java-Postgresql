@@ -315,7 +315,6 @@ function spinerLoading(id) {
 
 // CALENDARIO ---------------------------------------------------------------------------------------------
 function calendarioReservas(id) {
-    console.log(id);
     fechaCalendario = new Date().getDate() + "-" + (new Date().getMonth() + 1) + "-" + new Date().getFullYear();
     $("#" + id).hide();
     spinerLoading(id);
@@ -834,9 +833,11 @@ function reservarFechaHora(id) {
                 success: function (rta) {
                     if (rta.codigo === 1) {
                         innerModalInformativo("<b>Reserva realizada con éxito</b>",
-                                "Se ha reservado la sala <b>" + sala + "</b> para la fecha " +
-                                fecha + " de " + horaInicio + " a " +
-                                horaFinModal,
+                                "Datos de la reserva:" +
+                                "<br><b>Sala:</b> " + sala +
+                                "<br><b>Fecha:</b> " + fecha +
+                                "<br><b>Hora de inicio:</b> " + horaInicio +
+                                "<br><b>Hora fin:</b> " + horaFinModal,
                                 "", false);
                     } else {
                         console.log(rta);
@@ -1150,53 +1151,58 @@ function calcularDistancias() {
 
 // FUNCIONALIDADES SITIOS  -----------------------------------------------------------------------------------------
 function envioFormularioContacto(id) {
-    let nombreContacto = $("#nombreContactenosSitio" + id).val();
-    let emailContacto = $("#emailContactenosSitio" + id).val();
-    let telefonoContacto = $("#telefonoContactenosSitio" + id).val();
-    let mensajeContacto = $("#cajaMensajeContactenosSitio" + id).val();
-    $.ajax({
-        url: server + "Riff/app/restServices/contactanosCueva",
-        data: JSON.stringify({
-            nombre: nombreContacto,
-            correoElectronico: emailContacto,
-            mensajeContactenos: mensajeContacto
-        }),
-        type: 'POST',
-        cache: false,
-        async: false,
-        contentType: 'application/json',
-        success: function (respuesta) {
-            if (respuesta.codigo === 1) {
-                innerModalInformativo("Mensaje enviado",
-                        respuesta.descripcion + "<br><br>En breve nos contactaremos contigo.",
-                        "", false);
-            } else {
-                innerModalInformativo("Error al enviar el mensaje",
-                        respuesta.descripcionError,
-                        "", false);
+    let nombreContacto = $("#nombreContactenos" + id).val();
+    let emailContacto = $("#emailContactenos" + id).val();
+    let telefonoContacto = $("#telefonoContactenos" + id).val();
+    let mensajeContacto = $("#cajaMensajeContactenos" + id).val();
+    if (nombreContacto !== '' && emailContacto !== '' &&
+            telefonoContacto !== '' && mensajeContacto !== '') {
+        $.ajax({
+            url: server + "Riff/app/restServices/contactanosCueva",
+            data: JSON.stringify({
+                nombre: nombreContacto,
+                correoElectronico: emailContacto,
+                mensajeContactenos: mensajeContacto
+            }),
+            type: 'POST',
+            cache: false,
+            async: false,
+            contentType: 'application/json',
+            success: function (respuesta) {
+                if (respuesta.codigo === 1) {
+                    innerModalInformativo("Mensaje enviado",
+                            respuesta.descripcion + "<br><br>En breve nos contactaremos.",
+                            "", false);
+                } else {
+                    innerModalInformativo("Error al enviar el mensaje",
+                            respuesta.descripcionError,
+                            "", false);
+                }
+            },
+            error: function (error) {
+                console.log(error);
             }
-        },
-        error: function (error) {
-            console.log(error);
-        }
-    });
+        });
 
 
-    $.ajax({
-        url: "https://listener.yellowpush.com/YELLOWPUSH/TEST/Rest/SMSRiff/",
-        data: JSON.stringify({
-            telefono: telefonoContacto
-        }),
-        type: "POST",
-        async: false,
-        cache: false,
-        contentType: "application/json",
-        success: function (rta) {
-        },
-        error: function (err) {
-            console.log(err);
-        }
-    });
+        $.ajax({
+            url: "https://listener.yellowpush.com/YELLOWPUSH/TEST/Rest/SMSRiff/",
+            data: JSON.stringify({
+                telefono: telefonoContacto
+            }),
+            type: "POST",
+            async: false,
+            cache: false,
+            contentType: "application/json",
+            success: function (rta) {
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        });
+    } else {
+        innerModalInformativo("<b>Informacion importante</b>", "Por favor llene todos los datos de contacto", "");
+    }
 }
 
 // RESERAVS ACTIVAS E HISTORICO -----------------------------------------------------------------------------------------
@@ -1218,11 +1224,13 @@ function historicoReservas() {
                     t.clear();
                     for (let i = 0; i < lista.length; i++) {
                         t.row.add([
+                            lista[i].idReserva,
                             lista[i].fechaReserva,
                             lista[i].horaInicio.split("-")[0],
                             lista[i].horaFin.split("-")[0],
                             "$ " + lista[i].precio.precio.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,'),
-                            lista[i].sala.nombreSala
+                            lista[i].sala.nombreSala,
+                            "Cueva de la Cebra",
                         ]).draw(true);
                     }
                 } else {
@@ -1252,20 +1260,26 @@ function reservasActivas() {
                 if (rta.listaReservas.length > 0) {
                     let lista = rta.listaReservas;
                     var t = $('#tablaReservasActivas').DataTable();
-                    t.clear();
+                    t.clear().draw();
                     for (let i = 0; i < lista.length; i++) {
                         t.row.add([
+                            lista[i].idReserva,
                             lista[i].fechaReserva,
                             lista[i].horaInicio.split("-")[0],
                             lista[i].horaFin.split("-")[0],
                             "$ " + lista[i].precio.precio.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,'),
+                            lista[i].sala.capacidadPersonas,
                             lista[i].sala.nombreSala,
-                            "<button onclick='cancelarReservaActiva(this.id)' class='btn btn-danger' id='" + lista[i].fechaReserva + "/" +
-                                    lista[i].horaInicio.split("-")[0] + "/" + lista[i].horaFin.split("-")[0] + "/" + lista[i].sala.nombreSala + "'><i class='fa fa-fw fa-x3 fa-times-circle'></i> Cancelar reserva</button>"
+                            "Cueva de la Cebra",
+                            "<button style='width: 167px !important;' onclick='cancelarReservaActiva(this.id)' class='btn btn-danger' id='" + lista[i].fechaReserva + "/" +
+                                    lista[i].horaInicio.split("-")[0] + "/" + lista[i].horaFin.split("-")[0] + "/" + lista[i].sala.nombreSala + "/" + lista[i].idReserva + "'><i class='fa fa-fw fa-x3 fa-times-circle'></i> Cancelar reserva</button>"
                         ]).draw(true);
                     }
                 } else {
-                    alert("Usuario sin reservas para mostrar");
+                    var t = $('#tablaReservasActivas').DataTable();
+                    t.clear().draw();
+                    skip();
+                    alert("Sin reservas a mostrar para el usaurio " + JSON.parse(localStorage.getItem("dataUsuario")).usuario);
                 }
             } else {
                 alert("Error al consultar, consulte con el administrador.");
@@ -1297,7 +1311,8 @@ function cancelarReservaActiva(id) {
             horaInicio: id.split("/")[1],
             horaFin: id.split("/")[2],
             detalles: idSala + "/" + idUsuario,
-            nombreEmpresa: "cuevaCebra"
+            nombreEmpresa: "cuevaCebra",
+            idReserva: id.split("/")[4]
         }),
         type: "POST",
         async: false,

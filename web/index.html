@@ -463,13 +463,13 @@
                         <div class="col-lg-6">
                             <div class="container">
                                 <h3 style="text-align: center; margin-top: 5%;"><b>CONTÁCTENOS</b></h3>
-                                <input style="margin-bottom: 7px;" type="text" id="nombreContactenosSitioCuevaCebra" class="form-control" placeholder="Nombre" required="required" autofocus="autofocus">
+                                <input style="margin-bottom: 7px;" type="text" id="nombreContactenoscuevaCebraContactenosBtn" class="form-control" placeholder="Nombre" required="required" autofocus="autofocus">
 
-                                <input style="margin-bottom: 7px;" type="text" id="emailContactenosSitioCuevaCebra" class="form-control" placeholder="Email" required="required" autofocus="autofocus">
+                                <input style="margin-bottom: 7px;" type="text" id="emailContactenoscuevaCebraContactenosBtn" class="form-control" placeholder="Email" required="required" autofocus="autofocus">
 
-                                <input style="margin-bottom: 7px;" type="text" id="telefonoContactenosSitioCuevaCebra" class="form-control" placeholder="Número de celular ej:573100000000" required="required" autofocus="autofocus">
+                                <input style="margin-bottom: 7px;" type="text" id="telefonoContactenoscuevaCebraContactenosBtn" class="form-control" placeholder="Número de celular ej:573100000000" required="required" autofocus="autofocus">
 
-                                <textarea style="margin-bottom: 7px;" name="" id="cajaMensajeContactenosSitioCuevaCebra" class="form-control" data-required_mark="required" data-field_type="text" data-original_id="mensaje" placeholder="Déjanos tu mensaje..." style="height: 70px;"></textarea>
+                                <textarea style="margin-bottom: 7px;" name="" id="cajaMensajeContactenoscuevaCebraContactenosBtn" class="form-control" data-required_mark="required" data-field_type="text" data-original_id="mensaje" placeholder="Déjanos tu mensaje..." style="height: 70px;"></textarea>
 
                                 <input id="cuevaCebraContactenosBtn" type="submit" value="Enviar" class="btn btn-success btn-block" onClick="envioFormularioContacto(this.id);">
                             </div>
@@ -783,12 +783,15 @@
                 <!-- PAGINA INICIO RIFF -->
                 <div id="reservasActivas">
                     <table class="table table-hover" id="tablaReservasActivas" style="width: 99%; font-size: 15px;">
-                        <thead style="font-weight: bold">
-                        <td>Fecha reserva</td>
+                        <thead style="font-weight: bold;font-size: 13px;">
+                        <td>Numero de reserva</td>
+                        <td>Fecha de reserva</td>
                         <td>Hora inicio</td>
                         <td>Hora fin</td>
                         <td>Precio</td>
+                        <td>Capacidad</td>
                         <td>Nombre de la sala</td>
+                        <td>Sitio</td>
                         <td>Cancelar reserva</td>
                         </thead>
                     </table>
@@ -808,12 +811,14 @@
                 <!-- PAGINA INICIO RIFF -->
                 <div id="historicoReservas" >
                     <table class="table table-hover" id="tablaHistorico" style="width: 99%; font-size: 15px;">
-                        <thead style="font-weight: bold">
+                        <thead style="font-weight: bold;font-size: 13px;">
+                        <td>Numero de reserva</td>
                         <td>Fecha reserva</td>
                         <td>Hora inicio</td>
                         <td>Hora fin</td>
                         <td>Precio</td>
                         <td>Nombre de la sala</td>
+                        <td>Sitio</td>
                         </thead>
                     </table>
 
@@ -1104,14 +1109,14 @@
                 </div>
             </div>
 
-            <!-- Bootstrap core JavaScript-->
-            <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-            <!-- Core plugin JavaScript-->
-            <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-            <!-- Custom scripts for all pages-->
-            <script src="js/sb-admin.min.js"></script>
-            <script src="js/cliente.js" type="text/javascript"></script>
-        </div>
+                <!-- Bootstrap core JavaScript-->
+                <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+                <!-- Core plugin JavaScript-->
+                <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+                <!-- Custom scripts for all pages-->
+                <script src="js/sb-admin.min.js"></script>
+                <script src="js/cliente.js" type="text/javascript"></script>
+            </div>
     </body>
 
 </html>
