@@ -2,7 +2,7 @@ $(document).ready(inicio);
 function inicio() {
     $(this).scrollTop(0);
     obtenerMiPosicion();
-    document.getElementById("videoo").playbackRate = 1.7
+    
     //OPCIONES DE USUARIO ---------------------------------------------------------------------------------------------
     $("#btnIniciarSesion").click(clickInicioSesion);
     $("#cerrarSesionUsuario").click(clickCerrarSesion);
@@ -37,6 +37,7 @@ function inicio() {
         usuarioSesionIniciada(dataUsuario.usuario);
     } else {
         skipInicio();
+        document.getElementById("videoo").playbackRate = 1.7
     }
 }
 
